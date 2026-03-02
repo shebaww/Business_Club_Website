@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html class="dark" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>About Us | Business Club</title>
+    <title>Business Club | About us</title>
+    <!-- Tailwind CSS v3 CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
+    <!-- Google Fonts: Inter -->
+    <link rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
@@ -15,7 +17,6 @@
     />
     <script>
       tailwind.config = {
-        darkMode: "class",
         theme: {
           extend: {
             colors: {
@@ -30,15 +31,12 @@
             },
             borderRadius: {
               custom: "8px",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
             },
           },
         },
       };
     </script>
-    <style>
+    <style data-purpose="custom-animations">
       @keyframes float {
         0% { transform: translateY(0px); }
         50% { transform: translateY(-10px); }
@@ -54,13 +52,15 @@
           rgba(26, 26, 26, 0.95) 100%
         );
       }
+    </style>
+    <style data-purpose="typography-enhancements">
       .text-glow {
         text-shadow: 0 0 15px rgba(37, 244, 89, 0.4);
       }
     </style>
   </head>
   <body class="bg-brand-dark text-white font-sans antialiased">
-    <!-- Header from index.html -->
+    <!-- Header from index.html with updated active state -->
     <header
       class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10"
       data-purpose="navigation-bar"
@@ -69,7 +69,10 @@
         <div class="flex justify-between items-center h-20">
           <!-- Logo Section -->
           <div class="flex-shrink-0 flex items-center">
-            <p>Business Club</p>
+            <div class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand">
+              <span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+            </div>
+            <span class="font-bold hover:text-brand transition-colors text-white text-xl">&nbsp;Business Club</span>
           </div>
           <!-- Desktop Navigation -->
           <nav
@@ -78,28 +81,25 @@
           >
             <a
               class="text-gray-300 hover:text-brand transition-colors font-medium"
-              href="#"
+              href="./index.html"
               >Home</a
             >
             <a
-              class="text-gray-300 hover:text-brand transition-colors font-medium"
-              href="#mission"
+              class="text-brand transition-colors font-medium"
+              href="./About.html"
               >About</a
             >
             <a
               class="text-gray-300 hover:text-brand transition-colors font-medium"
-              href="#events"
+              href="./Events.html"
               >Events</a
             >
             <a
               class="text-gray-300 hover:text-brand transition-colors font-medium"
-              href="#"
+              href="./Library.html"
               >Resources</a
             >
-            <a
-              class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]"
-              href="#"
-            >
+            <a href="#" onclick="openTelegramPopup(); return false;" class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
               Join Us
             </a>
           </nav>
@@ -130,19 +130,16 @@
     </header>
 
     <main class="pt-20">
-      <!-- Hero Section - Updated with brand styling -->
+      <!-- Hero Section - Updated with brand styling and fixed gradient -->
       <section class="py-12">
         <div
           class="relative overflow-hidden rounded-xl min-h-[400px] flex flex-col justify-end bg-brand-dark"
-          data-alt="Professional business meeting room with cityscape view"
           style="
-            background-image:
-              linear-gradient(
-                0deg,
-                rgba(26, 26, 26, 0.95) 0%,
-                rgba(26, 26, 26, 0.7) 60%
-              ),
-              url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuATp9zLsgy5FHxSgzHxuNsV1iWDyf1A991gbQIKd5KKq3hDV5zKY6EC-2z4IdttIFb1USeX_RtGYNp1M4iaXoqB86W5PcUkqTOzYSGybyUWddeyeQU7d67wUrHw2K29nSBDvjRUejTj-acxGo2vSM9rqlrEqsZbYYQN-US1C33kPC-XMQwk_nnkwCdUX2PA-pOFqqerBQbHXM5pw967cLPY7-hB6xkrGB23faCkA1u77j6BYhlHFIeg18nQx2hL9lkUwDk3DU3W9iSc&quot;);
+            background-image: linear-gradient(
+              180deg,
+              rgba(26, 26, 26, 0.7) 0%,
+              rgba(26, 26, 26, 0.95) 100%
+            ), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=2070&amp;auto=format&amp;fit=crop');
             background-size: cover;
             background-position: center;
           "
@@ -150,10 +147,10 @@
           <div class="p-8 md:p-12 max-w-2xl">
             <span
               class="inline-block px-3 py-1 bg-brand/10 border border-brand/20 text-brand text-xs font-bold uppercase tracking-widest rounded-full mb-4"
-              >Established 1998</span
+              >Established 2025</span
             >
             <h1
-              class="text-white text-4xl md:text-5xl font-black leading-tight tracking-tight mb-4"
+              class="text-white text-4xl md:text-5xl font-black leading-tight tracking-tight mb-4 text-glow"
             >
               Our Mission &amp; Leadership
             </h1>
@@ -207,10 +204,10 @@
                 <div class="w-px flex-1 bg-brand/20 my-1"></div>
               </div>
               <div>
-                <span class="text-sm font-bold text-brand">1998</span>
+                <span class="text-sm font-bold text-brand">September 2025</span>
                 <p class="font-bold text-white">The Foundation</p>
                 <p class="text-sm text-gray-500">
-                  Founded by Prof. Elias Thorne with 12 inaugural members.
+                  Founded by Nahom Samuel and Nahom Natnael. 
                 </p>
               </div>
             </div>
@@ -220,10 +217,10 @@
                 <div class="w-px flex-1 bg-brand/20 my-1"></div>
               </div>
               <div>
-                <span class="text-sm font-bold text-brand">2010</span>
-                <p class="font-bold text-white">Global Expansion</p>
+                <span class="text-sm font-bold text-brand">Decemeber 2025</span>
+                <p class="font-bold text-white">National Expansion</p>
                 <p class="text-sm text-gray-500">
-                  First international case competition victory in London.
+                  First international case competition victory in Ideeza Hackathon.
                 </p>
               </div>
             </div>
@@ -232,10 +229,10 @@
                 <div class="size-3 rounded-full bg-brand mt-1.5"></div>
               </div>
               <div>
-                <span class="text-sm font-bold text-brand">2023</span>
+                <span class="text-sm font-bold text-brand">January 2026</span>
                 <p class="font-bold text-white">Innovation Hub</p>
                 <p class="text-sm text-gray-500">
-                  Launch of the Venture Capital &amp; Tech Incubation wing.
+                  Inception of our First Start-up.
                 </p>
               </div>
             </div>
@@ -252,7 +249,7 @@
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div
-            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group"
+            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)]"
           >
             <div
               class="size-12 rounded-lg bg-brand/10 text-brand group-hover:bg-brand group-hover:text-black transition-colors flex items-center justify-center mb-4"
@@ -268,7 +265,7 @@
             </p>
           </div>
           <div
-            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group"
+            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)]"
           >
             <div
               class="size-12 rounded-lg bg-brand/10 text-brand group-hover:bg-brand group-hover:text-black transition-colors flex items-center justify-center mb-4"
@@ -284,7 +281,7 @@
             </p>
           </div>
           <div
-            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group"
+            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)]"
           >
             <div
               class="size-12 rounded-lg bg-brand/10 text-brand group-hover:bg-brand group-hover:text-black transition-colors flex items-center justify-center mb-4"
@@ -298,7 +295,7 @@
             </p>
           </div>
           <div
-            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group"
+            class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)]"
           >
             <div
               class="size-12 rounded-lg bg-brand/10 text-brand group-hover:bg-brand group-hover:text-black transition-colors flex items-center justify-center mb-4"
@@ -316,7 +313,7 @@
         </div>
       </section>
 
-      <!-- Meet the Board - Updated with brand styling -->
+      <!-- Meet the Board - Updated with brand styling and fixed image links -->
       <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4"
@@ -330,11 +327,12 @@
               advisors dedicated to organizational growth.
             </p>
           </div>
-          <button
+          <a
+            href="#"
             class="px-6 py-2 border border-brand/30 text-brand font-bold rounded-lg hover:bg-brand hover:text-black transition-colors"
           >
             Executive Charter
-          </button>
+          </a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <!-- Board Member 1 -->
@@ -343,33 +341,35 @@
               class="relative aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-brand-accent/20"
             >
               <img
-                alt="Executive President"
+                alt="President"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                data-alt="Professional headshot of a male executive in a suit"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_hVu1iyR8o3nCEyxKMRZ0gNqgpibmq9dNzEalTXgEKrq-BLeB-xgrERak_blNMjIZ3Fkgwy0n3s95eApR2RTE7-XZoRweEm4csV7mzXoVE4aRbZMzT9_6y4NP2FQyJtlm1BF33IN-Zxm6KiOBdkib-AgYSn5zp65Hk-r4WJT_7diKo1td1uLuQWct3zdj3Mxj-G0qF1VnsV_EOsyRfELQ2BL21oz_00BfgAcjwc14QnPlbWIHQU7YMXu9182folL9y2Ok96hqoZp4"
+                src="./icons/profile.png"
+                onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop'"
               />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4"
               >
                 <div class="flex gap-2">
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  <a
+                    href="mailto:president@businessclub.com"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">mail</span>
-                  </div>
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  </a>
+                  <a
+                    href="#"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">link</span>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
-            <h4 class="font-bold text-lg text-white">Jameson Whitaker</h4>
+            <h4 class="font-bold text-lg text-white">Nahom Samuel</h4>
             <p
               class="text-brand text-sm font-semibold uppercase tracking-wider"
             >
-              Executive President
+              Co-Founder
             </p>
           </div>
           <!-- Board Member 2 -->
@@ -378,33 +378,35 @@
               class="relative aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-brand-accent/20"
             >
               <img
-                alt="VP of Finance"
+                alt="Vice President"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                data-alt="Professional headshot of a female executive in business attire"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLajf5qDJRwktmKkByw0QYN75BdGdFhUQZcH_BEol6IkKYPTiXTMhw19sQyEDhSDzxYX38pfTpObkTBLzJvel6BC3mZ1CNtwR2JbX7A8-9CRapJAj1S32_FDexrmiarrNiP1YnAXMhrKOHAl-1Cy914woQ_1HXpYUNF7R1EQ_f3xLld3-EUwxKPD-2swjia0fUBvAVHP4497UGNizekAjsW1FobK-3GPy9Jz2KjqZqdpNW1ZhrjfmYaYXhZtGt2KnaD1d5d8cujNN1"
+                src="./icons/profile.png"
+                onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop'"
               />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4"
               >
                 <div class="flex gap-2">
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  <a
+                    href="mailto:finance@businessclub.com"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">mail</span>
-                  </div>
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  </a>
+                  <a
+                    href="#"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">link</span>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
-            <h4 class="font-bold text-lg text-white">Elena Rodriguez</h4>
+            <h4 class="font-bold text-lg text-white">Nahom Natnael</h4>
             <p
               class="text-brand text-sm font-semibold uppercase tracking-wider"
             >
-              VP of Finance
+              Co-Founder
             </p>
           </div>
           <!-- Board Member 3 -->
@@ -415,72 +417,113 @@
               <img
                 alt="Operations Director"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                data-alt="Professional headshot of a male executive smiling"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyGd1yH2PyDex06VSDciTFdWZmKx00oxB9n7bi5ou01U0SAShLM7qmF4r81LD8EV4TKB8HVwOYIYrs8urboy1pK_q3Btye9yYKv1C9pKvP_Kwh235BizUb3qn4sujPNxc6KjxHsY4W9HUuEfSudGr-5aR_IRsdBpfEaE8P_S50T9qV1ZWFHzs1trxv5YMQkfShLG44oABpUgd-OOZckE1dK0UHC9cA4fMWWFdvgbkylywYEm6XFSBJljeEpXjtoFswJrYgzzCBdeMr"
+                src="./icons/profile.png"
+                onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop'"
               />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4"
               >
                 <div class="flex gap-2">
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  <a
+                    href="mailto:operations@businessclub.com"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">mail</span>
-                  </div>
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  </a>
+                  <a
+                    href="#"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">link</span>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
-            <h4 class="font-bold text-lg text-white">Marcus Chen</h4>
+            <h4 class="font-bold text-lg text-white">Nahom Solomon</h4>
             <p
               class="text-brand text-sm font-semibold uppercase tracking-wider"
             >
-              Operations Director
+              Secretary
             </p>
           </div>
+          <!-- Board Member 3 -->
+          <div class="group">
+            <div
+              class="relative aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-brand-accent/20"
+            >
+              <img
+                alt="Treasurer"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src="./icons/profile.png"
+                onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop'"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4"
+              >
+                <div class="flex gap-2">
+                  <a
+                    href="mailto:operations@businessclub.com"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">mail</span>
+                  </a>
+                  <a
+                    href="#"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">link</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <h4 class="font-bold text-lg text-white">Herani & Emas</h4>
+            <p
+              class="text-brand text-sm font-semibold uppercase tracking-wider"
+            >
+              Treasurer
+            </p>
+            </div>
           <!-- Board Member 4 -->
           <div class="group">
             <div
               class="relative aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-brand-accent/20"
             >
               <img
-                alt="Head of External Relations"
+                alt="Event Co-ordinator"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                data-alt="Professional headshot of a female professional in a blazer"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkBBmGgzJ5bjDKsJ3Swy3aw3ru6ivh2iZzgcEqKig0yteBPing4t02yQbrlwB5t_C2r-6OryFxSAtzUohsiVfsoDomETRNeH1imMmNwAKgt6-tMPWKsKuGk5yI2rBocLYPib4ynNKg_vYxTaSPD_B6-Lgl4FQ33wfFFzLnkz7J5zrFezP1L6FyZrVJwSFamGFVGBr_ncIsvKFca631V9GbZtEfxJiAoXqGcvE2sLUyeFKx7AweWIm4ALDNsXzhFRU3l6ahV3KWTqUF"
+                src="./icons/profile.png"
+                onerror="this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop'"
               />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4"
               >
                 <div class="flex gap-2">
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  <a
+                    href="mailto:external@businessclub.com"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">mail</span>
-                  </div>
-                  <div
-                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
+                  </a>
+                  <a
+                    href="#"
+                    class="size-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-brand hover:text-black transition-colors"
                   >
                     <span class="material-symbols-outlined text-sm">link</span>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
-            <h4 class="font-bold text-lg text-white">Sarah Jenkins</h4>
+            <h4 class="font-bold text-lg text-white">Amanuel Biyadlgn & Amen Kumsa</h4>
             <p
               class="text-brand text-sm font-semibold uppercase tracking-wider"
             >
-              External Relations
+              Event Coordinator
             </p>
           </div>
         </div>
       </section>
 
-      <!-- CTA Section - Updated with brand styling -->
+      <!-- CTA Section - Updated with working buttons -->
       <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           class="bg-brand rounded-2xl p-8 md:p-12 text-center text-black shadow-2xl shadow-brand/20"
@@ -492,12 +535,14 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              class="px-8 py-3 bg-black text-white font-bold rounded-xl hover:bg-gray-900 transition-colors"
+              onclick="openTelegramPopup(); return false;"
+              class="px-8 py-3 bg-black text-white font-bold rounded-xl hover:bg-gray-900 transition-colors transform hover:scale-105 active:scale-95"
             >
               Apply Now
             </button>
             <button
-              class="px-8 py-3 bg-transparent border-2 border-black/30 hover:border-black text-black font-bold rounded-xl transition-colors"
+              onclick="window.location.href = './Events.html'"
+              class="px-8 py-3 bg-transparent border-2 border-black/30 hover:border-black text-black font-bold rounded-xl transition-colors transform hover:scale-105 active:scale-95"
             >
               View Opportunities
             </button>
@@ -506,7 +551,7 @@
       </section>
     </main>
 
-    <!-- Footer from index.html -->
+    <!-- Footer from index.html with updated links -->
     <footer
       class="bg-black pt-16 pb-8 border-t border-white/5"
       data-purpose="site-footer"
@@ -527,7 +572,7 @@
               >
             </div>
             <p class="text-gray-500 max-w-sm">
-              Empowering the students of [School Name] to lead the industries of
+              Empowering the students of Andinet to lead the industries of
               tomorrow through education, networking, and real-world experience.
             </p>
           </div>
@@ -535,22 +580,12 @@
             <h5 class="text-white font-bold mb-6">Quick Links</h5>
             <ul class="space-y-4 text-gray-500">
               <li>
-                <a class="hover:text-brand transition-colors" href="#"
+                <a class="hover:text-brand transition-colors" href="https://www.andinet.edu.et/"
                   >School Portal</a
                 >
               </li>
               <li>
-                <a class="hover:text-brand transition-colors" href="#"
-                  >Club Constitution</a
-                >
-              </li>
-              <li>
-                <a class="hover:text-brand transition-colors" href="#"
-                  >Past Recordings</a
-                >
-              </li>
-              <li>
-                <a class="hover:text-brand transition-colors" href="#"
+                <a class="hover:text-brand transition-colors" href="./About.html"
                   >Member Directory</a
                 >
               </li>
@@ -561,36 +596,126 @@
             <div class="flex space-x-4 mb-6">
               <a
                 class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
-                href="#"
+                href="https://t.me/ethiobusinessclub"
               >
-                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-                  <path
-                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
-                  ></path>
+                <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
                 </svg>
               </a>
               <a
                 class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
-                href="#"
+                href="mailto:nahomnatnael87@gmail.com"
               >
-                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                  ></path>
+                <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 12l-8-6h16l-8 6zm0 2l8-6v2l-8 6-8-6v-2l8 6z"/>
                 </svg>
               </a>
             </div>
             <p class="text-gray-500 text-sm">
-              Contact: businessclub@[school-domain].edu
+              Contact: nahomnatnael87@gmail.com
+            </p>
+            <p class="text-gray-500 text-sm">
+              Contact: +251979087331 
             </p>
           </div>
         </div>
         <div
           class="pt-8 border-t border-white/5 text-center text-gray-600 text-sm"
         >
-          <p>© 2023 [School Name] Business Club. All rights reserved.</p>
+          <p>© 2026 Andinet Business Club. All rights reserved.</p>
         </div>
       </div>
     </footer>
+
+    <!-- Telegram Popup Modal (copied from index.html) -->
+    <div id="telegramPopup" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+
+      <!-- Popup Content -->
+      <div class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20 transform transition-all">
+        <!-- Close button -->
+        <button onclick="closeTelegramPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <!-- Icon -->
+        <div class="flex justify-center mb-6">
+          <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
+            <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h3 class="text-2xl font-bold text-center text-white mb-2">Join Our Telegram</h3>
+
+        <!-- Description -->
+        <p class="text-gray-400 text-center mb-6">
+          Connect with fellow members, get updates, and be part of our community!
+        </p>
+
+        <!-- Telegram Channel Info -->
+        <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
+            </svg>
+            <span class="text-white font-semibold">@ethiobusinessclub</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-brand">link</span>
+            <a href="https://t.me/ethiobusinessclub" class="text-brand truncate">t.me/ethiobusinessclub</a>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="https://t.me/ethiobusinessclub" target="_blank" class="flex-1 bg-brand text-black text-center font-bold py-3 rounded-custom hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
+            Open Telegram
+          </a>
+          <button onclick="closeTelegramPopup()" class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors">
+            Maybe Later
+          </button>
+        </div>
+
+        <!-- QR Code Placeholder -->
+        <div class="mt-6 pt-6 border-t border-white/10 text-center">
+          <p class="text-sm text-gray-500 mb-2">Or scan to join:</p>
+          <div class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
+            <img src="./icons/qr_code.png" alt="QR Code" class="w-full h-full object-cover rounded-lg" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-gray-500\'>qr_code</span>'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    function openTelegramPopup() {
+      document.getElementById('telegramPopup').classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeTelegramPopup() {
+      document.getElementById('telegramPopup').classList.add('hidden');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close popup when clicking outside
+    document.getElementById('telegramPopup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeTelegramPopup();
+      }
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeTelegramPopup();
+      }
+    });
+    </script>
   </body>
 </html>

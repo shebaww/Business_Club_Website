@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html class="dark" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -12,7 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+    />
     <script>
       tailwind.config = {
         theme: {
@@ -66,50 +68,50 @@
   <body class="bg-brand-dark text-white font-sans antialiased">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
       <div class="layout-container flex h-full grow flex-col">
-        <!-- BEGIN: MainHeader -->
+        <!-- BEGIN: MainHeader (updated with hover logo & Join Us popup) -->
         <header
           class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10"
           data-purpose="navigation-bar"
         >
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-              <!-- Logo Section -->
+              <!-- Logo Section with hover effect (like index) -->
               <div class="flex-shrink-0 flex items-center">
-                <p>Business Club</p>
+                <div class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand">
+                  <span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+                </div>
+                <span class="font-bold hover:text-brand transition-colors text-white text-xl">&nbsp;Business Club</span>
               </div>
-              <!-- Desktop Navigation -->
+              <!-- Desktop Navigation (active state for Resources) -->
               <nav
                 class="hidden md:flex space-x-8 items-center"
                 data-purpose="desktop-nav"
               >
                 <a
                   class="text-gray-300 hover:text-brand transition-colors font-medium"
-                  href="#"
+                  href="./index.html"
                   >Home</a
                 >
                 <a
                   class="text-gray-300 hover:text-brand transition-colors font-medium"
-                  href="#mission"
+                  href="./About.html"
                   >About</a
                 >
                 <a
                   class="text-gray-300 hover:text-brand transition-colors font-medium"
-                  href="#events"
+                  href="./Events.html"
                   >Events</a
                 >
                 <a
-                  class="text-gray-300 hover:text-brand transition-colors font-medium"
+                  class="text-brand font-medium"  <!-- active state -->
                   href="#"
                   >Resources</a
                 >
-                <a
-                  class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]"
-                  href="#"
-                >
+                <a href="#" onclick="openTelegramPopup(); return false;" class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
                   Join Us
                 </a>
               </nav>
-              <!-- Mobile Menu Button -->
+              <!-- Mobile Menu Button (Icon only) -->
               <div class="md:hidden flex items-center">
                 <button
                   aria-label="Toggle menu"
@@ -135,9 +137,9 @@
           </div>
         </header>
         <!-- END: MainHeader -->
-        
+
         <main class="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-20 py-10 mt-20">
-          <!-- Hero Section -->
+          <!-- Hero Section (added text-glow) -->
           <div
             class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6"
           >
@@ -152,20 +154,18 @@
                 <span class="text-gray-500">Knowledge Hub</span>
               </nav>
               <h1
-                class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-[1.1]"
+                class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-[1.1] text-glow"
               >
                 Elite Digital <span class="text-brand">Library</span>
               </h1>
-              <p
-                class="text-lg text-gray-400 leading-relaxed"
-              >
+              <p class="text-lg text-gray-400 leading-relaxed">
                 Access a curated ecosystem of market intelligence, executive
                 frameworks, and institutional knowledge designed exclusively for
                 our members.
               </p>
             </div>
             <div class="flex gap-3">
-              <button
+              <button onclick="openTelegramPopup(); return false;"
                 class="bg-brand text-black px-6 py-3 rounded-custom font-bold hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)] flex items-center gap-2"
               >
                 <span class="material-symbols-outlined">download</span>
@@ -173,10 +173,8 @@
               </button>
             </div>
           </div>
-          <!-- Category Tabs -->
-          <div
-            class="mb-10 border-b border-white/10 overflow-x-auto"
-          >
+          <!-- Category Tabs (unchanged) -->
+          <div class="mb-10 border-b border-white/10 overflow-x-auto">
             <div class="flex gap-10 whitespace-nowrap min-w-max">
               <button
                 class="pb-4 text-sm font-bold border-b-2 border-brand text-brand flex items-center gap-2"
@@ -216,14 +214,12 @@
               </button>
             </div>
           </div>
-          <!-- Section: Industry Insights -->
+          <!-- Section: Industry Insights (fixed broken images with unsplash fallbacks, hover effects already present) -->
           <section class="mb-16">
             <div class="flex items-center justify-between mb-8">
               <div class="flex items-center gap-3">
                 <div class="w-1.5 h-8 bg-brand rounded-full"></div>
-                <h2
-                  class="text-2xl font-bold text-white tracking-tight"
-                >
+                <h2 class="text-2xl font-bold text-white tracking-tight">
                   Industry Insights
                 </h2>
               </div>
@@ -238,18 +234,15 @@
               </a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <!-- Card 1 -->
+              <!-- Card 1 (image replaced) -->
               <div
                 class="group bg-brand-accent/20 border border-white/5 rounded-2xl overflow-hidden hover:border-brand/30 hover:-translate-y-1 transition-all"
               >
-                <div
-                  class="h-48 bg-brand-accent/40 relative overflow-hidden"
-                >
+                <div class="h-48 bg-brand-accent/40 relative overflow-hidden">
                   <img
                     alt="Market data"
                     class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500"
-                    alt="Complex financial market data visualization"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwFKX0j1Oz0fYA75O-yAN4xUjlavqEPcoj1riTvONgpgSBXKyXXYzh42DEvbUE8L4y_tzKDQnXio4AQZodJHIRWgZauZPLt2hLw5AfbpoIyd_BLPL41mgTGo05_nY7JDQHqREUdtHHmrJCo6yrhOn2j-qEjI9zCSjiA922t4n8pygGz5Fn_02HHG6Mwg1aBvlWwNt3YiiXlEm0iP1rEXAmFECbETl9txm7amsikC9cVK0UEdA8kAwU2K2pkG8sP78R_cLBeBT8DBgq"
+                    src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop"
                   />
                   <div
                     class="absolute top-4 left-4 bg-brand/10 border border-brand/20 text-brand text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded"
@@ -269,9 +262,7 @@
                     Global Venture Capital Trends: The Resilience of Enterprise
                     AI
                   </h3>
-                  <p
-                    class="text-gray-400 text-sm line-clamp-2"
-                  >
+                  <p class="text-gray-400 text-sm line-clamp-2">
                     An in-depth analysis of investment flow into generative AI
                     and infrastructure during the recent market shifts.
                   </p>
@@ -286,7 +277,7 @@
                       >
                       12 min read
                     </span>
-                    <button
+                    <button onclick="openTelegramPopup(); return false;"
                       class="p-2 text-brand bg-brand/10 rounded-lg group-hover:bg-brand group-hover:text-black transition-colors"
                     >
                       <span class="material-symbols-outlined text-xl"
@@ -296,18 +287,15 @@
                   </div>
                 </div>
               </div>
-              <!-- Card 2 -->
+              <!-- Card 2 (image replaced) -->
               <div
                 class="group bg-brand-accent/20 border border-white/5 rounded-2xl overflow-hidden hover:border-brand/30 hover:-translate-y-1 transition-all"
               >
-                <div
-                  class="h-48 bg-brand-accent/40 relative overflow-hidden"
-                >
+                <div class="h-48 bg-brand-accent/40 relative overflow-hidden">
                   <img
                     alt="Strategy chart"
                     class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500"
-                    alt="Minimalist office environment with growth charts"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUnRnbpKDgIyK-NxcwK7j40L5xPWaGTA6tMhJ1oSdJeUIj2pHqMXxqBnlr14Po7idW9eIFrqW_myl6ewUuHR2PCNMyJWOpCgmaEg-lWI8yEkW80Bu3Is27zVHatYZj4m4GmfChrDzIh_NeEl8vP0hFHYumG7pqmKJ6xDlNZE04R2xIcpQVSFf5sZGXC-zi5HjWo_VAAbCQO9SDfidioGI2_d23B538GhtYTjZOJ-LjmsGwdsLeF1Y5cAwMLKVGrDq3bcswTnv18Yt7"
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
                   />
                   <div
                     class="absolute top-4 left-4 bg-brand-accent/40 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded"
@@ -326,9 +314,7 @@
                   >
                     Supply Chain Decoupling: Navigating New Geopolitics
                   </h3>
-                  <p
-                    class="text-gray-400 text-sm line-clamp-2"
-                  >
+                  <p class="text-gray-400 text-sm line-clamp-2">
                     Practical frameworks for diversifying production hubs and
                     mitigating regional political risks for global brands.
                   </p>
@@ -343,7 +329,7 @@
                       >
                       24 pages
                     </span>
-                    <button
+                    <button onclick="openTelegramPopup(); return false;"
                       class="p-2 text-brand bg-brand/10 rounded-lg group-hover:bg-brand group-hover:text-black transition-colors"
                     >
                       <span class="material-symbols-outlined text-xl"
@@ -353,18 +339,15 @@
                   </div>
                 </div>
               </div>
-              <!-- Card 3 -->
+              <!-- Card 3 (image replaced) -->
               <div
                 class="group bg-brand-accent/20 border border-white/5 rounded-2xl overflow-hidden hover:border-brand/30 hover:-translate-y-1 transition-all"
               >
-                <div
-                  class="h-48 bg-brand-accent/40 relative overflow-hidden"
-                >
+                <div class="h-48 bg-brand-accent/40 relative overflow-hidden">
                   <img
                     alt="Trading screen"
                     class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500"
-                    alt="Stock market tickers on a dark digital display"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAcPm3ToKPqClWOrVsFHOxOAPB-bR0-tiZHJ8O7qmDVR-UgDfTzX0UxuGW-DZ8dBjZy7DACXnGE6aMmf3c8R1a-2r4s5rdf5qHOXOMOgxczDcegvrEC99i_RwFwRYiOyAbC_zthi0oNKDIexUjxyxu2b4DBq4pbeMbrR5stWNgWLXck0i507lX-aaJMFIslGdNUdYNA1svec8gKfZ-AMwH5d17Ro1q-EyM9bM1fWUR-EScd6favyi92hVQao3sTdc4D9UUESj_KCnC"
+                    src="https://images.unsplash.com/photo-1642790551116-18e150f248e3?q=80&w=2070&auto=format&fit=crop"
                   />
                   <div
                     class="absolute top-4 left-4 bg-brand/10 border border-brand/20 text-brand text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded"
@@ -384,9 +367,7 @@
                     Alternative Assets: The Institutionalization of Private
                     Equity
                   </h3>
-                  <p
-                    class="text-gray-400 text-sm line-clamp-2"
-                  >
+                  <p class="text-gray-400 text-sm line-clamp-2">
                     How family offices and private wealth are reshaping the
                     landscape of mid-market private equity acquisitions.
                   </p>
@@ -401,7 +382,7 @@
                       >
                       15 min read
                     </span>
-                    <button
+                    <button onclick="openTelegramPopup(); return false;"
                       class="p-2 text-brand bg-brand/10 rounded-lg group-hover:bg-brand group-hover:text-black transition-colors"
                     >
                       <span class="material-symbols-outlined text-xl"
@@ -413,14 +394,12 @@
               </div>
             </div>
           </section>
-          <!-- Section: Member Templates -->
+          <!-- Section: Member Templates (buttons wired to popup) -->
           <section class="mb-16">
             <div class="flex items-center justify-between mb-8">
               <div class="flex items-center gap-3">
                 <div class="w-1.5 h-8 bg-brand rounded-full"></div>
-                <h2
-                  class="text-2xl font-bold text-white tracking-tight"
-                >
+                <h2 class="text-2xl font-bold text-white tracking-tight">
                   Member Templates
                 </h2>
               </div>
@@ -446,9 +425,7 @@
                     >present_to_all</span
                   >
                 </div>
-                <h3
-                  class="font-bold text-white mb-2 leading-tight"
-                >
+                <h3 class="font-bold text-white mb-2 leading-tight">
                   Series A Pitch Deck
                 </h3>
                 <p class="text-xs text-gray-400 mb-6">
@@ -459,7 +436,7 @@
                     class="text-[10px] font-bold text-gray-500 uppercase tracking-widest"
                     >PPTX / PDF</span
                   >
-                  <button class="text-brand hover:text-brand/70">
+                  <button onclick="openTelegramPopup(); return false;" class="text-brand hover:text-brand/70">
                     <span class="material-symbols-outlined">download</span>
                   </button>
                 </div>
@@ -475,9 +452,7 @@
                     >table_chart</span
                   >
                 </div>
-                <h3
-                  class="font-bold text-white mb-2 leading-tight"
-                >
+                <h3 class="font-bold text-white mb-2 leading-tight">
                   LBO Model Framework
                 </h3>
                 <p class="text-xs text-gray-400 mb-6">
@@ -488,7 +463,7 @@
                     class="text-[10px] font-bold text-gray-500 uppercase tracking-widest"
                     >XLSX</span
                   >
-                  <button class="text-brand hover:text-brand/70">
+                  <button onclick="openTelegramPopup(); return false;" class="text-brand hover:text-brand/70">
                     <span class="material-symbols-outlined">download</span>
                   </button>
                 </div>
@@ -502,9 +477,7 @@
                 >
                   <span class="material-symbols-outlined text-3xl">gavel</span>
                 </div>
-                <h3
-                  class="font-bold text-white mb-2 leading-tight"
-                >
+                <h3 class="font-bold text-white mb-2 leading-tight">
                   Advisor Agreement
                 </h3>
                 <p class="text-xs text-gray-400 mb-6">
@@ -515,7 +488,7 @@
                     class="text-[10px] font-bold text-gray-500 uppercase tracking-widest"
                     >DOCX</span
                   >
-                  <button class="text-brand hover:text-brand/70">
+                  <button onclick="openTelegramPopup(); return false;" class="text-brand hover:text-brand/70">
                     <span class="material-symbols-outlined">download</span>
                   </button>
                 </div>
@@ -531,9 +504,7 @@
                     >account_balance</span
                   >
                 </div>
-                <h3
-                  class="font-bold text-white mb-2 leading-tight"
-                >
+                <h3 class="font-bold text-white mb-2 leading-tight">
                   Cap Table Manager
                 </h3>
                 <p class="text-xs text-gray-400 mb-6">
@@ -544,21 +515,19 @@
                     class="text-[10px] font-bold text-gray-500 uppercase tracking-widest"
                     >XLSX / GS</span
                   >
-                  <button class="text-brand hover:text-brand/70">
+                  <button onclick="openTelegramPopup(); return false;" class="text-brand hover:text-brand/70">
                     <span class="material-symbols-outlined">download</span>
                   </button>
                 </div>
               </div>
             </div>
           </section>
-          <!-- Section: Workshop Archives -->
+          <!-- Section: Workshop Archives (images replaced, play buttons linked) -->
           <section class="mb-16">
             <div class="flex items-center justify-between mb-8">
               <div class="flex items-center gap-3">
                 <div class="w-1.5 h-8 bg-brand rounded-full"></div>
-                <h2
-                  class="text-2xl font-bold text-white tracking-tight"
-                >
+                <h2 class="text-2xl font-bold text-white tracking-tight">
                   Workshop Archives
                 </h2>
               </div>
@@ -573,15 +542,14 @@
               </a>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <!-- Featured Video -->
+              <!-- Featured Video (image replaced) -->
               <div
                 class="relative group aspect-video rounded-3xl overflow-hidden bg-brand-dark border border-white/5 shadow-2xl"
               >
                 <img
                   alt="Workshop session"
                   class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
-                  alt="High-end boardroom workshop session in progress"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMaTa-gSrfBjyUa75LWGyNwAHuqyfj6R9l3QpNKhXbNA1Cfwph3EXeeLAauZRywExjJlyxQAmB8CHUg5YMi5B6MyJqMyB5FDqz_hby7gxdUh3YuicuZSE2WqtYpPX25mX1666d1ncOAKV9rWWYbGRx7cZIl3yQCsm5g6ZkoTp0Eq9PHH7Gi3lDgs7y7Fko5ck5vKCMNE1yef_1tWsxYt1LwQ_ZhCu43iLfIMcdSrymhJLZAHwTOUb1MEo7g1XCKr2ez8O5iZt3RhGj"
+                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop"
                 />
                 <div
                   class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent flex flex-col justify-end p-8"
@@ -607,7 +575,7 @@
                     Guest Lecturer: Dr. Sarah Chen, Former COO at TechCorp
                     Global. A deep dive into tactical decision-making.
                   </p>
-                  <button
+                  <button onclick="openTelegramPopup(); return false;"
                     class="flex items-center gap-3 text-white font-bold group-hover:text-brand transition-colors"
                   >
                     <span
@@ -621,7 +589,7 @@
                   </button>
                 </div>
               </div>
-              <!-- List of other workshops -->
+              <!-- List of other workshops (images replaced) -->
               <div class="space-y-4">
                 <div
                   class="flex gap-4 p-4 rounded-2xl bg-brand-accent/20 border border-white/5 hover:border-brand/30 transition-all cursor-pointer"
@@ -632,8 +600,7 @@
                     <img
                       alt="Data workshop"
                       class="w-full h-full object-cover opacity-70"
-                      alt="Collaborative data analysis workshop thumbnail"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Idu90GV8xjtPWyhdDP7pzASA5Q3a3yq2NIT0D8ffyL848-3CSUuH_t0Y5RCRrg1705B0onXaFUdcUXbbl5QlHJ9iTYMgbXe2z08ejdIXwh2sCGa3HunSR__34x5ToN5zbGvaJ54hhgfiIBfwLMVAySYwneJaeGtB5PkrLoVntCTMmicD0uPetaSfJZrn_erbhvWBECMXlP-TpJRycm63-HsoitlKxlUGW5VfAQhd06bCi1bz-EujgGMPH4b2iyrKgCsQoK16xt75"
+                      src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop"
                     />
                     <div
                       class="absolute inset-0 flex items-center justify-center bg-brand-dark/30"
@@ -649,9 +616,7 @@
                     >
                       June 2024 • Strategy
                     </p>
-                    <h4
-                      class="font-bold text-white text-sm line-clamp-1"
-                    >
+                    <h4 class="font-bold text-white text-sm line-clamp-1">
                       Blue Ocean Strategy for Web3 Startups
                     </h4>
                     <p class="text-xs text-gray-400 mt-1">
@@ -669,8 +634,7 @@
                     <img
                       alt="Sales workshop"
                       class="w-full h-full object-cover opacity-70"
-                      alt="Dynamic presentation about sales strategy"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4acD2hVlj7jI2eEVuOWoOS7NryGKw7bCmY09Y76eZrYuNRHDEiK0G6-h4uooWj7Bw3OyXJWH17nR4CZRZ_QaR5qTo5-PenToglu7b_31paOoB594ascJX76JtKxwqe2rt0795_g1Y2tF0QGWlfByRUNc16u_s3XqANkNpcluLPw_23qFJ53Cm3IXTL1ysRuD1ycK5iczr1BU1buUrBjjoxcHT6_HSVEuoB5jOqXCeTGT8TB4pNMLjq1nVGKJx9oD9zmgukDNV7FI9"
+                      src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop"
                     />
                     <div
                       class="absolute inset-0 flex items-center justify-center bg-brand-dark/30"
@@ -686,9 +650,7 @@
                     >
                       May 2024 • Growth
                     </p>
-                    <h4
-                      class="font-bold text-white text-sm line-clamp-1"
-                    >
+                    <h4 class="font-bold text-white text-sm line-clamp-1">
                       High-Velocity Sales: The AI Advantage
                     </h4>
                     <p class="text-xs text-gray-400 mt-1">
@@ -705,8 +667,7 @@
                     <img
                       alt="Culture workshop"
                       class="w-full h-full object-cover opacity-70"
-                      alt="Team building and corporate culture session"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWR_YmGVSgJk7_cIUG6Hj8s8-qbv1jTfHvvAOqnf9jf7d4JAI5weMmG-ofxsympPCPsR1cmABfBCc2X0EeW15s91Sx3Czwl4gnKFtDKm10B06zRgE0UaPk0qR1juFrfoBx5dNp70FaMVixNhlEIyzrzXOCU0iCSUllVEzGflt-tCp_MvXEbJWSjw5f_lIAjtjiDAhsl4YQ2HIQS5pmboicvMSu30Rl88LlJBbViBuGQ6YjzP9-CQI3ScpmnrP4sdaDihTT0uBKTWNp"
+                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
                     />
                     <div
                       class="absolute inset-0 flex items-center justify-center bg-brand-dark/30"
@@ -722,9 +683,7 @@
                     >
                       April 2024 • People
                     </p>
-                    <h4
-                      class="font-bold text-white text-sm line-clamp-1"
-                    >
+                    <h4 class="font-bold text-white text-sm line-clamp-1">
                       Scaling Culture: From 10 to 100 Employees
                     </h4>
                     <p class="text-xs text-gray-400 mt-1">
@@ -735,14 +694,12 @@
               </div>
             </div>
           </section>
-          <!-- Knowledge Hub Footer Info -->
+          <!-- Knowledge Hub Footer Info (button linked) -->
           <div
             class="bg-brand/5 rounded-3xl p-10 border border-brand/20 flex flex-col md:flex-row items-center gap-8 justify-between"
           >
             <div>
-              <h3
-                class="text-2xl font-bold text-white mb-2"
-              >
+              <h3 class="text-2xl font-bold text-white mb-2">
                 Can't find what you need?
               </h3>
               <p class="text-gray-400">
@@ -750,15 +707,14 @@
                 papers for Elite members.
               </p>
             </div>
-            <button
+            <button onclick="openTelegramPopup(); return false;"
               class="bg-brand text-black px-8 py-4 rounded-custom font-black text-sm uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]"
             >
               Request Resource
             </button>
           </div>
         </main>
-        
-        <!-- BEGIN: MainFooter -->
+        <!-- Footer updated with Andinet, correct contacts, 2026, and Telegram/email links (like index) -->
         <footer
           class="bg-black pt-16 pb-8 border-t border-white/5"
           data-purpose="site-footer"
@@ -766,13 +722,20 @@
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-12 mb-12">
               <div class="col-span-1 md:col-span-2">
-                <img
-                  alt="Logo"
-                  class="h-10 w-auto mb-6"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2ZRT5hmsm60R25c4WfWW2AQvQ_Gy1VmT8bg3cZYZEwRBm1O55SMG8GkOsOpk1GkL6B5noNS5CbQ4Cr-HMEt6fmwRCNY2Tg_903q0saOhHq6bWc4cqnR8MKDYuLPuUV_pOYZP6zhWeWEM8StgNaYQPRAM4x3klD1JSFGA55M7f1eEVBmmPnbynou8BExzJd-EJJecod1U-KjvP9oVYC9tJxhnBRll7SyTVYR_VAebqFs7jdmNPKSuJEfn1UZs1bVj6TsxFSn3E6bep"
-                />
+                <div class="flex items-center gap-3 mb-6">
+                  <div
+                    class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >corporate_fare</span
+                    >
+                  </div>
+                  <span class="font-bold text-white text-xl"
+                    >Business Club</span
+                  >
+                </div>
                 <p class="text-gray-500 max-w-sm">
-                  Empowering the students of [School Name] to lead the industries of
+                  Empowering the students of Andinet to lead the industries of
                   tomorrow through education, networking, and real-world experience.
                 </p>
               </div>
@@ -780,7 +743,7 @@
                 <h5 class="text-white font-bold mb-6">Quick Links</h5>
                 <ul class="space-y-4 text-gray-500">
                   <li>
-                    <a class="hover:text-brand transition-colors" href="#"
+                    <a class="hover:text-brand transition-colors" href="https://www.andinet.edu.et/"
                       >School Portal</a
                     >
                   </li>
@@ -795,7 +758,7 @@
                     >
                   </li>
                   <li>
-                    <a class="hover:text-brand transition-colors" href="#"
+                    <a class="hover:text-brand transition-colors" href="./About.html"
                       >Member Directory</a
                     >
                   </li>
@@ -806,39 +769,108 @@
                 <div class="flex space-x-4 mb-6">
                   <a
                     class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
-                    href="#"
+                    href="https://t.me/ethiobusinessclub"
                   >
-                    <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-                      <path
-                        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
-                      ></path>
+                    <svg class="w-5 h-5 text-brand" fill="currentColor" viewbox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
                     </svg>
                   </a>
                   <a
                     class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
-                    href="#"
+                    href="mailto:nahomnatnael87@gmail.com"
                   >
-                    <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-                      <path
-                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                      ></path>
+                    <svg class="w-5 h-5 text-brand" fill="currentColor" viewbox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 12l-8-6h16l-8 6zm0 2l8-6v2l-8 6-8-6v-2l8 6z"/>
                     </svg>
                   </a>
                 </div>
                 <p class="text-gray-500 text-sm">
-                  Contact: businessclub@[school-domain].edu
+                  Contact: nahomnatnael87@gmail.com
+                </p>
+                <p class="text-gray-500 text-sm">
+                  Contact: +251979087331 
                 </p>
               </div>
             </div>
             <div
               class="pt-8 border-t border-white/5 text-center text-gray-600 text-sm"
             >
-              <p>© 2023 [School Name] Business Club. All rights reserved.</p>
+              <p>© 2026 Andinet Business Club. All rights reserved.</p>
             </div>
           </div>
         </footer>
-        <!-- END: MainFooter -->
       </div>
     </div>
+
+    <!-- Telegram Popup Modal (copied from index) -->
+    <div id="telegramPopup" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+      <div class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20 transform transition-all">
+        <button onclick="closeTelegramPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <div class="flex justify-center mb-6">
+          <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
+            <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold text-center text-white mb-2">Join Our Telegram</h3>
+        <p class="text-gray-400 text-center mb-6">
+          Connect with fellow members, get updates, and be part of our community!
+        </p>
+        <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
+            </svg>
+            <span class="text-white font-semibold">@ethiobusinessclub</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-brand">link</span>
+            <a href="https://t.me/ethiobusinessclub" class="text-brand truncate">t.me/ethiobusinessclub</a>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="https://t.me/ethiobusinessclub" target="_blank" class="flex-1 bg-brand text-black text-center font-bold py-3 rounded-custom hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
+            Open Telegram
+          </a>
+          <button onclick="closeTelegramPopup()" class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors">
+            Maybe Later
+          </button>
+        </div>
+        <div class="mt-6 pt-6 border-t border-white/10 text-center">
+          <p class="text-sm text-gray-500 mb-2">Or scan to join:</p>
+          <div class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
+            <span class="material-symbols-outlined text-gray-500">qr_code_scanner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telegram Popup JavaScript -->
+    <script>
+      function openTelegramPopup() {
+        document.getElementById('telegramPopup').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeTelegramPopup() {
+        document.getElementById('telegramPopup').classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+      document.getElementById('telegramPopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeTelegramPopup();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeTelegramPopup();
+        }
+      });
+    </script>
   </body>
 </html>
