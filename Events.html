@@ -5,8 +5,14 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Business Club - Events &amp; Calendar</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+    />
     <script>
       tailwind.config = {
         theme: {
@@ -21,275 +27,555 @@
       };
     </script>
     <style>
-      @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-      .animate-float { animation: float 3s ease-in-out infinite; }
-      .gradient-overlay { background: linear-gradient(180deg,rgba(26,26,26,.7) 0%,rgba(26,26,26,.95) 100%); }
-      .text-glow { text-shadow: 0 0 15px rgba(37,244,89,0.4); }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      .gradient-overlay {
+        background: linear-gradient(
+          180deg,
+          rgba(26, 26, 26, 0.7) 0%,
+          rgba(26, 26, 26, 0.95) 100%
+        );
+      }
+      .text-glow {
+        text-shadow: 0 0 15px rgba(37, 244, 89, 0.4);
+      }
 
       /* Mobile menu */
-      #mobileMenu { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-      #mobileMenu.open { max-height: 400px; }
+      #mobileMenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      #mobileMenu.open {
+        max-height: 400px;
+      }
 
       /* Modal */
-#eventModal {
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-}
+      #eventModal {
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease;
+      }
 
-#eventModal.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+      #eventModal.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
 
-/* Ensure Tailwind's hidden class doesn't conflict */
-#eventModal.hidden {
-  display: flex !important; /* Override Tailwind's display: none */
-}
+      /* Ensure Tailwind's hidden class doesn't conflict */
+      #eventModal.hidden {
+        display: flex !important; /* Override Tailwind's display: none */
+      }
       /* Grid view cards */
-      .event-card[data-view="list"] { display: flex; }
-      .event-card[data-view="grid"] { display: flex; }
+      .event-card[data-view="list"] {
+        display: flex;
+      }
+      .event-card[data-view="grid"] {
+        display: flex;
+      }
 
       /* View toggle */
-      .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-      .list-layout { display: flex; flex-direction: column; gap: 1rem; }
-      .list-layout .event-card { flex-direction: row; align-items: center; gap: 1rem; padding: 1rem 1.25rem; }
-      .list-layout .event-card .card-date-badge { min-width: 48px; text-align: center; }
-      .list-layout .event-card .card-body { flex: 1; }
-      .list-layout .event-card .card-footer { border-top: none; padding-top: 0; margin-top: 0; min-width: max-content; }
-      .list-layout .event-card .card-desc { display: none; }
-      .list-layout .event-card .card-meta { display: none; }
+      .grid-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .list-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .list-layout .event-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+      }
+      .list-layout .event-card .card-date-badge {
+        min-width: 48px;
+        text-align: center;
+      }
+      .list-layout .event-card .card-body {
+        flex: 1;
+      }
+      .list-layout .event-card .card-footer {
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
+        min-width: max-content;
+      }
+      .list-layout .event-card .card-desc {
+        display: none;
+      }
+      .list-layout .event-card .card-meta {
+        display: none;
+      }
 
-      @media(max-width:640px){
-        .grid-layout { grid-template-columns: 1fr; }
-        .list-layout .event-card { flex-direction: column; align-items: flex-start; }
+      @media (max-width: 640px) {
+        .grid-layout {
+          grid-template-columns: 1fr;
+        }
+        .list-layout .event-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
 
       /* Filtered-out cards */
-      .event-card.filtered-out { display: none !important; }
+      .event-card.filtered-out {
+        display: none !important;
+      }
 
       /* Calendar day selected */
-      .cal-day.selected { background: #25f459 !important; color: #000 !important; font-weight: 700; border-radius: 9999px; }
-      .cal-day { cursor: pointer; display: flex; align-items: center; justify-content: center; height: 2rem; border-radius: 9999px; transition: background .15s; position: relative; font-size: .875rem; }
-      .cal-day:hover { background: rgba(255,255,255,.1); }
-      .cal-day.today { outline: 2px solid #25f459; outline-offset: -2px; border-radius: 9999px; }
-      .cal-day .dot { position:absolute; bottom:2px; width:4px; height:4px; background:#25f459; border-radius:9999px; }
+      .cal-day.selected {
+        background: #25f459 !important;
+        color: #000 !important;
+        font-weight: 700;
+        border-radius: 9999px;
+      }
+      .cal-day {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        border-radius: 9999px;
+        transition: background 0.15s;
+        position: relative;
+        font-size: 0.875rem;
+      }
+      .cal-day:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .cal-day.today {
+        outline: 2px solid #25f459;
+        outline-offset: -2px;
+        border-radius: 9999px;
+      }
+      .cal-day .dot {
+        position: absolute;
+        bottom: 2px;
+        width: 4px;
+        height: 4px;
+        background: #25f459;
+        border-radius: 9999px;
+      }
 
       /* RSVP'd state */
-      .rsvp-btn.rsvpd { background: transparent !important; border: 1.5px solid #25f459; color: #25f459; }
-      .rsvp-btn.rsvpd::before { content: "✓ "; }
-            /* Shine border animation for modal */
+      .rsvp-btn.rsvpd {
+        background: transparent !important;
+        border: 1.5px solid #25f459;
+        color: #25f459;
+      }
+      .rsvp-btn.rsvpd::before {
+        content: "✓ ";
+      }
+      /* Shine border animation for modal */
 
-/* Shine border animation for modal */
-.shine-border {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-}
+      /* Shine border animation for modal */
+      .shine-border {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+      }
 
-.shine-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    transparent 30%,
-    rgba(37, 244, 89, 0.8) 50%,
-    transparent 70%,
-    transparent 100%
-  );
-  transform: translateX(-100%);
-  pointer-events: none;
-  z-index: 5;
-  border-radius: 16px;
-}
+      .shine-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent 0%,
+          transparent 30%,
+          rgba(37, 244, 89, 0.8) 50%,
+          transparent 70%,
+          transparent 100%
+        );
+        transform: translateX(-100%);
+        pointer-events: none;
+        z-index: 5;
+        border-radius: 16px;
+      }
 
-.shine-overlay.animate {
-  animation: smileShine 0.8s ease-out forwards;
-}
+      .shine-overlay.animate {
+        animation: smileShine 0.8s ease-out forwards;
+      }
 
-@keyframes smileShine {
-  0% {
-    transform: translateX(-100%);
-  }
-  20% {
-    transform: translateX(-60%);
-  }
-  40% {
-    transform: translateX(-30%);
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      transparent 20%,
-      rgba(37, 244, 89, 1) 50%,
-      transparent 80%,
-      transparent 100%
-    );
-  }
-  60% {
-    transform: translateX(0%);
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      transparent 10%,
-      rgba(37, 244, 89, 0.9) 50%,
-      transparent 90%,
-      transparent 100%
-    );
-  }
-  80% {
-    transform: translateX(30%);
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      transparent 20%,
-      rgba(37, 244, 89, 0.6) 50%,
-      transparent 80%,
-      transparent 100%
-    );
-  }
-  100% {
-    transform: translateX(100%);
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      transparent 30%,
-      rgba(37, 244, 89, 0) 50%,
-      transparent 70%,
-      transparent 100%
-    );
-  }
-}
-
+      @keyframes smileShine {
+        0% {
+          transform: translateX(-100%);
+        }
+        20% {
+          transform: translateX(-60%);
+        }
+        40% {
+          transform: translateX(-30%);
+          background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 20%,
+            rgba(37, 244, 89, 1) 50%,
+            transparent 80%,
+            transparent 100%
+          );
+        }
+        60% {
+          transform: translateX(0%);
+          background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 10%,
+            rgba(37, 244, 89, 0.9) 50%,
+            transparent 90%,
+            transparent 100%
+          );
+        }
+        80% {
+          transform: translateX(30%);
+          background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 20%,
+            rgba(37, 244, 89, 0.6) 50%,
+            transparent 80%,
+            transparent 100%
+          );
+        }
+        100% {
+          transform: translateX(100%);
+          background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 30%,
+            rgba(37, 244, 89, 0) 50%,
+            transparent 70%,
+            transparent 100%
+          );
+        }
+      }
     </style>
   </head>
   <body class="bg-brand-dark text-white font-sans antialiased">
-    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden"
+    >
       <!-- Header -->
-      <header class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10">
+      <header
+        class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10"
+      >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center h-20">
             <div class="flex-shrink-0 flex items-center">
-              <div class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand">
-                <span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+              <div
+                class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >corporate_fare</span
+                >
               </div>
-              <span class="font-bold hover:text-brand transition-colors text-white text-xl">&nbsp;Business Club</span>
+              <span
+                class="font-bold hover:text-brand transition-colors text-white text-xl"
+                >&nbsp;Business Club</span
+              >
             </div>
             <nav class="hidden md:flex space-x-8 items-center">
-              <a class="text-gray-300 hover:text-brand transition-colors font-medium" href="./index.html">Home</a>
-              <a class="text-gray-300 hover:text-brand transition-colors font-medium" href="./About.html">About</a>
+              <a
+                class="text-gray-300 hover:text-brand transition-colors font-medium"
+                href="./index.html"
+                >Home</a
+              >
+              <a
+                class="text-gray-300 hover:text-brand transition-colors font-medium"
+                href="./About.html"
+                >About</a
+              >
               <a class="text-brand font-medium" href="#">Events</a>
-              <a class="text-gray-300 hover:text-brand transition-colors font-medium" href="Library.html">Resources</a>
-              <a href="#" onclick="openTelegramPopup();return false;" class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">Join Us</a>
+              <a
+                class="text-gray-300 hover:text-brand transition-colors font-medium"
+                href="Library.html"
+                >Resources</a
+              >
+              <a
+                href="#"
+                onclick="
+                  openTelegramPopup();
+                  return false;
+                "
+                class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]"
+                >Join Us</a
+              >
             </nav>
             <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center">
-              <button id="mobileMenuBtn" aria-label="Toggle menu" class="text-gray-400 hover:text-white" type="button">
-                <svg id="menuIconOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+              <button
+                id="mobileMenuBtn"
+                aria-label="Toggle menu"
+                class="text-gray-400 hover:text-white"
+                type="button"
+              >
+                <svg
+                  id="menuIconOpen"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M4 6h16M4 12h16m-7 6h7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
                 </svg>
-                <svg id="menuIconClose" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                <svg
+                  id="menuIconClose"
+                  class="h-6 w-6 hidden"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6 18L18 6M6 6l12 12"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
                 </svg>
               </button>
             </div>
           </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="md:hidden bg-brand-dark/95 border-t border-white/5 px-4">
+        <div
+          id="mobileMenu"
+          class="md:hidden bg-brand-dark/95 border-t border-white/5 px-4"
+        >
           <nav class="flex flex-col gap-1 py-4">
-            <a class="text-gray-300 hover:text-brand transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/5" href="./index.html">Home</a>
-            <a class="text-gray-300 hover:text-brand transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/5" href="./About.html">About</a>
-            <a class="text-brand font-medium py-2 px-2 rounded-lg bg-brand/10" href="#">Events</a>
-            <a class="text-gray-300 hover:text-brand transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/5" href="Library.html">Resources</a>
-            <a href="#" onclick="openTelegramPopup();return false;" class="mt-2 bg-brand text-black px-6 py-2.5 rounded-custom font-bold text-center hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]">Join Us</a>
+            <a
+              class="text-gray-300 hover:text-brand transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/5"
+              href="./index.html"
+              >Home</a
+            >
+            <a
+              class="text-gray-300 hover:text-brand transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/5"
+              href="./About.html"
+              >About</a
+            >
+            <a
+              class="text-brand font-medium py-2 px-2 rounded-lg bg-brand/10"
+              href="#"
+              >Events</a
+            >
+            <a
+              class="text-gray-300 hover:text-brand transition-colors font-medium py-2 px-2 rounded-lg hover:bg-white/5"
+              href="Library.html"
+              >Resources</a
+            >
+            <a
+              href="#"
+              onclick="
+                openTelegramPopup();
+                return false;
+              "
+              class="mt-2 bg-brand text-black px-6 py-2.5 rounded-custom font-bold text-center hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]"
+              >Join Us</a
+            >
           </nav>
         </div>
       </header>
 
       <main class="flex-1 max-w-7xl mx-auto w-full p-6 lg:p-10 mt-20">
         <div class="flex flex-col lg:flex-row gap-10">
-
           <!-- Sidebar -->
           <aside class="w-full lg:w-80 flex flex-col gap-8">
-
             <!-- Search -->
-            <div class="bg-brand-accent/20 p-4 rounded-xl border border-white/5 hover:border-brand/30 transition-all">
+            <div
+              class="bg-brand-accent/20 p-4 rounded-xl border border-white/5 hover:border-brand/30 transition-all"
+            >
               <div class="relative">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg">search</span>
-                <input id="searchInput" type="text" placeholder="Search events..." class="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 pl-10 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand/50 transition-colors"/>
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg"
+                  >search</span
+                >
+                <input
+                  id="searchInput"
+                  type="text"
+                  placeholder="Search events..."
+                  class="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 pl-10 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand/50 transition-colors"
+                />
               </div>
             </div>
 
             <!-- Filter Section -->
-            <div class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all">
+            <div
+              class="bg-brand-accent/20 p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all"
+            >
               <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                <span class="material-symbols-outlined text-brand">filter_list</span>
+                <span class="material-symbols-outlined text-brand"
+                  >filter_list</span
+                >
                 Filter Events
               </h3>
               <div class="flex flex-col gap-3" id="filterSection">
-                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer">
-                  <input data-filter="all" checked class="rounded border-slate-300 text-brand focus:ring-brand" type="checkbox"/>
+                <label
+                  class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer"
+                >
+                  <input
+                    data-filter="all"
+                    checked
+                    class="rounded border-slate-300 text-brand focus:ring-brand"
+                    type="checkbox"
+                  />
                   <span class="text-sm font-medium text-white">All Events</span>
                 </label>
-                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer">
-                  <input data-filter="Workshop" class="rounded border-slate-300 text-brand focus:ring-brand" type="checkbox"/>
+                <label
+                  class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer"
+                >
+                  <input
+                    data-filter="Workshop"
+                    class="rounded border-slate-300 text-brand focus:ring-brand"
+                    type="checkbox"
+                  />
                   <span class="text-sm font-medium text-white">Workshops</span>
                 </label>
-                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer">
-                  <input data-filter="Guest Speaker" class="rounded border-slate-300 text-brand focus:ring-brand" type="checkbox"/>
-                  <span class="text-sm font-medium text-white">Guest Speakers</span>
+                <label
+                  class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer"
+                >
+                  <input
+                    data-filter="Guest Speaker"
+                    class="rounded border-slate-300 text-brand focus:ring-brand"
+                    type="checkbox"
+                  />
+                  <span class="text-sm font-medium text-white"
+                    >Guest Speakers</span
+                  >
                 </label>
-                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer">
-                  <input data-filter="Competition" class="rounded border-slate-300 text-brand focus:ring-brand" type="checkbox"/>
-                  <span class="text-sm font-medium text-white">Competitions</span>
+                <label
+                  class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer"
+                >
+                  <input
+                    data-filter="Competition"
+                    class="rounded border-slate-300 text-brand focus:ring-brand"
+                    type="checkbox"
+                  />
+                  <span class="text-sm font-medium text-white"
+                    >Competitions</span
+                  >
                 </label>
-                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer">
-                  <input data-filter="Networking" class="rounded border-slate-300 text-brand focus:ring-brand" type="checkbox"/>
+                <label
+                  class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-accent/40 cursor-pointer"
+                >
+                  <input
+                    data-filter="Networking"
+                    class="rounded border-slate-300 text-brand focus:ring-brand"
+                    type="checkbox"
+                  />
                   <span class="text-sm font-medium text-white">Networking</span>
                 </label>
               </div>
             </div>
 
             <!-- Mini Calendar -->
-            <div class="bg-brand-accent/20 text-white p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all">
+            <div
+              class="bg-brand-accent/20 text-white p-6 rounded-xl border border-white/5 hover:border-brand/30 transition-all"
+            >
               <div class="flex items-center justify-between mb-6">
-                <button id="calPrev" class="material-symbols-outlined hover:text-brand transition-colors">chevron_left</button>
+                <button
+                  id="calPrev"
+                  class="material-symbols-outlined hover:text-brand transition-colors"
+                >
+                  chevron_left
+                </button>
                 <p id="calMonthLabel" class="font-bold"></p>
-                <button id="calNext" class="material-symbols-outlined hover:text-brand transition-colors">chevron_right</button>
+                <button
+                  id="calNext"
+                  class="material-symbols-outlined hover:text-brand transition-colors"
+                >
+                  chevron_right
+                </button>
               </div>
-              <div class="grid grid-cols-7 gap-1 text-center text-xs font-bold opacity-60 mb-2">
-                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+              <div
+                class="grid grid-cols-7 gap-1 text-center text-xs font-bold opacity-60 mb-2"
+              >
+                <div>S</div>
+                <div>M</div>
+                <div>T</div>
+                <div>W</div>
+                <div>T</div>
+                <div>F</div>
+                <div>S</div>
               </div>
-              <div id="calGrid" class="grid grid-cols-7 gap-1 text-center"></div>
+              <div
+                id="calGrid"
+                class="grid grid-cols-7 gap-1 text-center"
+              ></div>
               <div class="mt-3">
-                <button onclick="resetCalendarFilter()" class="w-full text-xs py-2 border border-brand/30 text-brand rounded-lg hover:bg-brand hover:text-black transition-colors uppercase tracking-widest font-bold">
+                <button
+                  onclick="resetCalendarFilter()"
+                  class="w-full text-xs py-2 border border-brand/30 text-brand rounded-lg hover:bg-brand hover:text-black transition-colors uppercase tracking-widest font-bold"
+                >
                   View All Events
                 </button>
               </div>
             </div>
 
             <!-- Membership Status -->
-            <div class="bg-brand/10 border-l-4 border-brand p-4 rounded-r-xl hover:shadow-[0_0_20px_rgba(37,244,89,0.2)] transition-all">
-              <p class="text-xs font-bold text-brand uppercase tracking-wider mb-1">Membership Status</p>
+            <div
+              class="bg-brand/10 border-l-4 border-brand p-4 rounded-r-xl hover:shadow-[0_0_20px_rgba(37,244,89,0.2)] transition-all"
+            >
+              <p
+                class="text-xs font-bold text-brand uppercase tracking-wider mb-1"
+              >
+                Membership Status
+              </p>
               <p class="text-sm font-semibold text-white">Platinum Member</p>
-              <p id="rsvpCount" class="text-xs text-gray-400 mt-2">You have 0 upcoming RSVPs this month.</p>
+              <p id="rsvpCount" class="text-xs text-gray-400 mt-2">
+                You have 0 upcoming RSVPs this month.
+              </p>
             </div>
           </aside>
 
           <!-- Main Content -->
           <div class="flex-1 flex flex-col gap-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+            >
               <div>
-                <h1 class="text-3xl font-extrabold text-white text-glow">Upcoming Events</h1>
-                <p id="eventCountLabel" class="text-gray-400">Exclusive sessions for club members</p>
+                <h1 class="text-3xl font-extrabold text-white text-glow">
+                  Upcoming Events
+                </h1>
+                <p id="eventCountLabel" class="text-gray-400">
+                  Exclusive sessions for club members
+                </p>
               </div>
-              <div class="flex bg-brand-accent/20 p-1 rounded-xl border border-white/5">
-                <button id="listViewBtn" class="px-4 py-2 bg-brand text-black rounded-custom text-sm font-bold shadow-sm transition-all">List View</button>
-                <button id="gridViewBtn" class="px-4 py-2 text-sm font-bold text-gray-400 transition-all">Grid View</button>
+              <div
+                class="flex bg-brand-accent/20 p-1 rounded-xl border border-white/5"
+              >
+                <button
+                  id="listViewBtn"
+                  class="px-4 py-2 bg-brand text-black rounded-custom text-sm font-bold shadow-sm transition-all"
+                >
+                  List View
+                </button>
+                <button
+                  id="gridViewBtn"
+                  class="px-4 py-2 text-sm font-bold text-gray-400 transition-all"
+                >
+                  Grid View
+                </button>
               </div>
             </div>
 
@@ -304,27 +590,71 @@
               data-location="Main Hall, Floor 4"
             >
               <div class="w-full md:w-2/5 relative min-h-[200px]">
-                <div class="absolute inset-0 bg-center bg-cover" style="background-image:url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop');background-size:cover;"></div>
-                <div class="absolute top-4 left-4 bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Featured</div>
+                <div
+                  class="absolute inset-0 bg-center bg-cover"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop&quot;);
+                    background-size: cover;
+                  "
+                ></div>
+                <div
+                  class="absolute top-4 left-4 bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                >
+                  Featured
+                </div>
               </div>
               <div class="flex-1 p-8 flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center gap-2 text-brand font-bold text-sm mb-2 uppercase tracking-widest">
-                    <span class="material-symbols-outlined text-base">campaign</span>
+                  <div
+                    class="flex items-center gap-2 text-brand font-bold text-sm mb-2 uppercase tracking-widest"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >campaign</span
+                    >
                     Guest Speaker Series
                   </div>
-                  <h2 class="text-2xl font-bold mb-3 text-white">Leadership in the Age of AI</h2>
-                  <p class="text-gray-400 text-sm leading-relaxed mb-6">Join our guest speaker, Dr. Elena Vance, former VP of Strategy at TechGiant, as she delves into how generative AI is reshaping executive decision-making and the new skills required for future-ready leadership.</p>
-                  <div class="flex flex-wrap gap-4 text-sm font-medium text-gray-400">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-brand text-lg">calendar_today</span>Oct 12, 2026</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-brand text-lg">schedule</span>6:00 PM - 8:30 PM</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-brand text-lg">location_on</span>Main Hall, Floor 4</div>
+                  <h2 class="text-2xl font-bold mb-3 text-white">
+                    Leadership in the Age of AI
+                  </h2>
+                  <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Join our guest speaker, Dr. Elena Vance, former VP of
+                    Strategy at TechGiant, as she delves into how generative AI
+                    is reshaping executive decision-making and the new skills
+                    required for future-ready leadership.
+                  </p>
+                  <div
+                    class="flex flex-wrap gap-4 text-sm font-medium text-gray-400"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-brand text-lg"
+                        >calendar_today</span
+                      >Oct 12, 2026
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-brand text-lg"
+                        >schedule</span
+                      >6:00 PM - 8:30 PM
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-brand text-lg"
+                        >location_on</span
+                      >Main Hall, Floor 4
+                    </div>
                   </div>
                 </div>
                 <div class="mt-8 flex items-center gap-4 flex-wrap">
-                  <button onclick="handleRSVP(this,'Leadership in the Age of AI')" class="rsvp-btn bg-brand text-black px-8 py-3 rounded-custom font-bold hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]">RSVP Now</button>
-                  <button onclick="openEventModal(this.closest('.event-card'))" class="flex items-center gap-2 text-gray-400 font-bold hover:text-brand transition-colors">
-                    <span class="material-symbols-outlined">info</span>Event Details
+                  <button
+                    onclick="handleRSVP(this, 'Leadership in the Age of AI')"
+                    class="rsvp-btn bg-brand text-black px-8 py-3 rounded-custom font-bold hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]"
+                  >
+                    RSVP Now
+                  </button>
+                  <button
+                    onclick="openEventModal(this.closest('.event-card'))"
+                    class="flex items-center gap-2 text-gray-400 font-bold hover:text-brand transition-colors"
+                  >
+                    <span class="material-symbols-outlined">info</span>Event
+                    Details
                   </button>
                 </div>
               </div>
@@ -332,194 +662,481 @@
 
             <!-- Event Grid/List container -->
             <div id="eventsContainer" class="grid-layout">
-
               <!-- Event 2 -->
-              <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Workshop" data-date="2026-10-15"
+              <div
+                class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
+                data-category="Workshop"
+                data-date="2026-10-15"
                 data-title="Mastering Venture Capital Pitches"
                 data-desc="Learn the art of the 3-minute pitch with active VC partners. Practical feedback session included."
-                data-time="2:00 PM" data-location="Room 201">
+                data-time="2:00 PM"
+                data-location="Room 201"
+              >
                 <div class="flex justify-between items-start">
-                  <div class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge">Workshop</div>
-                  <div class="text-right card-date-badge"><p class="text-xl font-bold leading-none text-white">15</p><p class="text-[10px] font-bold uppercase text-gray-500">Oct</p></div>
+                  <div
+                    class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge"
+                  >
+                    Workshop
+                  </div>
+                  <div class="text-right card-date-badge">
+                    <p class="text-xl font-bold leading-none text-white">15</p>
+                    <p class="text-[10px] font-bold uppercase text-gray-500">
+                      Oct
+                    </p>
+                  </div>
                 </div>
                 <div class="card-body">
-                  <h3 class="text-xl font-bold text-white">Mastering Venture Capital Pitches</h3>
-                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">Learn the art of the 3-minute pitch with active VC partners. Practical feedback session included.</p>
-                  <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">schedule</span>2:00 PM</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">group</span>25 spots left</div>
+                  <h3 class="text-xl font-bold text-white">
+                    Mastering Venture Capital Pitches
+                  </h3>
+                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">
+                    Learn the art of the 3-minute pitch with active VC partners.
+                    Practical feedback session included.
+                  </p>
+                  <div
+                    class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >schedule</span
+                      >2:00 PM
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >group</span
+                      >25 spots left
+                    </div>
                   </div>
                 </div>
-                <div class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer">
+                <div
+                  class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer"
+                >
                   <div class="flex -space-x-2">
-                    <div class="size-8 rounded-full border-2 border-brand-dark bg-cover" style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop');"></div>
-                    <div class="size-8 rounded-full border-2 border-brand-dark bg-cover" style="background-image:url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100&auto=format&fit=crop');"></div>
-                    <div class="size-8 rounded-full border-2 border-brand-dark bg-cover" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=100&auto=format&fit=crop');"></div>
-                    <div class="size-8 rounded-full border-2 border-brand-dark bg-brand-accent/40 flex items-center justify-center text-[10px] font-bold text-white">+12</div>
+                    <div
+                      class="size-8 rounded-full border-2 border-brand-dark bg-cover"
+                      style="
+                        background-image: url(&quot;https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop&quot;);
+                      "
+                    ></div>
+                    <div
+                      class="size-8 rounded-full border-2 border-brand-dark bg-cover"
+                      style="
+                        background-image: url(&quot;https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100&auto=format&fit=crop&quot;);
+                      "
+                    ></div>
+                    <div
+                      class="size-8 rounded-full border-2 border-brand-dark bg-cover"
+                      style="
+                        background-image: url(&quot;https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=100&auto=format&fit=crop&quot;);
+                      "
+                    ></div>
+                    <div
+                      class="size-8 rounded-full border-2 border-brand-dark bg-brand-accent/40 flex items-center justify-center text-[10px] font-bold text-white"
+                    >
+                      +12
+                    </div>
                   </div>
                   <div class="flex items-center gap-3">
-                    <button onclick="openEventModal(this.closest('.event-card'))" class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold">Details</button>
-                    <button onclick="handleRSVP(this,'Mastering Venture Capital Pitches')" class="rsvp-btn text-brand font-bold text-sm hover:underline">RSVP</button>
+                    <button
+                      onclick="openEventModal(this.closest('.event-card'))"
+                      class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onclick="
+                        handleRSVP(this, 'Mastering Venture Capital Pitches')
+                      "
+                      class="rsvp-btn text-brand font-bold text-sm hover:underline"
+                    >
+                      RSVP
+                    </button>
                   </div>
                 </div>
               </div>
 
               <!-- Event 3 -->
-              <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Competition" data-date="2026-10-22"
+              <div
+                class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
+                data-category="Competition"
+                data-date="2026-10-22"
                 data-title="Annual Case Study Challenge"
                 data-desc="Solve a real-world business problem from our corporate sponsor. $5,000 prize pool."
-                data-time="9:00 AM" data-location="Auditorium">
+                data-time="9:00 AM"
+                data-location="Auditorium"
+              >
                 <div class="flex justify-between items-start">
-                  <div class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge">Competition</div>
-                  <div class="text-right card-date-badge"><p class="text-xl font-bold leading-none text-white">22</p><p class="text-[10px] font-bold uppercase text-gray-500">Oct</p></div>
+                  <div
+                    class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge"
+                  >
+                    Competition
+                  </div>
+                  <div class="text-right card-date-badge">
+                    <p class="text-xl font-bold leading-none text-white">22</p>
+                    <p class="text-[10px] font-bold uppercase text-gray-500">
+                      Oct
+                    </p>
+                  </div>
                 </div>
                 <div class="card-body">
-                  <h3 class="text-xl font-bold text-white">Annual Case Study Challenge</h3>
-                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">Solve a real-world business problem from our corporate sponsor. $5,000 prize pool.</p>
-                  <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">schedule</span>9:00 AM</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">local_play</span>Teams only</div>
+                  <h3 class="text-xl font-bold text-white">
+                    Annual Case Study Challenge
+                  </h3>
+                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">
+                    Solve a real-world business problem from our corporate
+                    sponsor. $5,000 prize pool.
+                  </p>
+                  <div
+                    class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >schedule</span
+                      >9:00 AM
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >local_play</span
+                      >Teams only
+                    </div>
                   </div>
                 </div>
-                <div class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer">
+                <div
+                  class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer"
+                >
                   <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-brand text-sm">emoji_events</span>
-                    <span class="text-xs font-bold text-gray-400">Gold Sponsor: Apex Corp</span>
+                    <span class="material-symbols-outlined text-brand text-sm"
+                      >emoji_events</span
+                    >
+                    <span class="text-xs font-bold text-gray-400"
+                      >Gold Sponsor: Apex Corp</span
+                    >
                   </div>
                   <div class="flex items-center gap-3">
-                    <button onclick="openEventModal(this.closest('.event-card'))" class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold">Details</button>
-                    <button onclick="handleRSVP(this,'Annual Case Study Challenge')" class="rsvp-btn text-brand font-bold text-sm hover:underline">Register</button>
+                    <button
+                      onclick="openEventModal(this.closest('.event-card'))"
+                      class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onclick="handleRSVP(this, 'Annual Case Study Challenge')"
+                      class="rsvp-btn text-brand font-bold text-sm hover:underline"
+                    >
+                      Register
+                    </button>
                   </div>
                 </div>
               </div>
 
               <!-- Event 4 -->
-              <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Networking" data-date="2026-10-28"
+              <div
+                class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
+                data-category="Networking"
+                data-date="2026-10-28"
                 data-title="Founder's Mixer: Night in the City"
                 data-desc="An informal evening of drinks and dialogue with local startup founders and angel investors."
-                data-time="7:30 PM" data-location="Rooftop Lounge">
+                data-time="7:30 PM"
+                data-location="Rooftop Lounge"
+              >
                 <div class="flex justify-between items-start">
-                  <div class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge">Networking</div>
-                  <div class="text-right card-date-badge"><p class="text-xl font-bold leading-none text-white">28</p><p class="text-[10px] font-bold uppercase text-gray-500">Oct</p></div>
-                </div>
-                <div class="card-body">
-                  <h3 class="text-xl font-bold text-white">Founder's Mixer: Night in the City</h3>
-                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">An informal evening of drinks and dialogue with local startup founders and angel investors.</p>
-                  <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">schedule</span>7:30 PM</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">restaurant</span>Rooftop Lounge</div>
+                  <div
+                    class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge"
+                  >
+                    Networking
+                  </div>
+                  <div class="text-right card-date-badge">
+                    <p class="text-xl font-bold leading-none text-white">28</p>
+                    <p class="text-[10px] font-bold uppercase text-gray-500">
+                      Oct
+                    </p>
                   </div>
                 </div>
-                <div class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer">
+                <div class="card-body">
+                  <h3 class="text-xl font-bold text-white">
+                    Founder's Mixer: Night in the City
+                  </h3>
+                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">
+                    An informal evening of drinks and dialogue with local
+                    startup founders and angel investors.
+                  </p>
+                  <div
+                    class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >schedule</span
+                      >7:30 PM
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >restaurant</span
+                      >Rooftop Lounge
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer"
+                >
                   <span class="text-xs text-gray-500 italic">21+ Event</span>
                   <div class="flex items-center gap-3">
-                    <button onclick="openEventModal(this.closest('.event-card'))" class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold">Details</button>
-                    <button onclick="handleRSVP(this,'Founder\'s Mixer')" class="rsvp-btn text-brand font-bold text-sm hover:underline">Get Tickets</button>
+                    <button
+                      onclick="openEventModal(this.closest('.event-card'))"
+                      class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onclick="handleRSVP(this, 'Founder\'s Mixer')"
+                      class="rsvp-btn text-brand font-bold text-sm hover:underline"
+                    >
+                      Get Tickets
+                    </button>
                   </div>
                 </div>
               </div>
 
               <!-- Event 5 -->
-              <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Workshop" data-date="2026-11-02"
+              <div
+                class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
+                data-category="Workshop"
+                data-date="2026-11-02"
                 data-title="Sustainable Business Models"
                 data-desc="Building profitability while prioritizing ESG. A roadmap for modern entrepreneurs."
-                data-time="11:00 AM" data-location="Hybrid - Room 105 + Online">
+                data-time="11:00 AM"
+                data-location="Hybrid - Room 105 + Online"
+              >
                 <div class="flex justify-between items-start">
-                  <div class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge">Workshop</div>
-                  <div class="text-right card-date-badge"><p class="text-xl font-bold leading-none text-white">02</p><p class="text-[10px] font-bold uppercase text-gray-500">Nov</p></div>
-                </div>
-                <div class="card-body">
-                  <h3 class="text-xl font-bold text-white">Sustainable Business Models</h3>
-                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">Building profitability while prioritizing ESG. A roadmap for modern entrepreneurs.</p>
-                  <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">schedule</span>11:00 AM</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">laptop_mac</span>Hybrid Event</div>
+                  <div
+                    class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge"
+                  >
+                    Workshop
+                  </div>
+                  <div class="text-right card-date-badge">
+                    <p class="text-xl font-bold leading-none text-white">02</p>
+                    <p class="text-[10px] font-bold uppercase text-gray-500">
+                      Nov
+                    </p>
                   </div>
                 </div>
-                <div class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer">
+                <div class="card-body">
+                  <h3 class="text-xl font-bold text-white">
+                    Sustainable Business Models
+                  </h3>
+                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">
+                    Building profitability while prioritizing ESG. A roadmap for
+                    modern entrepreneurs.
+                  </p>
+                  <div
+                    class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >schedule</span
+                      >11:00 AM
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >laptop_mac</span
+                      >Hybrid Event
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer"
+                >
                   <span class="text-xs font-bold text-brand">NEW</span>
                   <div class="flex items-center gap-3">
-                    <button onclick="openEventModal(this.closest('.event-card'))" class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold">Details</button>
-                    <button onclick="handleRSVP(this,'Sustainable Business Models')" class="rsvp-btn text-brand font-bold text-sm hover:underline">RSVP</button>
+                    <button
+                      onclick="openEventModal(this.closest('.event-card'))"
+                      class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onclick="handleRSVP(this, 'Sustainable Business Models')"
+                      class="rsvp-btn text-brand font-bold text-sm hover:underline"
+                    >
+                      RSVP
+                    </button>
                   </div>
                 </div>
               </div>
-
-            </div><!-- end eventsContainer -->
+            </div>
+            <!-- end eventsContainer -->
 
             <!-- Hidden extra events (loaded via "Load More") -->
             <div id="extraEvents" class="hidden grid-layout gap-6">
-
               <!-- Event 6 -->
-              <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Guest Speaker" data-date="2026-11-10"
+              <div
+                class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
+                data-category="Guest Speaker"
+                data-date="2026-11-10"
                 data-title="Marketing in the Creator Economy"
                 data-desc="A deep dive into brand strategy for the TikTok and Instagram generation."
-                data-time="5:00 PM" data-location="Room 301">
+                data-time="5:00 PM"
+                data-location="Room 301"
+              >
                 <div class="flex justify-between items-start">
-                  <div class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge">Guest Speaker</div>
-                  <div class="text-right card-date-badge"><p class="text-xl font-bold leading-none text-white">10</p><p class="text-[10px] font-bold uppercase text-gray-500">Nov</p></div>
-                </div>
-                <div class="card-body">
-                  <h3 class="text-xl font-bold text-white">Marketing in the Creator Economy</h3>
-                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">A deep dive into brand strategy for the TikTok and Instagram generation.</p>
-                  <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">schedule</span>5:00 PM</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">group</span>Open to all</div>
+                  <div
+                    class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge"
+                  >
+                    Guest Speaker
+                  </div>
+                  <div class="text-right card-date-badge">
+                    <p class="text-xl font-bold leading-none text-white">10</p>
+                    <p class="text-[10px] font-bold uppercase text-gray-500">
+                      Nov
+                    </p>
                   </div>
                 </div>
-                <div class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer">
-                  <span class="text-xs font-bold text-brand/60">Nov Series</span>
+                <div class="card-body">
+                  <h3 class="text-xl font-bold text-white">
+                    Marketing in the Creator Economy
+                  </h3>
+                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">
+                    A deep dive into brand strategy for the TikTok and Instagram
+                    generation.
+                  </p>
+                  <div
+                    class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >schedule</span
+                      >5:00 PM
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >group</span
+                      >Open to all
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer"
+                >
+                  <span class="text-xs font-bold text-brand/60"
+                    >Nov Series</span
+                  >
                   <div class="flex items-center gap-3">
-                    <button onclick="openEventModal(this.closest('.event-card'))" class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold">Details</button>
-                    <button onclick="handleRSVP(this,'Marketing in the Creator Economy')" class="rsvp-btn text-brand font-bold text-sm hover:underline">RSVP</button>
+                    <button
+                      onclick="openEventModal(this.closest('.event-card'))"
+                      class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onclick="
+                        handleRSVP(this, 'Marketing in the Creator Economy')
+                      "
+                      class="rsvp-btn text-brand font-bold text-sm hover:underline"
+                    >
+                      RSVP
+                    </button>
                   </div>
                 </div>
               </div>
 
               <!-- Event 7 -->
-              <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Networking" data-date="2026-11-18"
+              <div
+                class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
+                data-category="Networking"
+                data-date="2026-11-18"
                 data-title="Alumni Connect Night"
                 data-desc="Meet successful graduates from our club. Get mentorship, internship leads, and real career advice."
-                data-time="6:30 PM" data-location="Grand Ballroom">
+                data-time="6:30 PM"
+                data-location="Grand Ballroom"
+              >
                 <div class="flex justify-between items-start">
-                  <div class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge">Networking</div>
-                  <div class="text-right card-date-badge"><p class="text-xl font-bold leading-none text-white">18</p><p class="text-[10px] font-bold uppercase text-gray-500">Nov</p></div>
-                </div>
-                <div class="card-body">
-                  <h3 class="text-xl font-bold text-white">Alumni Connect Night</h3>
-                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">Meet successful graduates from our club. Get mentorship, internship leads, and real career advice.</p>
-                  <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">schedule</span>6:30 PM</div>
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-brand">handshake</span>Members only</div>
+                  <div
+                    class="bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide card-badge"
+                  >
+                    Networking
+                  </div>
+                  <div class="text-right card-date-badge">
+                    <p class="text-xl font-bold leading-none text-white">18</p>
+                    <p class="text-[10px] font-bold uppercase text-gray-500">
+                      Nov
+                    </p>
                   </div>
                 </div>
-                <div class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer">
+                <div class="card-body">
+                  <h3 class="text-xl font-bold text-white">
+                    Alumni Connect Night
+                  </h3>
+                  <p class="text-sm text-gray-400 line-clamp-2 card-desc mt-2">
+                    Meet successful graduates from our club. Get mentorship,
+                    internship leads, and real career advice.
+                  </p>
+                  <div
+                    class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-3 card-meta"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >schedule</span
+                      >6:30 PM
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-base text-brand"
+                        >handshake</span
+                      >Members only
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="pt-4 mt-auto border-t border-white/10 flex justify-between items-center card-footer"
+                >
                   <span class="text-xs font-bold text-brand">POPULAR</span>
                   <div class="flex items-center gap-3">
-                    <button onclick="openEventModal(this.closest('.event-card'))" class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold">Details</button>
-                    <button onclick="handleRSVP(this,'Alumni Connect Night')" class="rsvp-btn text-brand font-bold text-sm hover:underline">RSVP</button>
+                    <button
+                      onclick="openEventModal(this.closest('.event-card'))"
+                      class="text-gray-400 text-sm hover:text-brand transition-colors font-semibold"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onclick="handleRSVP(this, 'Alumni Connect Night')"
+                      class="rsvp-btn text-brand font-bold text-sm hover:underline"
+                    >
+                      RSVP
+                    </button>
                   </div>
                 </div>
               </div>
-
-            </div><!-- end extraEvents -->
+            </div>
+            <!-- end extraEvents -->
 
             <!-- No results message -->
             <div id="noResults" class="hidden text-center py-16 text-gray-500">
-              <span class="material-symbols-outlined text-5xl mb-4 block">event_busy</span>
+              <span class="material-symbols-outlined text-5xl mb-4 block"
+                >event_busy</span
+              >
               <p class="text-lg font-semibold">No events match your filters.</p>
-              <p class="text-sm mt-1">Try adjusting your search or filter options.</p>
+              <p class="text-sm mt-1">
+                Try adjusting your search or filter options.
+              </p>
             </div>
 
             <!-- Load More -->
             <div class="flex justify-center py-6" id="loadMoreWrapper">
-              <button id="loadMoreBtn" onclick="loadMore()" class="flex items-center gap-2 px-6 py-2 border border-brand/30 text-brand rounded-full font-bold hover:bg-brand hover:text-black transition-colors">
+              <button
+                id="loadMoreBtn"
+                onclick="loadMore()"
+                class="flex items-center gap-2 px-6 py-2 border border-brand/30 text-brand rounded-full font-bold hover:bg-brand hover:text-black transition-colors"
+              >
                 Load More Events
                 <span class="material-symbols-outlined">expand_more</span>
               </button>
@@ -534,461 +1151,743 @@
           <div class="grid md:grid-cols-4 gap-12 mb-12">
             <div class="col-span-1 md:col-span-2">
               <div class="flex items-center gap-3 mb-6">
-                <div class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand">
-                  <span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+                <div
+                  class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >corporate_fare</span
+                  >
                 </div>
                 <span class="font-bold text-white text-xl">Business Club</span>
               </div>
-              <p class="text-gray-500 max-w-sm">Empowering the students of Andinet to lead the industries of tomorrow through education, networking, and real-world experience.</p>
+              <p class="text-gray-500 max-w-sm">
+                Empowering the students of Andinet to lead the industries of
+                tomorrow through education, networking, and real-world
+                experience.
+              </p>
             </div>
             <div>
               <h5 class="text-white font-bold mb-6">Quick Links</h5>
               <ul class="space-y-4 text-gray-500">
-                <li><a class="hover:text-brand transition-colors" href="https://www.andinet.edu.et/">School Portal</a></li>
-                <li><a class="hover:text-brand transition-colors" href="#">Club Constitution</a></li>
-                <li><a class="hover:text-brand transition-colors" href="#">Past Recordings</a></li>
-                <li><a class="hover:text-brand transition-colors" href="./About.html">Member Directory</a></li>
+                <li>
+                  <a
+                    class="hover:text-brand transition-colors"
+                    href="https://www.andinet.edu.et/"
+                    >School Portal</a
+                  >
+                </li>
+                <li>
+                  <a class="hover:text-brand transition-colors" href="#"
+                    >Club Constitution</a
+                  >
+                </li>
+                <li>
+                  <a class="hover:text-brand transition-colors" href="#"
+                    >Past Recordings</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="hover:text-brand transition-colors"
+                    href="./About.html"
+                    >Member Directory</a
+                  >
+                </li>
               </ul>
             </div>
             <div>
               <h5 class="text-white font-bold mb-6">Connect</h5>
               <div class="flex space-x-4 mb-6">
-                <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all" href="https://t.me/ethiobusinessclub">
-                  <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/></svg>
+                <a
+                  class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
+                  href="https://t.me/ethiobusinessclub"
+                >
+                  <svg
+                    class="w-5 h-5 text-brand"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"
+                    />
+                  </svg>
                 </a>
-                <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all" href="mailto:nahomnatnael87@gmail.com">
-                  <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <a
+                  class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
+                  href="mailto:nahomnatnael87@gmail.com"
+                >
+                  <svg
+                    class="w-5 h-5 text-brand"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                    />
+                  </svg>
                 </a>
               </div>
-              <p class="text-gray-500 text-sm">Contact: nahomnatnael87@gmail.com</p>
+              <p class="text-gray-500 text-sm">
+                Contact: nahomnatnael87@gmail.com
+              </p>
               <p class="text-gray-500 text-sm">Contact: +251979087331</p>
             </div>
           </div>
-          <div class="pt-8 border-t border-white/5 text-center text-gray-600 text-sm">
+          <div
+            class="pt-8 border-t border-white/5 text-center text-gray-600 text-sm"
+          >
             <p>© 2026 Andinet Business Club. All rights reserved.</p>
           </div>
         </div>
       </footer>
 
       <!-- Telegram Popup Modal -->
-      <div id="telegramPopup" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeTelegramPopup()"></div>
-        <div class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20 transform transition-all">
-          <button onclick="closeTelegramPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      <div
+        id="telegramPopup"
+        class="fixed inset-0 flex items-center justify-center z-50 hidden"
+      >
+        <div
+          class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          onclick="closeTelegramPopup()"
+        ></div>
+        <div
+          class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20 transform transition-all"
+        >
+          <button
+            onclick="closeTelegramPopup()"
+            class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
           <div class="flex justify-center mb-6">
-            <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
-              <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/></svg>
+            <div
+              class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="w-10 h-10 text-brand"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"
+                />
+              </svg>
             </div>
           </div>
-          <h3 class="text-2xl font-bold text-center text-white mb-2">Join Our Telegram</h3>
-          <p class="text-gray-400 text-center mb-6">Connect with fellow members, get updates, and be part of our community!</p>
-          <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
+          <h3 class="text-2xl font-bold text-center text-white mb-2">
+            Join Our Telegram
+          </h3>
+          <p class="text-gray-400 text-center mb-6">
+            Connect with fellow members, get updates, and be part of our
+            community!
+          </p>
+          <div
+            class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5"
+          >
             <div class="flex items-center gap-3 mb-3">
-              <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/></svg>
+              <svg
+                class="w-5 h-5 text-brand"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"
+                />
+              </svg>
               <span class="text-white font-semibold">@ethiobusinessclub</span>
             </div>
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined text-brand">link</span>
-              <a href="https://t.me/ethiobusinessclub" class="text-brand truncate">t.me/ethiobusinessclub</a>
+              <a
+                href="https://t.me/ethiobusinessclub"
+                class="text-brand truncate"
+                >t.me/ethiobusinessclub</a
+              >
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-3">
-            <a href="https://t.me/ethiobusinessclub" target="_blank" class="flex-1 bg-brand text-black text-center font-bold py-3 rounded-custom hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">Open Telegram</a>
-            <button onclick="closeTelegramPopup()" class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors">Maybe Later</button>
+            <a
+              href="https://t.me/ethiobusinessclub"
+              target="_blank"
+              class="flex-1 bg-brand text-black text-center font-bold py-3 rounded-custom hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]"
+              >Open Telegram</a
+            >
+            <button
+              onclick="closeTelegramPopup()"
+              class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors"
+            >
+              Maybe Later
+            </button>
           </div>
           <div class="mt-6 pt-6 border-t border-white/10 text-center">
             <p class="text-sm text-gray-500 mb-2">Or scan to join:</p>
-            <div class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
-              <img src="./icons/qr_code.png">
+            <div
+              class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10"
+            >
+              <img src="./icons/qr_code.png" />
             </div>
           </div>
         </div>
       </div>
       <!-- Event Details Modal -->
-      <div id="eventModal" class="fixed inset-0 flex items-center justify-center z-50 opacity-100 visible pointer-events-auto transition-all duration-200 hidden">  
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeEventModal()"></div>
-        <div class="relative bg-[#111] rounded-2xl max-w-lg w-full mx-4 p-8 shadow-2xl shadow-brand/10 transition-all shine-border">
+      <div
+        id="eventModal"
+        class="fixed inset-0 flex items-center justify-center z-50 opacity-100 visible pointer-events-auto transition-all duration-200 hidden"
+      >
+        <div
+          class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          onclick="closeEventModal()"
+        ></div>
+        <div
+          class="relative bg-[#111] rounded-2xl max-w-lg w-full mx-4 p-8 shadow-2xl shadow-brand/10 transition-all shine-border"
+        >
           <!-- Shine overlay for top-left border -->
           <div class="shine-overlay"></div>
-          <div class="absolute inset-0 border border-brand/30 rounded-2xl pointer-events-none"></div>
-          <button onclick="closeEventModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <div
+            class="absolute inset-0 border border-brand/30 rounded-2xl pointer-events-none"
+          ></div>
+          <button
+            onclick="closeEventModal()"
+            class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
-          <div id="modalBadge" class="inline-block bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4"></div>
+          <div
+            id="modalBadge"
+            class="inline-block bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4"
+          ></div>
           <h2 id="modalTitle" class="text-2xl font-bold text-white mb-3"></h2>
-          <p id="modalDesc" class="text-gray-400 text-sm leading-relaxed mb-6"></p>
+          <p
+            id="modalDesc"
+            class="text-gray-400 text-sm leading-relaxed mb-6"
+          ></p>
           <div class="grid grid-cols-2 gap-4 mb-6">
             <div class="bg-white/5 rounded-xl p-4 flex items-center gap-3">
-              <span class="material-symbols-outlined text-brand">calendar_today</span>
-              <div><p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Date</p><p id="modalDate" class="text-sm font-bold text-white mt-0.5"></p></div>
+              <span class="material-symbols-outlined text-brand"
+                >calendar_today</span
+              >
+              <div>
+                <p
+                  class="text-xs text-gray-500 font-semibold uppercase tracking-wider"
+                >
+                  Date
+                </p>
+                <p
+                  id="modalDate"
+                  class="text-sm font-bold text-white mt-0.5"
+                ></p>
+              </div>
             </div>
             <div class="bg-white/5 rounded-xl p-4 flex items-center gap-3">
               <span class="material-symbols-outlined text-brand">schedule</span>
-              <div><p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Time</p><p id="modalTime" class="text-sm font-bold text-white mt-0.5"></p></div>
+              <div>
+                <p
+                  class="text-xs text-gray-500 font-semibold uppercase tracking-wider"
+                >
+                  Time
+                </p>
+                <p
+                  id="modalTime"
+                  class="text-sm font-bold text-white mt-0.5"
+                ></p>
+              </div>
             </div>
-            <div class="bg-white/5 rounded-xl p-4 flex items-center gap-3 col-span-2">
-              <span class="material-symbols-outlined text-brand">location_on</span>
-              <div><p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Location</p><p id="modalLocation" class="text-sm font-bold text-white mt-0.5"></p></div>
+            <div
+              class="bg-white/5 rounded-xl p-4 flex items-center gap-3 col-span-2"
+            >
+              <span class="material-symbols-outlined text-brand"
+                >location_on</span
+              >
+              <div>
+                <p
+                  class="text-xs text-gray-500 font-semibold uppercase tracking-wider"
+                >
+                  Location
+                </p>
+                <p
+                  id="modalLocation"
+                  class="text-sm font-bold text-white mt-0.5"
+                ></p>
+              </div>
             </div>
           </div>
           <div class="flex gap-3">
-            <button id="modalRsvpBtn" onclick="handleRSVPFromModal()" class="flex-1 bg-brand text-black font-bold py-3 rounded-custom hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]">RSVP Now</button>
-            <button onclick="closeEventModal()" class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors">Close</button>
+            <button
+              id="modalRsvpBtn"
+              onclick="handleRSVPFromModal()"
+              class="flex-1 bg-brand text-black font-bold py-3 rounded-custom hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]"
+            >
+              RSVP Now
+            </button>
+            <button
+              onclick="closeEventModal()"
+              class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
       <!-- Toast Notification -->
-      <div id="toast" class="fixed bottom-6 right-6 z-[100] transform translate-y-20 opacity-0 transition-all duration-300">
-        <div class="bg-[#111] border border-brand/30 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3">
+      <div
+        id="toast"
+        class="fixed bottom-6 right-6 z-[100] transform translate-y-20 opacity-0 transition-all duration-300"
+      >
+        <div
+          class="bg-[#111] border border-brand/30 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3"
+        >
           <span class="material-symbols-outlined text-brand">check_circle</span>
           <span id="toastMsg" class="text-sm font-semibold"></span>
         </div>
       </div>
-
-    </div><!-- end root -->
+    </div>
+    <!-- end root -->
     <script>
-    // ─── Data ────────────────────────────────────────────────────────────────
-    // Event dates with events (for calendar dots)
-    const eventDates = ['2026-10-12','2026-10-15','2026-10-22','2026-10-28','2026-11-02','2026-11-10','2026-11-18'];
-    let rsvpdEvents = new Set();
-    let currentModalCard = null;
+      // ─── Data ────────────────────────────────────────────────────────────────
+      // Event dates with events (for calendar dots)
+      const eventDates = [
+        "2026-10-12",
+        "2026-10-15",
+        "2026-10-22",
+        "2026-10-28",
+        "2026-11-02",
+        "2026-11-10",
+        "2026-11-18",
+      ];
+      let rsvpdEvents = new Set();
+      let currentModalCard = null;
 
-    // ─── Toast ───────────────────────────────────────────────────────────────
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
-      t.classList.remove('translate-y-20','opacity-0');
-      t.classList.add('translate-y-0','opacity-100');
-      setTimeout(() => {
-        t.classList.add('translate-y-20','opacity-0');
-        t.classList.remove('translate-y-0','opacity-100');
-      }, 3000);
-    }
-
-    // ─── RSVP ────────────────────────────────────────────────────────────────
-    function handleRSVP(btn, eventName) {
-      if (rsvpdEvents.has(eventName)) {
-        rsvpdEvents.delete(eventName);
-        btn.classList.remove('rsvpd');
-        btn.textContent = btn.dataset.originalText || 'RSVP';
-        showToast(`Cancelled RSVP for "${eventName}"`);
-      } else {
-        rsvpdEvents.add(eventName);
-        btn.dataset.originalText = btn.textContent;
-        btn.classList.add('rsvpd');
-        btn.textContent = 'RSVPd';
-        showToast(`RSVP confirmed for "${eventName}"! 🎉`);
+      // ─── Toast ───────────────────────────────────────────────────────────────
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        document.getElementById("toastMsg").textContent = msg;
+        t.classList.remove("translate-y-20", "opacity-0");
+        t.classList.add("translate-y-0", "opacity-100");
+        setTimeout(() => {
+          t.classList.add("translate-y-20", "opacity-0");
+          t.classList.remove("translate-y-0", "opacity-100");
+        }, 3000);
       }
-      updateRsvpCount();
-    }
 
-    function handleRSVPFromModal() {
-      if (!currentModalCard) return;
-      const title = currentModalCard.dataset.title;
-      // Find the rsvp button within that card
-      const btn = currentModalCard.querySelector('.rsvp-btn');
-      if (btn) handleRSVP(btn, title);
-      const modalBtn = document.getElementById('modalRsvpBtn');
-      if (rsvpdEvents.has(title)) {
-        modalBtn.textContent = '✓ RSVPd';
-        modalBtn.classList.add('opacity-60','cursor-default');
-      } else {
-        modalBtn.textContent = 'RSVP Now';
-        modalBtn.classList.remove('opacity-60','cursor-default');
-      }
-    }
-
-    function updateRsvpCount() {
-      document.getElementById('rsvpCount').textContent =
-        `You have ${rsvpdEvents.size} upcoming RSVP${rsvpdEvents.size !== 1 ? 's' : ''} this month.`;
-    }
-
-    // ─── Event Details Modal ─────────────────────────────────────────────────
-
-function openEventModal(card) {
-  console.log('Opening modal for card:', card); // Debug
-  
-  if (!card) {
-    console.error('No card provided');
-    return;
-  }
-  
-  currentModalCard = card;
-  const d = card.dataset;
-  
-  // Check if data exists
-  console.log('Card data:', d);
-  
-  // Set modal content with fallbacks
-  document.getElementById('modalBadge').textContent = d.category || 'Event';
-  document.getElementById('modalTitle').textContent = d.title || 'Untitled Event';
-  document.getElementById('modalDesc').textContent = d.desc || 'No description available';
-  document.getElementById('modalTime').textContent = d.time || 'TBA';
-  document.getElementById('modalLocation').textContent = d.location || 'TBA';
-  
-  // Format date nicely
-  try {
-    const dt = new Date(d.date + 'T00:00:00');
-    document.getElementById('modalDate').textContent = dt.toLocaleDateString('en-US', {
-      month: 'long', 
-      day: 'numeric', 
-      year: 'numeric'
-    });
-  } catch (e) {
-    document.getElementById('modalDate').textContent = d.date || 'Date TBA';
-  }
-  
-  // Update RSVP button state
-  const modalBtn = document.getElementById('modalRsvpBtn');
-  if (rsvpdEvents.has(d.title)) {
-    modalBtn.textContent = '✓ RSVPd';
-    modalBtn.classList.add('opacity-60', 'cursor-default');
-  } else {
-    modalBtn.textContent = 'RSVP Now';
-    modalBtn.classList.remove('opacity-60', 'cursor-default');
-  }
-  
-  // Get modal element
-  const modal = document.getElementById('eventModal');
-  console.log('Modal before opening:', modal.classList.toString());
-  
-  // Remove hidden class and add visible classes
-  modal.classList.remove('hidden');
-  modal.classList.add('opacity-100', 'visible', 'pointer-events-auto');
-  
-  // Trigger the shine animation
-  const shineOverlay = document.querySelector('.shine-overlay');
-  if (shineOverlay) {
-    // Remove any existing animation class
-    shineOverlay.classList.remove('animate');
-    
-    // Force a reflow
-    void shineOverlay.offsetWidth;
-    
-    // Add the animation class
-    shineOverlay.classList.add('animate');
-    
-    // Remove the animation class after it completes
-    setTimeout(() => {
-      shineOverlay.classList.remove('animate');
-    }, 800); // Match animation duration
-  }
-  
-  console.log('Modal after opening:', modal.classList.toString());
-  
-  // Disable body scroll
-  document.body.style.overflow = 'hidden';
-}
-
-    function closeEventModal() {
-      const modal = document.getElementById('eventModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
-      document.body.style.overflow = '';
-      currentModalCard = null;
-    }
-
-    // ─── Telegram Popup ──────────────────────────────────────────────────────
-    function openTelegramPopup() {
-      document.getElementById('telegramPopup').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeTelegramPopup() {
-      document.getElementById('telegramPopup').classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    // ─── Mobile Menu ─────────────────────────────────────────────────────────
-    const menuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIconOpen = document.getElementById('menuIconOpen');
-    const menuIconClose = document.getElementById('menuIconClose');
-    menuBtn.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      menuIconOpen.classList.toggle('hidden', open);
-      menuIconClose.classList.toggle('hidden', !open);
-    });
-
-    // ─── View Toggle ─────────────────────────────────────────────────────────
-    const listViewBtn = document.getElementById('listViewBtn');
-    const gridViewBtn = document.getElementById('gridViewBtn');
-    const eventsContainer = document.getElementById('eventsContainer');
-    const extraEvents = document.getElementById('extraEvents');
-
-    listViewBtn.addEventListener('click', () => {
-      eventsContainer.className = 'list-layout';
-      extraEvents.className = extraEvents.classList.contains('hidden') ? 'hidden list-layout' : 'list-layout';
-      listViewBtn.className = 'px-4 py-2 bg-brand text-black rounded-custom text-sm font-bold shadow-sm transition-all';
-      gridViewBtn.className = 'px-4 py-2 text-sm font-bold text-gray-400 transition-all';
-    });
-
-    gridViewBtn.addEventListener('click', () => {
-      eventsContainer.className = 'grid-layout';
-      extraEvents.className = extraEvents.classList.contains('hidden') ? 'hidden grid-layout' : 'grid-layout';
-      gridViewBtn.className = 'px-4 py-2 bg-brand text-black rounded-custom text-sm font-bold shadow-sm transition-all';
-      listViewBtn.className = 'px-4 py-2 text-sm font-bold text-gray-400 transition-all';
-    });
-
-    // ─── Filter & Search ─────────────────────────────────────────────────────
-    const allCards = () => document.querySelectorAll('.event-card');
-    let activeFilters = new Set(['all']);
-
-    document.getElementById('filterSection').addEventListener('change', e => {
-      const cb = e.target;
-      const val = cb.getAttribute('data-filter');
-      if (val === 'all') {
-        // All Events selected → uncheck others
-        if (cb.checked) {
-          activeFilters = new Set(['all']);
-          document.querySelectorAll('[data-filter]').forEach(c => {
-            c.checked = (c.getAttribute('data-filter') === 'all');
-          });
+      // ─── RSVP ────────────────────────────────────────────────────────────────
+      function handleRSVP(btn, eventName) {
+        if (rsvpdEvents.has(eventName)) {
+          rsvpdEvents.delete(eventName);
+          btn.classList.remove("rsvpd");
+          btn.textContent = btn.dataset.originalText || "RSVP";
+          showToast(`Cancelled RSVP for "${eventName}"`);
         } else {
-          activeFilters.delete('all');
+          rsvpdEvents.add(eventName);
+          btn.dataset.originalText = btn.textContent;
+          btn.classList.add("rsvpd");
+          btn.textContent = "RSVPd";
+          showToast(`RSVP confirmed for "${eventName}"! 🎉`);
         }
-      } else {
-        // Uncheck "All" if specific chosen
-        document.querySelector('[data-filter="all"]').checked = false;
-        activeFilters.delete('all');
-        if (cb.checked) activeFilters.add(val);
-        else activeFilters.delete(val);
-        if (activeFilters.size === 0) {
-          activeFilters.add('all');
-          document.querySelector('[data-filter="all"]').checked = true;
+        updateRsvpCount();
+      }
+
+      function handleRSVPFromModal() {
+        if (!currentModalCard) return;
+        const title = currentModalCard.dataset.title;
+        // Find the rsvp button within that card
+        const btn = currentModalCard.querySelector(".rsvp-btn");
+        if (btn) handleRSVP(btn, title);
+        const modalBtn = document.getElementById("modalRsvpBtn");
+        if (rsvpdEvents.has(title)) {
+          modalBtn.textContent = "✓ RSVPd";
+          modalBtn.classList.add("opacity-60", "cursor-default");
+        } else {
+          modalBtn.textContent = "RSVP Now";
+          modalBtn.classList.remove("opacity-60", "cursor-default");
         }
       }
-      applyFilters();
-    });
 
-    document.getElementById('searchInput').addEventListener('input', applyFilters);
+      function updateRsvpCount() {
+        document.getElementById("rsvpCount").textContent =
+          `You have ${rsvpdEvents.size} upcoming RSVP${rsvpdEvents.size !== 1 ? "s" : ""} this month.`;
+      }
 
-    function applyFilters() {
-      const search = document.getElementById('searchInput').value.toLowerCase().trim();
-      const showAll = activeFilters.has('all');
-      let visible = 0;
-      allCards().forEach(card => {
-        const cat = card.dataset.category || '';
-        const title = (card.dataset.title || '').toLowerCase();
-        const desc = (card.dataset.desc || '').toLowerCase();
-        const matchFilter = showAll || activeFilters.has(cat);
-        const matchSearch = !search || title.includes(search) || desc.includes(search) || cat.toLowerCase().includes(search);
-        if (matchFilter && matchSearch) {
-          card.classList.remove('filtered-out');
-          visible++;
-        } else {
-          card.classList.add('filtered-out');
+      // ─── Event Details Modal ─────────────────────────────────────────────────
+
+      function openEventModal(card) {
+        console.log("Opening modal for card:", card); // Debug
+
+        if (!card) {
+          console.error("No card provided");
+          return;
         }
+
+        currentModalCard = card;
+        const d = card.dataset;
+
+        // Check if data exists
+        console.log("Card data:", d);
+
+        // Set modal content with fallbacks
+        document.getElementById("modalBadge").textContent =
+          d.category || "Event";
+        document.getElementById("modalTitle").textContent =
+          d.title || "Untitled Event";
+        document.getElementById("modalDesc").textContent =
+          d.desc || "No description available";
+        document.getElementById("modalTime").textContent = d.time || "TBA";
+        document.getElementById("modalLocation").textContent =
+          d.location || "TBA";
+
+        // Format date nicely
+        try {
+          const dt = new Date(d.date + "T00:00:00");
+          document.getElementById("modalDate").textContent =
+            dt.toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            });
+        } catch (e) {
+          document.getElementById("modalDate").textContent =
+            d.date || "Date TBA";
+        }
+
+        // Update RSVP button state
+        const modalBtn = document.getElementById("modalRsvpBtn");
+        if (rsvpdEvents.has(d.title)) {
+          modalBtn.textContent = "✓ RSVPd";
+          modalBtn.classList.add("opacity-60", "cursor-default");
+        } else {
+          modalBtn.textContent = "RSVP Now";
+          modalBtn.classList.remove("opacity-60", "cursor-default");
+        }
+
+        // Get modal element
+        const modal = document.getElementById("eventModal");
+        console.log("Modal before opening:", modal.classList.toString());
+
+        // Remove hidden class and add visible classes
+        modal.classList.remove("hidden");
+        modal.classList.add("opacity-100", "visible", "pointer-events-auto");
+
+        // Trigger the shine animation
+        const shineOverlay = document.querySelector(".shine-overlay");
+        if (shineOverlay) {
+          // Remove any existing animation class
+          shineOverlay.classList.remove("animate");
+
+          // Force a reflow
+          void shineOverlay.offsetWidth;
+
+          // Add the animation class
+          shineOverlay.classList.add("animate");
+
+          // Remove the animation class after it completes
+          setTimeout(() => {
+            shineOverlay.classList.remove("animate");
+          }, 800); // Match animation duration
+        }
+
+        console.log("Modal after opening:", modal.classList.toString());
+
+        // Disable body scroll
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeEventModal() {
+        const modal = document.getElementById("eventModal");
+        modal.classList.add("hidden");
+        modal.classList.remove("opacity-100", "visible", "pointer-events-auto");
+        document.body.style.overflow = "";
+        currentModalCard = null;
+      }
+
+      // ─── Telegram Popup ──────────────────────────────────────────────────────
+      function openTelegramPopup() {
+        document.getElementById("telegramPopup").classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeTelegramPopup() {
+        document.getElementById("telegramPopup").classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+
+      // ─── Mobile Menu ─────────────────────────────────────────────────────────
+      const menuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const menuIconOpen = document.getElementById("menuIconOpen");
+      const menuIconClose = document.getElementById("menuIconClose");
+      menuBtn.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("open");
+        menuIconOpen.classList.toggle("hidden", open);
+        menuIconClose.classList.toggle("hidden", !open);
       });
-      document.getElementById('noResults').classList.toggle('hidden', visible > 0);
-      document.getElementById('eventCountLabel').textContent =
-        visible === 0 ? 'No events found' : `${visible} event${visible !== 1 ? 's' : ''} found`;
-    }
 
-    // ─── Load More ───────────────────────────────────────────────────────────
-    function loadMore() {
-      const extra = document.getElementById('extraEvents');
-      const btn = document.getElementById('loadMoreBtn');
-      const isGrid = eventsContainer.classList.contains('grid-layout');
-      extra.className = isGrid ? 'grid-layout' : 'list-layout';
-      btn.parentElement.classList.add('hidden');
-      applyFilters();
-    }
+      // ─── View Toggle ─────────────────────────────────────────────────────────
+      const listViewBtn = document.getElementById("listViewBtn");
+      const gridViewBtn = document.getElementById("gridViewBtn");
+      const eventsContainer = document.getElementById("eventsContainer");
+      const extraEvents = document.getElementById("extraEvents");
 
-    // ─── Mini Calendar ───────────────────────────────────────────────────────
-    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    let calYear = 2026, calMonth = 9; // October 2026 (0-indexed)
-    let calSelectedDate = null;
+      listViewBtn.addEventListener("click", () => {
+        eventsContainer.className = "list-layout";
+        extraEvents.className = extraEvents.classList.contains("hidden")
+          ? "hidden list-layout"
+          : "list-layout";
+        listViewBtn.className =
+          "px-4 py-2 bg-brand text-black rounded-custom text-sm font-bold shadow-sm transition-all";
+        gridViewBtn.className =
+          "px-4 py-2 text-sm font-bold text-gray-400 transition-all";
+      });
 
-    function renderCalendar() {
-      document.getElementById('calMonthLabel').textContent = `${MONTHS[calMonth]} ${calYear}`;
-      const grid = document.getElementById('calGrid');
-      grid.innerHTML = '';
-      const firstDay = new Date(calYear, calMonth, 1).getDay();
-      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
-      const today = new Date();
+      gridViewBtn.addEventListener("click", () => {
+        eventsContainer.className = "grid-layout";
+        extraEvents.className = extraEvents.classList.contains("hidden")
+          ? "hidden grid-layout"
+          : "grid-layout";
+        gridViewBtn.className =
+          "px-4 py-2 bg-brand text-black rounded-custom text-sm font-bold shadow-sm transition-all";
+        listViewBtn.className =
+          "px-4 py-2 text-sm font-bold text-gray-400 transition-all";
+      });
 
-      // Leading blanks
-      for (let i = 0; i < firstDay; i++) {
-        const blank = document.createElement('div');
-        grid.appendChild(blank);
+      // ─── Filter & Search ─────────────────────────────────────────────────────
+      const allCards = () => document.querySelectorAll(".event-card");
+      let activeFilters = new Set(["all"]);
+
+      document
+        .getElementById("filterSection")
+        .addEventListener("change", (e) => {
+          const cb = e.target;
+          const val = cb.getAttribute("data-filter");
+          if (val === "all") {
+            // All Events selected → uncheck others
+            if (cb.checked) {
+              activeFilters = new Set(["all"]);
+              document.querySelectorAll("[data-filter]").forEach((c) => {
+                c.checked = c.getAttribute("data-filter") === "all";
+              });
+            } else {
+              activeFilters.delete("all");
+            }
+          } else {
+            // Uncheck "All" if specific chosen
+            document.querySelector('[data-filter="all"]').checked = false;
+            activeFilters.delete("all");
+            if (cb.checked) activeFilters.add(val);
+            else activeFilters.delete(val);
+            if (activeFilters.size === 0) {
+              activeFilters.add("all");
+              document.querySelector('[data-filter="all"]').checked = true;
+            }
+          }
+          applyFilters();
+        });
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", applyFilters);
+
+      function applyFilters() {
+        const search = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        const showAll = activeFilters.has("all");
+        let visible = 0;
+        allCards().forEach((card) => {
+          const cat = card.dataset.category || "";
+          const title = (card.dataset.title || "").toLowerCase();
+          const desc = (card.dataset.desc || "").toLowerCase();
+          const matchFilter = showAll || activeFilters.has(cat);
+          const matchSearch =
+            !search ||
+            title.includes(search) ||
+            desc.includes(search) ||
+            cat.toLowerCase().includes(search);
+          if (matchFilter && matchSearch) {
+            card.classList.remove("filtered-out");
+            visible++;
+          } else {
+            card.classList.add("filtered-out");
+          }
+        });
+        document
+          .getElementById("noResults")
+          .classList.toggle("hidden", visible > 0);
+        document.getElementById("eventCountLabel").textContent =
+          visible === 0
+            ? "No events found"
+            : `${visible} event${visible !== 1 ? "s" : ""} found`;
       }
 
-      for (let d = 1; d <= daysInMonth; d++) {
-        const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-        const btn = document.createElement('button');
-        btn.className = 'cal-day';
-        btn.textContent = d;
-        btn.setAttribute('data-date', dateStr);
+      // ─── Load More ───────────────────────────────────────────────────────────
+      function loadMore() {
+        const extra = document.getElementById("extraEvents");
+        const btn = document.getElementById("loadMoreBtn");
+        const isGrid = eventsContainer.classList.contains("grid-layout");
+        extra.className = isGrid ? "grid-layout" : "list-layout";
+        btn.parentElement.classList.add("hidden");
+        applyFilters();
+      }
 
-        if (today.getFullYear() === calYear && today.getMonth() === calMonth && today.getDate() === d) {
-          btn.classList.add('today');
+      // ─── Mini Calendar ───────────────────────────────────────────────────────
+      const MONTHS = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      let calYear = 2026,
+        calMonth = 9; // October 2026 (0-indexed)
+      let calSelectedDate = null;
+
+      function renderCalendar() {
+        document.getElementById("calMonthLabel").textContent =
+          `${MONTHS[calMonth]} ${calYear}`;
+        const grid = document.getElementById("calGrid");
+        grid.innerHTML = "";
+        const firstDay = new Date(calYear, calMonth, 1).getDay();
+        const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+        const today = new Date();
+
+        // Leading blanks
+        for (let i = 0; i < firstDay; i++) {
+          const blank = document.createElement("div");
+          grid.appendChild(blank);
         }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const dateStr = `${calYear}-${String(calMonth + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+          const btn = document.createElement("button");
+          btn.className = "cal-day";
+          btn.textContent = d;
+          btn.setAttribute("data-date", dateStr);
+
+          if (
+            today.getFullYear() === calYear &&
+            today.getMonth() === calMonth &&
+            today.getDate() === d
+          ) {
+            btn.classList.add("today");
+          }
+          if (calSelectedDate === dateStr) {
+            btn.classList.add("selected");
+          }
+          if (eventDates.includes(dateStr)) {
+            const dot = document.createElement("span");
+            dot.className = "dot";
+            btn.appendChild(dot);
+          }
+          btn.addEventListener("click", () => filterByDate(dateStr));
+          grid.appendChild(btn);
+        }
+      }
+
+      function filterByDate(dateStr) {
         if (calSelectedDate === dateStr) {
-          btn.classList.add('selected');
+          calSelectedDate = null;
+          resetCalendarFilter();
+          renderCalendar();
+          return;
         }
-        if (eventDates.includes(dateStr)) {
-          const dot = document.createElement('span');
-          dot.className = 'dot';
-          btn.appendChild(dot);
-        }
-        btn.addEventListener('click', () => filterByDate(dateStr));
-        grid.appendChild(btn);
-      }
-    }
-
-    function filterByDate(dateStr) {
-      if (calSelectedDate === dateStr) {
-        calSelectedDate = null;
-        resetCalendarFilter();
+        calSelectedDate = dateStr;
         renderCalendar();
-        return;
+        // Show cards that match this date
+        allCards().forEach((card) => {
+          if (card.dataset.date === dateStr) {
+            card.classList.remove("filtered-out");
+          } else {
+            card.classList.add("filtered-out");
+          }
+        });
+        const visible = [...allCards()].filter(
+          (c) => !c.classList.contains("filtered-out")
+        ).length;
+        document
+          .getElementById("noResults")
+          .classList.toggle("hidden", visible > 0);
+        document.getElementById("eventCountLabel").textContent =
+          `${visible} event${visible !== 1 ? "s" : ""} on this date`;
       }
-      calSelectedDate = dateStr;
-      renderCalendar();
-      // Show cards that match this date
-      allCards().forEach(card => {
-        if (card.dataset.date === dateStr) {
-          card.classList.remove('filtered-out');
-        } else {
-          card.classList.add('filtered-out');
+
+      function resetCalendarFilter() {
+        calSelectedDate = null;
+        renderCalendar();
+        applyFilters();
+      }
+
+      document.getElementById("calPrev").addEventListener("click", () => {
+        calMonth--;
+        if (calMonth < 0) {
+          calMonth = 11;
+          calYear--;
+        }
+        renderCalendar();
+      });
+      document.getElementById("calNext").addEventListener("click", () => {
+        calMonth++;
+        if (calMonth > 11) {
+          calMonth = 0;
+          calYear++;
+        }
+        renderCalendar();
+      });
+
+      // ─── Keyboard shortcuts ──────────────────────────────────────────────────
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeTelegramPopup();
+          closeEventModal();
         }
       });
-      const visible = [...allCards()].filter(c => !c.classList.contains('filtered-out')).length;
-      document.getElementById('noResults').classList.toggle('hidden', visible > 0);
-      document.getElementById('eventCountLabel').textContent = `${visible} event${visible !== 1 ? 's' : ''} on this date`;
-    }
 
-    function resetCalendarFilter() {
-      calSelectedDate = null;
+      // ─── Init ────────────────────────────────────────────────────────────────
       renderCalendar();
       applyFilters();
-    }
-
-    document.getElementById('calPrev').addEventListener('click', () => {
-      calMonth--;
-      if (calMonth < 0) { calMonth = 11; calYear--; }
-      renderCalendar();
-    });
-    document.getElementById('calNext').addEventListener('click', () => {
-      calMonth++;
-      if (calMonth > 11) { calMonth = 0; calYear++; }
-      renderCalendar();
-    });
-
-    // ─── Keyboard shortcuts ──────────────────────────────────────────────────
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        closeTelegramPopup();
-        closeEventModal();
-      }
-    });
-
-    // ─── Init ────────────────────────────────────────────────────────────────
-    renderCalendar();
-    applyFilters();
+      // Mobile Details Click
+      // Add this to your existing script section
+      document.addEventListener("DOMContentLoaded", function () {
+        // Prevent card clicks when clicking on buttons or interactive elements
+        document
+          .querySelectorAll(
+            ".event-card button, .event-card a, .event-card .rsvp-btn"
+          )
+          .forEach((el) => {
+            el.addEventListener("click", function (e) {
+              e.stopPropagation();
+            });
+          });
+      });
     </script>
   </body>
 </html>
