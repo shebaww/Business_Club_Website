@@ -37,6 +37,19 @@
       };
     </script>
     <style data-purpose="custom-animations">
+/* Mobile Menu Animation */
+#mobileMenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.2s ease, visibility 0.2s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+#mobileMenu.open {
+  max-height: 400px;
+  visibility: visible;
+  opacity: 1;
+}
       @keyframes float {
         0% { transform: translateY(0px); }
         50% { transform: translateY(-10px); }
@@ -53,7 +66,7 @@
         );
       }
     </style>
-    <style data-purpose="typography-enhancements">
+  <style data-purpose="typography-enhancements">
       .text-glow {
         text-shadow: 0 0 15px rgba(37, 244, 89, 0.4);
       }
@@ -103,30 +116,27 @@
               Join Us
             </a>
           </nav>
-          <!-- Mobile Menu Button -->
-          <div class="md:hidden flex items-center">
-            <button
-              aria-label="Toggle menu"
-              class="text-gray-400 hover:text-white"
-              type="button"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  d="M4 6h16M4 12h16m-7 6h7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+        <!-- Mobile Menu Button with proper IDs -->
+<div class="md:hidden flex items-center">
+  <button id="mobileMenuBtn" aria-label="Toggle menu" class="text-gray-400 hover:text-white" type="button">
+    <svg id="menuOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </svg>
+    <svg id="menuClose" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </svg>
+  </button>
+</div>
+      <!-- Mobile Navigation Menu -->
+<div id="mobileMenu" class="md:hidden bg-brand-dark/95 border-t border-white/5 px-4 fixed top-20 left-0 right-0 z-40 shadow-xl">
+  <nav class="flex flex-col gap-1 py-4">
+    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./index.html">Home</a>
+    <a class="text-brand py-2 px-2 rounded-lg bg-brand/10 font-medium" href="./About.html">About</a>
+    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./Events.html">Events</a>
+    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./Library.html">Resources</a>
+    <a href="#" onclick="openTelegramPopup();return false;" class="mt-2 bg-brand text-black px-6 py-2.5 rounded-custom font-bold text-center hover:bg-white transition-all">Join Us</a>
+  </nav>
+</div>
     </header>
 
     <main class="pt-20">
@@ -716,6 +726,35 @@
         closeTelegramPopup();
       }
     });
+    // Mobile Menu functionality
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+if (mobileMenuBtn && mobileMenu) {
+  mobileMenuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    document.getElementById('menuOpen').classList.toggle('hidden', open);
+    document.getElementById('menuClose').classList.toggle('hidden', !open);
+  });
+}
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('#mobileMenu a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    document.getElementById('menuOpen').classList.remove('hidden');
+    document.getElementById('menuClose').classList.add('hidden');
+  });
+});
+
+// Highlight current page in navigation
+const currentPage = window.location.pathname.split('/').pop() || 'About.html';
+document.querySelectorAll('nav a, #mobileMenu a').forEach(link => {
+  if (link.getAttribute('href') === currentPage) {
+    link.classList.add('text-brand');
+    link.classList.remove('text-gray-300');
+  }
+});
     </script>
   </body>
 </html>

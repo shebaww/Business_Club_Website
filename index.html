@@ -7,12 +7,21 @@
     <title>Business Club | The Future Starts Here</title>
     <!-- Tailwind CSS v3 CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Google Fonts: Inter -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;display=swap"
-      rel="stylesheet"
+    <meta
+      name="description"
+      content="Andinet Business Club - Empowering future business leaders"
     />
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <meta
+      name="keywords"
+      content="business club, entrepreneurship, networking, Andinet"
+    />
+    <link rel="icon" type="image/x-icon" href="./icons/favicon.ico" />
+    <!--Add favicon-->
+    <!-- Add Material Symbols properly -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+    />
     <script>
       tailwind.config = {
         theme: {
@@ -35,6 +44,34 @@
       };
     </script>
     <style data-purpose="custom-animations">
+/* Toast animation */
+#toast {
+  transition: all 0.3s ease;
+}
+#toast.show {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+#mobileMenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  visibility: hidden;  /* Hide completely when closed */
+  opacity: 0;          /* Fade effect */
+  transition: max-height 0.35s ease, opacity 0.2s ease, visibility 0.2s ease;
+}
+#mobileMenu.open {
+  max-height: 400px;
+  visibility: visible;
+  opacity: 1;
+}
+img.loading {
+    filter: blur(10px);
+    transition: filter 0.3s;
+  }
+  img.loaded {
+    filter: blur(0);
+  }
       @keyframes float {
         0% {
           transform: translateY(0px);
@@ -73,12 +110,18 @@
         <div class="flex justify-between items-center h-20">
           <!-- Logo Section -->
           <div class="flex-shrink-0 flex items-center">
-          
-              <div class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand">
-                <span class="material-symbols-outlined text-[20px]">corporate_fare</span>
-              </div>
-              <span class="font-bold hover:text-brand transition-colors text-white text-xl">&nbsp;Business Club</span>
-            
+            <div
+              class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >corporate_fare</span
+              >
+            </div>
+            <a
+                href="./index.html"
+              class="font-bold hover:text-brand transition-colors text-white text-xl"
+              >&nbsp;Business Club</a
+            >
           </div>
           <!-- Desktop Navigation -->
           <nav
@@ -105,369 +148,582 @@
               href="./Library.html"
               >Resources</a
             >
-            <a href="#" onclick="openTelegramPopup(); return false;" class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
-  Join Us
-</a>
+            <a
+              href="#"
+              onclick="
+                openTelegramPopup();
+                return false;
+              "
+              class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]"
+            >
+              Join Us
+            </a>
           </nav>
           <!-- Mobile Menu Button (Icon only, no JS logic per constraints) -->
-          <div class="md:hidden flex items-center">
-            <button
-              aria-label="Toggle menu"
-              class="text-gray-400 hover:text-white"
-              type="button"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  d="M4 6h16M4 12h16m-7 6h7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                ></path>
-              </svg>
-            </button>
-          </div>
+              <!-- ✅ KEEP THIS ONE -->
+<div class="md:hidden flex items-center">
+  <button id="mobileMenuBtn" aria-label="Toggle menu" class="text-gray-400 hover:text-white" type="button">
+    <svg id="menuOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </svg>
+    <svg id="menuClose" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </svg>
+  </button>
+</div>
         </div>
       </div>
     </header>
-    <!-- END: MainHeader -->
-    <!-- BEGIN: HeroSection -->
-    <section
-      class="relative min-h-screen flex items-center pt-20 overflow-hidden"
-      data-purpose="hero-banner"
-    >
-      <!-- Abstract Background Pattern -->
-      <div class="absolute inset-0 z-0">
-        <div
-          class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center grayscale opacity-20"
-        ></div>
-        <div class="absolute inset-0 gradient-overlay"></div>
-        <!-- Decorative Neon Lines -->
-        <div
-          class="absolute top-1/4 -left-20 w-96 h-96 bg-brand/10 rounded-full blur-[120px]"
-        ></div>
-        <div
-          class="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand/10 rounded-full blur-[120px]"
-        ></div>
-      </div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div data-purpose="hero-content">
-            <span
-              class="inline-block py-1 px-3 rounded-full bg-brand/10 border border-brand/20 text-brand text-sm font-semibold mb-6 tracking-wider uppercase"
-            >
-              Official Andinet Club
-            </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-              The Future of <br />
-              <span class="text-brand text-glow">Business</span> Starts Here.
-            </h1>
-            <p class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed">
-              Join the next generation of entrepreneurs, leaders, and innovators
-              at Andinet Business Club. Unlock your potential today.
-            </p>
-            <div class="flex flex-wrap gap-4">
-              <button onclick="openTelegramPopup(); return false;"
-                class="bg-brand text-black px-8 py-4 rounded-custom font-extrabold text-lg hover:bg-white hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] transition-all transform hover:-translate-y-1"
-              >
-                Become a Member
-              </button>
-              <button onclick="window.location.href = './Events.html'"
-                class="border border-white/20 hover:border-brand/50 px-8 py-4 rounded-custom font-bold text-lg transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)]"
-              >
-                View Calendar
-              </button>
-            </div>
-          </div>
-          <div class="hidden lg:block" data-purpose="hero-image-container">
-            <div class="relative">
-              <img
-                alt="Business Club Badge"
-                class="w-full max-w-md mx-auto rounded-xl animate-float drop-shadow-[0_0_50px_rgba(37,244,89,0.2)]"
-                src="./icons/hero-img.jpg"
-              />
-              <!-- Decorative elements around logo -->
-              <div
-                class="absolute -top-10 -right-10 w-24 h-24 border-t-2 border-r-2 border-brand/30"
-              ></div>
-              <div
-                class="absolute -bottom-10 -left-10 w-24 h-24 border-b-2 border-l-2 border-brand/30"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- END: HeroSection -->
-    <!-- BEGIN: MissionSection -->
-    <section
-      class="py-24 bg-black/40"
-      data-purpose="mission-highlights"
-      id="mission"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
-          <div class="h-1 w-20 bg-brand mx-auto rounded-full"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Card 1: Networking -->
-          <div
-            class="p-8 rounded-2xl bg-brand-dark hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] border border-white/5 hover:border-brand/30 transition-all group"
-            data-purpose="mission-card"
+    <!--Mobile Nav-->
+<!--Mobile Nav-->
+<div id="mobileMenu" class="md:hidden bg-brand-dark/95 border-t border-white/5 px-4 fixed top-20 left-0 right-0 z-40 shadow-xl">
+  <nav class="flex flex-col gap-1 py-4">
+    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./index.html">Home</a>
+    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./About.html">About</a>
+    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="Events.html">Events</a>
+    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./Library.html">Resources</a>
+    <a href="#" onclick="openTelegramPopup();return false;" class="mt-2 bg-brand text-black px-6 py-2.5 rounded-custom font-bold text-center hover:bg-white transition-all">Join Us</a>
+  </nav>
+</div>
+  <!-- END: MainHeader -->
+  <!-- BEGIN: HeroSection -->
+  <section
+    class="relative min-h-screen flex items-center pt-20 overflow-hidden"
+    data-purpose="hero-banner"
+  >
+    <!-- Abstract Background Pattern -->
+    <div class="absolute inset-0 z-0">
+      <div
+        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center grayscale opacity-20"
+      ></div>
+      <div class="absolute inset-0 gradient-overlay"></div>
+      <!-- Decorative Neon Lines -->
+      <div
+        class="absolute top-1/4 -left-20 w-96 h-96 bg-brand/10 rounded-full blur-[120px]"
+      ></div>
+      <div
+        class="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand/10 rounded-full blur-[120px]"
+      ></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div data-purpose="hero-content">
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-brand/10 border border-brand/20 text-brand text-sm font-semibold mb-6 tracking-wider uppercase"
           >
-            <div
-              class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
+            Official Andinet Club
+          </span>
+          <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+            The Future of <br />
+            <span class="text-brand text-glow">Business</span> Starts Here.
+          </h1>
+          <p class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed">
+            Join the next generation of entrepreneurs, leaders, and innovators
+            at Andinet Business Club. Unlock your potential today.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              onclick="
+                openTelegramPopup();
+                return false;
+              "
+              class="bg-brand text-black px-8 py-4 rounded-custom font-extrabold text-lg hover:bg-white hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] transition-all transform hover:-translate-y-1"
             >
-              <svg
-                class="w-8 h-8 text-brand group-hover:text-black transition-colors"
-                fill="none"
-                stroke="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-4">Networking</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Connect with like-minded peers and industry professionals through
-              our exclusive network and guest mixers.
-            </p>
+              Become a Member
+            </button>
+            <button
+              onclick="window.location.href = './Events.html'"
+              class="border border-white/20 hover:border-brand/50 px-8 py-4 rounded-custom font-bold text-lg transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)]"
+            >
+          View Calendar
+          </button>
           </div>
-          <!-- Card 2: Skill Building -->
-          <div
-            class=" hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] p-8 rounded-2xl bg-brand-dark border border-white/5 hover:border-brand/30 transition-all group"
-            data-purpose="mission-card"
-          >
-            <div
-              class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
-            >
-              <svg
-                class="w-8 h-8 text-brand group-hover:text-black transition-colors"
-                fill="none"
-                stroke="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-4">Skill Building</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Interactive workshops on finance, marketing, and leadership
-              designed to give you a competitive edge.
-            </p>
           </div>
-          <!-- Card 3: Competitions -->
-          <div
-            class="hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] p-8 rounded-2xl bg-brand-dark border border-white/5 hover:border-brand/30 transition-all group"
-            data-purpose="mission-card"
-          >
+        <div class="hidden lg:block" data-purpose="hero-image-container">
+          <div class="relative">
+            <img
+              alt="Business Club Badge"
+              class="w-full max-w-md mx-auto rounded-xl animate-float drop-shadow-[0_0_50px_rgba(37,244,89,0.2)]"
+              src="./icons/hero-img.jpg"
+            />
+            <!-- Decorative elements around logo -->
             <div
-              class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
-            >
-              <svg
-                class="w-8 h-8 text-brand group-hover:text-black transition-colors"
-                fill="none"
-                stroke="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-4">Competitions</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Test your mettle in case study competitions and shark tank events
-              with real-world feedback and prizes.
-            </p>
+              class="absolute -top-10 -right-10 w-24 h-24 border-t-2 border-r-2 border-brand/30"
+            ></div>
+            <div
+              class="absolute -bottom-10 -left-10 w-24 h-24 border-b-2 border-l-2 border-brand/30"
+            ></div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- END: MissionSection -->
-      <!-- Footer from index.html -->
-    <footer
-      class="bg-black pt-16 pb-8 border-t border-white/5"
-      data-purpose="site-footer"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-4 gap-12 mb-12">
-          <div class="col-span-1 md:col-span-2">
-            <div class="flex items-center gap-3 mb-6">
-              <div
-                class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >corporate_fare</span
-                >
-              </div>
-              <span class="font-bold text-white text-xl"
-                >Business Club</span
-              >
-            </div>
-            <p class="text-gray-500 max-w-sm">
-              Empowering the students of Andinet to lead the industries of
-              tomorrow through education, networking, and real-world experience.
-            </p>
-          </div>
-          <div data-purpose="footer-links">
-            <h5 class="text-white font-bold mb-6">Quick Links</h5>
-            <ul class="space-y-4 text-gray-500">
-              <li>
-                <a class="hover:text-brand transition-colors" href="https://www.andinet.edu.et/"
-                  >School Portal</a
-                >
-              </li>
-              </li>
-              <li>
-                <a class="hover:text-brand transition-colors" href="./About.html"
-                  >Member Directory</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div data-purpose="footer-social">
-            <h5 class="text-white font-bold mb-6">Connect</h5>
-            <div class="flex space-x-4 mb-6">
-              <a
-                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
-                href="https://t.me/ethiobusinessclub"
-              >
-              <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
-</svg>
-              </a>
-              <a
-                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
-                href="mailto:nahomnatnael87@gmail.com"
-              >
-              <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 12l-8-6h16l-8 6zm0 2l8-6v2l-8 6-8-6v-2l8 6z"/>
-</svg>
-</a>
-            </div>
-            <p class="text-gray-500 text-sm">
-              Contact: nahomnatnael87@gmail.com
-            </p>
-            <p class="text-gray-500 text-sm">
-              Contact: +251979087331 
-            </p>
-          </div>
-        </div>
+    </div>
+  </section>
+  <!-- END: HeroSection -->
+  <!-- BEGIN: MissionSection -->
+  <section
+    class="py-24 bg-black/40"
+    data-purpose="mission-highlights"
+    id="mission"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
+        <div class="h-1 w-20 bg-brand mx-auto rounded-full"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1: Networking -->
         <div
-          class="pt-8 border-t border-white/5 text-center text-gray-600 text-sm"
+          class="p-8 rounded-2xl bg-brand-dark hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] border border-white/5 hover:border-brand/30 transition-all group"
+          data-purpose="mission-card"
         >
-          <p>© 2026 Andinet Business Club. All rights reserved.</p>
+          <div
+            class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
+          >
+            <svg
+              class="w-8 h-8 text-brand group-hover:text-black transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Networking</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Connect with like-minded peers and industry professionals through
+            our exclusive network and guest mixers.
+          </p>
+        </div>
+        <!-- Card 2: Skill Building -->
+        <div
+          class="hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] p-8 rounded-2xl bg-brand-dark border border-white/5 hover:border-brand/30 transition-all group"
+          data-purpose="mission-card"
+        >
+          <div
+            class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
+          >
+            <svg
+              class="w-8 h-8 text-brand group-hover:text-black transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Skill Building</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Interactive workshops on finance, marketing, and leadership
+            designed to give you a competitive edge.
+          </p>
+        </div>
+        <!-- Card 3: Competitions -->
+        <div
+          class="hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.5)] p-8 rounded-2xl bg-brand-dark border border-white/5 hover:border-brand/30 transition-all group"
+          data-purpose="mission-card"
+        >
+          <div
+            class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
+          >
+            <svg
+              class="w-8 h-8 text-brand group-hover:text-black transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Competitions</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Test your mettle in case study competitions and shark tank events
+            with real-world feedback and prizes.
+          </p>
         </div>
       </div>
-    </footer>
-    <!-- Telegram Popup Modal -->
-<div id="telegramPopup" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-  <!-- Backdrop -->
-  <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    </div>
+  </section>
+  <!-- Add after Mission section -->
+  <section class="py-16 bg-brand-dark/50" id="stats-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="stat-item">
+          <div
+            class="text-4xl font-bold text-brand mb-2 number"
+            data-target="100"
+          >
+            0
+          </div>
+          <div class="text-gray-400">Active Members</div>
+        </div>
+        <div class="stat-item">
+          <div
+            class="text-4xl font-bold text-brand mb-2 number"
+            data-target="20"
+          >
+            0
+          </div>
+          <div class="text-gray-400">Events/Year</div>
+        </div>
+        <div class="stat-item">
+          <div
+            class="text-4xl font-bold text-brand mb-2 number"
+            data-target="15"
+          >
+            0
+          </div>
+          <div class="text-gray-400">Competitions</div>
+        </div>
+        <div class="stat-item">
+          <div
+            class="text-4xl font-bold text-brand mb-2 number"
+            data-target="50"
+          >
+            0
+          </div>
+          <div class="text-gray-400">Resources</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Popup Content -->
-  <div class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20 transform transition-all">
-    <!-- Close button -->
-    <button onclick="closeTelegramPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
+  <!-- END: MissionSection -->
+  <!-- Footer from index.html -->
+  <footer
+    class="bg-black pt-16 pb-8 border-t border-white/5"
+    data-purpose="site-footer"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >corporate_fare</span
+              >
+            </div>
+            <span class="font-bold text-white text-xl">Business Club</span>
+          </div>
+          <p class="text-gray-500 max-w-sm">
+            Empowering the students of Andinet to lead the industries of
+            tomorrow through education, networking, and real-world experience.
+          </p>
+        </div>
+        <div data-purpose="footer-links">
+          <h5 class="text-white font-bold mb-6">Quick Links</h5>
+          <ul class="space-y-4 text-gray-500">
+            <li>
+              <a
+                class="hover:text-brand transition-colors"
+                href="https://www.andinet.edu.et/"
+                >School Portal</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-brand transition-colors"
+                href="./About.html"
+                >Member Directory</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div data-purpose="footer-social">
+          <h5 class="text-white font-bold mb-6">Connect</h5>
+          <div class="flex space-x-4 mb-6">
+            <a
+              class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
+              href="https://t.me/ethiobusinessclub"
+            >
+              <svg
+                class="w-10 h-10 text-brand"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"
+                />
+              </svg>
+            </a>
+            <a
+              class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-black transition-all"
+              href="mailto:nahomnatnael87@gmail.com"
+            >
+              <svg
+                class="w-10 h-10 text-brand"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 12l-8-6h16l-8 6zm0 2l8-6v2l-8 6-8-6v-2l8 6z"
+                />
+              </svg>
+            </a>
+          </div>
+          <p class="text-gray-500 text-sm">
+            Contact: nahomnatnael87@gmail.com
+          </p>
+          <p class="text-gray-500 text-sm">Contact: +251979087331</p>
+        </div>
+      </div>
+      <div
+        class="pt-8 border-t border-white/5 text-center text-gray-600 text-sm"
+      >
+        <p>© 2026 Andinet Business Club. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Telegram Popup Modal -->
+  <div
+    id="telegramPopup"
+    class="fixed inset-0 flex items-center justify-center z-50 hidden"
+  >
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
 
-    <!-- Icon -->
-    <div class="flex justify-center mb-6">
-      <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
-        <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
+    <!-- Popup Content -->
+    <div
+      class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20 transform transition-all"
+    >
+      <!-- Close button -->
+      <button
+        onclick="closeTelegramPopup()"
+        class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
         </svg>
-      </div>
-    </div>
-
-    <!-- Title -->
-    <h3 class="text-2xl font-bold text-center text-white mb-2">Join Our Telegram</h3>
-
-    <!-- Description -->
-    <p class="text-gray-400 text-center mb-6">
-      Connect with fellow members, get updates, and be part of our community!
-    </p>
-
-    <!-- Telegram Channel Info -->
-    <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
-      <div class="flex items-center gap-3 mb-3">
-        <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
-</svg>
-        <span class="text-white font-semibold">@ethiobusinessclub</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <span class="material-symbols-outlined text-brand">link</span>
-        <a href="https://t.me/ethiobusinessclub"class="text-brand truncate">t.me/ethiobusinessclub</a>
-      </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="flex flex-col sm:flex-row gap-3">
-      <a href="https://t.me/ethiobusinessclub" target="_blank" class="flex-1 bg-brand text-black text-center font-bold py-3 rounded-custom hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
-        Open Telegram
-      </a>
-      <button onclick="closeTelegramPopup()" class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors">
-        Maybe Later
       </button>
-    </div>
 
-    <!-- QR Code Placeholder (optional) -->
-    <div class="mt-6 pt-6 border-t border-white/10 text-center">
-      <p class="text-sm text-gray-500 mb-2">Or scan to join:</p>
-      <div class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
-        <span class="material-symbols-outlined text-gray-500"><img src="./icons/qr_code.png"</span>
+      <!-- Icon -->
+      <div class="flex justify-center mb-6">
+        <div
+          class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center"
+        >
+          <svg
+            class="w-10 h-10 text-brand"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h3 class="text-2xl font-bold text-center text-white mb-2">
+        Join Our Telegram
+      </h3>
+
+      <!-- Description -->
+      <p class="text-gray-400 text-center mb-6">
+        Connect with fellow members, get updates, and be part of our
+        community!
+      </p>
+
+      <!-- Telegram Channel Info -->
+      <div
+        class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5"
+      >
+        <div class="flex items-center gap-3 mb-3">
+          <svg
+            class="w-5 h-5 text-brand"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"
+            />
+          </svg>
+          <span class="text-white font-semibold">@ethiobusinessclub</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-brand">link</span>
+          <a href="https://t.me/ethiobusinessclub" class="text-brand truncate"
+            >t.me/ethiobusinessclub</a
+          >
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a
+          href="https://t.me/ethiobusinessclub"
+          target="_blank"
+          class="flex-1 bg-brand text-black text-center font-bold py-3 rounded-custom hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]"
+        >
+          Open Telegram
+        </a>
+        <button
+          onclick="closeTelegramPopup()"
+          class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors"
+        >
+          Maybe Later
+        </button>
+      </div>
+
+      <!-- QR Code Placeholder (optional) -->
+      <div class="mt-6 pt-6 border-t border-white/10 text-center">
+        <p class="text-sm text-gray-500 mb-2">Or scan to join:</p>
+        <div
+          class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10"
+        >
+        <img src="./icons/qr_code.png">
+        </div>
       </div>
     </div>
   </div>
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-6 right-6 z-[100] transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+<div class="bg-[#111] border border-brand/30 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3">
+  <span id="toastIcon" class="material-symbols-outlined text-brand">check_circle</span>
+  <span id="toastMsg" class="text-sm font-semibold"></span>
 </div>
+</div>
+  <script>
+        // ── Mobile Menu ───────────────────────────────────────────────────────────
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
 
-<script>
-function openTelegramPopup() {
-  document.getElementById('telegramPopup').classList.remove('hidden');
-  document.body.style.overflow = 'hidden'; // Prevent scrolling
+if (mobileMenuBtn && mobileMenu) {
+  mobileMenuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    document.getElementById('menuOpen').classList.toggle('hidden', open);
+    document.getElementById('menuClose').classList.toggle('hidden', !open);
+  });
 }
+// Replace the animateNumbers function with this smoother version
+function animateNumbers() {
+const numbers = document.querySelectorAll(".number");
 
-function closeTelegramPopup() {
-  document.getElementById('telegramPopup').classList.add('hidden');
-  document.body.style.overflow = ''; // Restore scrolling
+numbers.forEach(el => {
+  const target = parseInt(el.dataset.target);
+  let current = 0;
+  const increment = target / 50; // 50 steps
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      el.textContent = target;
+      clearInterval(timer);
+    } else {
+      el.textContent = Math.floor(current);
+    }
+  }, 40); // 20ms per step = 1 second total
+});
 }
+    // Check if the stats section is in view
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateNumbers();
+          observer.disconnect(); // Stop observing after it's animated
+        }
+      });
+    };
 
-// Close popup when clicking outside
-document.getElementById('telegramPopup').addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeTelegramPopup();
+    const observer = new IntersectionObserver(observerCallback);
+    observer.observe(document.getElementById("stats-section"));
+
+    function showToast(msg, icon = "check_circle") {
+      const t = document.getElementById("toast");
+      document.getElementById("toastMsg").textContent = msg;
+      document.getElementById("toastIcon").textContent = icon;
+      t.classList.add("show");
+      t.style.transform = "translateY(0)";
+        t.style.opacity = "1";
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => {
+          t.style.transform = "translateY(80px)";
+          t.style.opacity = "0";
+        }, 3000);
+      }
+
+      document
+        .querySelectorAll('[data-purpose="mission-card"]')
+        .forEach((card) => {
+          card.addEventListener("click", function () {
+            const title = this.querySelector("h3").textContent;
+            showToast(`Learn more about ${title} coming soon!`, "info");
+          });
+        });
+
+      function openTelegramPopup() {
+        document.getElementById("telegramPopup").classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      }
+
+      function closeTelegramPopup() {
+        document.getElementById("telegramPopup").classList.add("hidden");
+        document.body.style.overflow = ""; // Restore scrolling
+      }
+
+      // Close popup when clicking outside
+      document
+        .getElementById("telegramPopup")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeTelegramPopup();
+          }
+        });
+
+      // Escape key to close
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeTelegramPopup();
+        }
+      });
+            // Lazy load and blur-up effect
+  document.querySelectorAll('img').forEach(img => {
+    img.classList.add('loading');
+    img.onload = () => img.classList.remove('loading');
+  });
+          // Add to your script section
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+        // Highlight current page in navigation
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('nav a, #mobileMenu a').forEach(link => {
+  if (link.getAttribute('href') === currentPage) {
+    link.classList.add('text-brand');
+    link.classList.remove('text-gray-300');
   }
 });
-
-// Escape key to close
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeTelegramPopup();
-  }
-});
-</script>
+    </script>
   </body>
 </html>
