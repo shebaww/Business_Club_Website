@@ -31,9 +31,20 @@
       #mobileMenu.open { max-height: 400px; }
 
       /* Modal */
-      #eventModal { transition: opacity .2s ease; }
-      #eventModal.hidden { opacity:0; pointer-events:none; }
+#eventModal {
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
 
+#eventModal.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Ensure Tailwind's hidden class doesn't conflict */
+#eventModal.hidden {
+  display: flex !important; /* Override Tailwind's display: none */
+}
       /* Grid view cards */
       .event-card[data-view="list"] { display: flex; }
       .event-card[data-view="grid"] { display: flex; }
@@ -66,6 +77,92 @@
       /* RSVP'd state */
       .rsvp-btn.rsvpd { background: transparent !important; border: 1.5px solid #25f459; color: #25f459; }
       .rsvp-btn.rsvpd::before { content: "✓ "; }
+            /* Shine border animation for modal */
+
+/* Shine border animation for modal */
+.shine-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.shine-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(37, 244, 89, 0.8) 50%,
+    transparent 70%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 16px;
+}
+
+.shine-overlay.animate {
+  animation: smileShine 0.8s ease-out forwards;
+}
+
+@keyframes smileShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  20% {
+    transform: translateX(-60%);
+  }
+  40% {
+    transform: translateX(-30%);
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 20%,
+      rgba(37, 244, 89, 1) 50%,
+      transparent 80%,
+      transparent 100%
+    );
+  }
+  60% {
+    transform: translateX(0%);
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 10%,
+      rgba(37, 244, 89, 0.9) 50%,
+      transparent 90%,
+      transparent 100%
+    );
+  }
+  80% {
+    transform: translateX(30%);
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 20%,
+      rgba(37, 244, 89, 0.6) 50%,
+      transparent 80%,
+      transparent 100%
+    );
+  }
+  100% {
+    transform: translateX(100%);
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 30%,
+      rgba(37, 244, 89, 0) 50%,
+      transparent 70%,
+      transparent 100%
+    );
+  }
+}
+
     </style>
   </head>
   <body class="bg-brand-dark text-white font-sans antialiased">
@@ -200,7 +297,7 @@
             <div
               class="event-card group relative bg-brand-accent/20 rounded-2xl overflow-hidden border border-white/5 hover:border-brand/30 flex flex-col md:flex-row min-h-[320px] transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.3)]"
               data-category="Guest Speaker"
-              data-date="2023-10-12"
+              data-date="2026-10-12"
               data-title="Leadership in the Age of AI"
               data-desc="Join our guest speaker, Dr. Elena Vance, former VP of Strategy at TechGiant, as she delves into how generative AI is reshaping executive decision-making and the new skills required for future-ready leadership."
               data-time="6:00 PM - 8:30 PM"
@@ -219,7 +316,7 @@
                   <h2 class="text-2xl font-bold mb-3 text-white">Leadership in the Age of AI</h2>
                   <p class="text-gray-400 text-sm leading-relaxed mb-6">Join our guest speaker, Dr. Elena Vance, former VP of Strategy at TechGiant, as she delves into how generative AI is reshaping executive decision-making and the new skills required for future-ready leadership.</p>
                   <div class="flex flex-wrap gap-4 text-sm font-medium text-gray-400">
-                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-brand text-lg">calendar_today</span>Oct 12, 2023</div>
+                    <div class="flex items-center gap-1"><span class="material-symbols-outlined text-brand text-lg">calendar_today</span>Oct 12, 2026</div>
                     <div class="flex items-center gap-1"><span class="material-symbols-outlined text-brand text-lg">schedule</span>6:00 PM - 8:30 PM</div>
                     <div class="flex items-center gap-1"><span class="material-symbols-outlined text-brand text-lg">location_on</span>Main Hall, Floor 4</div>
                   </div>
@@ -238,7 +335,7 @@
 
               <!-- Event 2 -->
               <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Workshop" data-date="2023-10-15"
+                data-category="Workshop" data-date="2026-10-15"
                 data-title="Mastering Venture Capital Pitches"
                 data-desc="Learn the art of the 3-minute pitch with active VC partners. Practical feedback session included."
                 data-time="2:00 PM" data-location="Room 201">
@@ -270,7 +367,7 @@
 
               <!-- Event 3 -->
               <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Competition" data-date="2023-10-22"
+                data-category="Competition" data-date="2026-10-22"
                 data-title="Annual Case Study Challenge"
                 data-desc="Solve a real-world business problem from our corporate sponsor. $5,000 prize pool."
                 data-time="9:00 AM" data-location="Auditorium">
@@ -300,7 +397,7 @@
 
               <!-- Event 4 -->
               <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Networking" data-date="2023-10-28"
+                data-category="Networking" data-date="2026-10-28"
                 data-title="Founder's Mixer: Night in the City"
                 data-desc="An informal evening of drinks and dialogue with local startup founders and angel investors."
                 data-time="7:30 PM" data-location="Rooftop Lounge">
@@ -327,7 +424,7 @@
 
               <!-- Event 5 -->
               <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Workshop" data-date="2023-11-02"
+                data-category="Workshop" data-date="2026-11-02"
                 data-title="Sustainable Business Models"
                 data-desc="Building profitability while prioritizing ESG. A roadmap for modern entrepreneurs."
                 data-time="11:00 AM" data-location="Hybrid - Room 105 + Online">
@@ -359,7 +456,7 @@
 
               <!-- Event 6 -->
               <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Guest Speaker" data-date="2023-11-10"
+                data-category="Guest Speaker" data-date="2026-11-10"
                 data-title="Marketing in the Creator Economy"
                 data-desc="A deep dive into brand strategy for the TikTok and Instagram generation."
                 data-time="5:00 PM" data-location="Room 301">
@@ -386,7 +483,7 @@
 
               <!-- Event 7 -->
               <div class="event-card bg-brand-accent/20 p-6 rounded-2xl border border-white/5 hover:border-brand/30 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.2)] flex flex-col gap-4"
-                data-category="Networking" data-date="2023-11-18"
+                data-category="Networking" data-date="2026-11-18"
                 data-title="Alumni Connect Night"
                 data-desc="Meet successful graduates from our club. Get mentorship, internship leads, and real career advice."
                 data-time="6:30 PM" data-location="Grand Ballroom">
@@ -504,17 +601,19 @@
           <div class="mt-6 pt-6 border-t border-white/10 text-center">
             <p class="text-sm text-gray-500 mb-2">Or scan to join:</p>
             <div class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
-            <img src="./icons/qr_code.png"
+              <img src="./icons/qr_code.png">
             </div>
           </div>
         </div>
       </div>
-
       <!-- Event Details Modal -->
-      <div id="eventModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+      <div id="eventModal" class="fixed inset-0 flex items-center justify-center z-50 opacity-100 visible pointer-events-auto transition-all duration-200 hidden">  
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeEventModal()"></div>
-        <div class="relative bg-[#111] border border-brand/30 rounded-2xl max-w-lg w-full mx-4 p-8 shadow-2xl shadow-brand/10 transition-all">
-          <button onclick="closeEventModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+        <div class="relative bg-[#111] rounded-2xl max-w-lg w-full mx-4 p-8 shadow-2xl shadow-brand/10 transition-all shine-border">
+          <!-- Shine overlay for top-left border -->
+          <div class="shine-overlay"></div>
+          <div class="absolute inset-0 border border-brand/30 rounded-2xl pointer-events-none"></div>
+          <button onclick="closeEventModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
           <div id="modalBadge" class="inline-block bg-brand/10 border border-brand/20 text-brand px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4"></div>
@@ -540,7 +639,6 @@
           </div>
         </div>
       </div>
-
       <!-- Toast Notification -->
       <div id="toast" class="fixed bottom-6 right-6 z-[100] transform translate-y-20 opacity-0 transition-all duration-300">
         <div class="bg-[#111] border border-brand/30 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3">
@@ -550,11 +648,10 @@
       </div>
 
     </div><!-- end root -->
-
     <script>
     // ─── Data ────────────────────────────────────────────────────────────────
     // Event dates with events (for calendar dots)
-    const eventDates = ['2023-10-12','2023-10-15','2023-10-22','2023-10-28','2023-11-02','2023-11-10','2023-11-18'];
+    const eventDates = ['2026-10-12','2026-10-15','2026-10-22','2026-10-28','2026-11-02','2026-11-10','2026-11-18'];
     let rsvpdEvents = new Set();
     let currentModalCard = null;
 
@@ -609,33 +706,86 @@
     }
 
     // ─── Event Details Modal ─────────────────────────────────────────────────
-    function openEventModal(card) {
-      currentModalCard = card;
-      const d = card.dataset;
-      document.getElementById('modalBadge').textContent = d.category;
-      document.getElementById('modalTitle').textContent = d.title;
-      document.getElementById('modalDesc').textContent = d.desc;
-      document.getElementById('modalTime').textContent = d.time;
-      document.getElementById('modalLocation').textContent = d.location;
-      // Format date nicely
-      const dt = new Date(d.date + 'T00:00:00');
-      document.getElementById('modalDate').textContent = dt.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-      // Update RSVP button state
-      const modalBtn = document.getElementById('modalRsvpBtn');
-      if (rsvpdEvents.has(d.title)) {
-        modalBtn.textContent = '✓ RSVPd';
-        modalBtn.classList.add('opacity-60');
-      } else {
-        modalBtn.textContent = 'RSVP Now';
-        modalBtn.classList.remove('opacity-60');
-      }
-      const modal = document.getElementById('eventModal');
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
+
+function openEventModal(card) {
+  console.log('Opening modal for card:', card); // Debug
+  
+  if (!card) {
+    console.error('No card provided');
+    return;
+  }
+  
+  currentModalCard = card;
+  const d = card.dataset;
+  
+  // Check if data exists
+  console.log('Card data:', d);
+  
+  // Set modal content with fallbacks
+  document.getElementById('modalBadge').textContent = d.category || 'Event';
+  document.getElementById('modalTitle').textContent = d.title || 'Untitled Event';
+  document.getElementById('modalDesc').textContent = d.desc || 'No description available';
+  document.getElementById('modalTime').textContent = d.time || 'TBA';
+  document.getElementById('modalLocation').textContent = d.location || 'TBA';
+  
+  // Format date nicely
+  try {
+    const dt = new Date(d.date + 'T00:00:00');
+    document.getElementById('modalDate').textContent = dt.toLocaleDateString('en-US', {
+      month: 'long', 
+      day: 'numeric', 
+      year: 'numeric'
+    });
+  } catch (e) {
+    document.getElementById('modalDate').textContent = d.date || 'Date TBA';
+  }
+  
+  // Update RSVP button state
+  const modalBtn = document.getElementById('modalRsvpBtn');
+  if (rsvpdEvents.has(d.title)) {
+    modalBtn.textContent = '✓ RSVPd';
+    modalBtn.classList.add('opacity-60', 'cursor-default');
+  } else {
+    modalBtn.textContent = 'RSVP Now';
+    modalBtn.classList.remove('opacity-60', 'cursor-default');
+  }
+  
+  // Get modal element
+  const modal = document.getElementById('eventModal');
+  console.log('Modal before opening:', modal.classList.toString());
+  
+  // Remove hidden class and add visible classes
+  modal.classList.remove('hidden');
+  modal.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+  
+  // Trigger the shine animation
+  const shineOverlay = document.querySelector('.shine-overlay');
+  if (shineOverlay) {
+    // Remove any existing animation class
+    shineOverlay.classList.remove('animate');
+    
+    // Force a reflow
+    void shineOverlay.offsetWidth;
+    
+    // Add the animation class
+    shineOverlay.classList.add('animate');
+    
+    // Remove the animation class after it completes
+    setTimeout(() => {
+      shineOverlay.classList.remove('animate');
+    }, 800); // Match animation duration
+  }
+  
+  console.log('Modal after opening:', modal.classList.toString());
+  
+  // Disable body scroll
+  document.body.style.overflow = 'hidden';
+}
 
     function closeEventModal() {
-      document.getElementById('eventModal').classList.add('hidden');
+      const modal = document.getElementById('eventModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
       document.body.style.overflow = '';
       currentModalCard = null;
     }
@@ -645,6 +795,7 @@
       document.getElementById('telegramPopup').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
+    
     function closeTelegramPopup() {
       document.getElementById('telegramPopup').classList.add('hidden');
       document.body.style.overflow = '';
@@ -748,7 +899,7 @@
 
     // ─── Mini Calendar ───────────────────────────────────────────────────────
     const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    let calYear = 2023, calMonth = 9; // October 2023 (0-indexed)
+    let calYear = 2026, calMonth = 9; // October 2026 (0-indexed)
     let calSelectedDate = null;
 
     function renderCalendar() {
