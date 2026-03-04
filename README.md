@@ -1,6 +1,6 @@
 # Andinet Business Club - Official Website
 
-![Business Club](https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop)
+![Business Club](./icons/conference.jpg)
 
 ## 🌐 Live Demo
 shebaww.github.io/Business_Club_Website
