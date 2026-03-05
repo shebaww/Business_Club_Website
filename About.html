@@ -73,74 +73,8 @@
     </style>
   </head>
   <body class="bg-brand-dark text-white font-sans antialiased">
-    <!-- Header from index.html with updated active state -->
-    <header
-      class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10"
-      data-purpose="navigation-bar"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-          <!-- Logo Section -->
-          <div class="flex-shrink-0 flex items-center">
-            <div class="size-8 bg-brand/20 rounded-md flex items-center justify-center text-brand">
-              <span class="material-symbols-outlined text-[20px]">corporate_fare</span>
-            </div>
-            <a
-               href="./index.html"
-              class="font-bold hover:text-brand transition-colors text-white text-xl">&nbsp;Business Club
-              </a>
-          </div>
-          <!-- Desktop Navigation -->
-          <nav
-            class="hidden md:flex space-x-8 items-center"
-            data-purpose="desktop-nav"
-          >
-            <a
-              class="text-gray-300 hover:text-brand transition-colors font-medium"
-              href="./index.html"
-              >Home</a
-            >
-            <a
-              class="text-brand transition-colors font-medium"
-              href="./About.html"
-              >About</a
-            >
-            <a
-              class="text-gray-300 hover:text-brand transition-colors font-medium"
-              href="./Events.html"
-              >Events</a
-            >
-            <a
-              class="text-gray-300 hover:text-brand transition-colors font-medium"
-              href="./Library.html"
-              >Resources</a
-            >
-            <a href="#" onclick="openTelegramPopup(); return false;" class="bg-brand text-black px-6 py-2.5 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
-              Join Us
-            </a>
-          </nav>
-        <!-- Mobile Menu Button with proper IDs -->
-<div class="md:hidden flex items-center">
-  <button id="mobileMenuBtn" aria-label="Toggle menu" class="text-gray-400 hover:text-white" type="button">
-    <svg id="menuOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    </svg>
-    <svg id="menuClose" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    </svg>
-  </button>
-</div>
-      <!-- Mobile Navigation Menu -->
-<div id="mobileMenu" class="md:hidden bg-brand-dark/95 border-t border-white/5 px-4 fixed top-20 left-0 right-0 z-40 shadow-xl">
-  <nav class="flex flex-col gap-1 py-4">
-    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./index.html">Home</a>
-    <a class="text-brand py-2 px-2 rounded-lg bg-brand/10 font-medium" href="./About.html">About</a>
-    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./Events.html">Events</a>
-    <a class="text-gray-300 hover:text-brand py-2 px-2 rounded-lg hover:bg-white/5 font-medium" href="./Library.html">Resources</a>
-    <a href="#" onclick="openTelegramPopup();return false;" class="mt-2 bg-brand text-black px-6 py-2.5 rounded-custom font-bold text-center hover:bg-white transition-all">Join Us</a>
-  </nav>
-</div>
-    </header>
+    <!-- Nav -->
+    <script src="./components/nav.js"></script>
 
     <main class="pt-20">
       <!-- Hero Section - Updated with brand styling and fixed gradient -->
