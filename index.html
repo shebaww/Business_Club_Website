@@ -275,19 +275,46 @@ img.loading {
       </div>
     </div>
   </section>
-  <!-- Add after Mission section -->
-<section class="py-40 bg-brand-dark/50" id="stats-section">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class=" w-1/2 mx-auto text-center">
-      <div class="stat-item">
-        <div class="text-5xl font-bold text-brand mb-2">
-          <span class="number animate-pulse" data-target="100">0</span><span class="text-5x">+</span>
-        </div>
-        <div class="text-gray-400 my-10 text-xl">Active Members</div>
-      </div>
-  </div>
-</section>
+<!-- Hero Section - Centered with Stats Below -->
+<section class="mb-16 relative py-20">
+    <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand/10 rounded-full blur-[120px] opacity-20"></div>
 
+    <div class="relative flex flex-col items-center text-center max-w-5xl mx-auto">
+        <!-- Title -->
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 text-white">
+            Turn Your Idea Into a <br />
+            <span class="text-brand text-glow">Scalable Venture.</span>
+        </h1>
+
+        <!-- Description -->
+        <p class="max-w-2xl text-gray-400 text-lg leading-relaxed mb-8">
+            The Business Club provides the infrastructure, high-conviction mentorship, and institutional capital to turn student-led hypotheses into market leaders. We don't just teach entrepreneurship. <span class="text-brand font-semibold">We build.</span>
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 justify-center mb-16">
+            <button onclick="openTelegramPopup(); return false;" class="bg-brand text-black px-8 py-3 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
+                BUILD WITH US
+            </button>
+        </div>
+
+        <!-- Stats Section - Centered Below -->
+        <div class="w-full" id="stats-section">
+            <div class="max-w-md mx-auto">
+                <div class="bg-brand-accent/20 rounded-2xl p-12 border border-brand/20 text-center backdrop-blur-sm">
+                    <div class="stat-item">
+                        <div class="text-7xl font-black text-brand mb-4">
+                            <span class="number animate-pulse" data-target="100">100</span><span class="text-7xl">+</span>
+                        </div>
+                        <div class="text-gray-300 text-xl font-semibold">Active Members</div>
+                        <div class="w-16 h-1 bg-brand/30 mx-auto mt-6 rounded-full"></div>
+                        <p class="text-gray-400 text-sm mt-6">Join a growing community of student founders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
   <!-- END: MissionSection -->
   <!-- Footer from index.html -->
   <script src="./components/footer.js"></script>
