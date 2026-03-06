@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Business Club | Venture Lab Incubator</title>
+    <title>Business Club | Project Lab</title>
     <!-- Tailwind CSS v3 CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- Google Fonts: Inter (matching rest of site) -->
@@ -131,9 +131,6 @@
                       <button onclick="openTelegramPopup(); return false;" class="bg-brand text-black px-8 py-3 rounded-custom font-bold hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,244,89,0.3)]">
                           BUILD WITH US
                       </button>
-                      <button class="border border-brand/30 text-brand px-8 py-3 rounded-custom font-bold hover:bg-brand/10 transition-all">
-                          VIEW PIPELINE
-                      </button>
                   </div>
               </div>
           </section>
@@ -164,17 +161,17 @@
                       </div>
                       
                       <div class="flex gap-3">
-                          <button class="flex-1 bg-brand/10 text-brand hover:bg-brand hover:text-black font-bold py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
-                              Details
-                          </button>
-                          <button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-2 px-4 rounded-custom text-xs uppercase tracking-wider">
-                              Full
-                          </button>
+                        <button onclick="openProjectPopup('logspex')" class="flex-1 bg-brand/10 text-brand hover:bg-brand hover:text-black font-bold py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
+    Details
+</button>  
+                      <button onclick="handleJoinTeam('logspex')" class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-2 px-4 rounded-custom text-xs uppercase tracking-wider">
+    Full
+</button>
                       </div>
                   </div>
               </div>
 
-              <!-- Project Card 2 - Veridian Grid -->
+              <!-- Project Card 2 - Fondrz -->
               <div class="venture-card rounded-xl p-6 flex flex-col group hover:shadow-[0_0_30px_rgba(37,244,89,0.2)]">
                   <div class="flex justify-between items-start mb-4">
                       <div class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-black transition-all">
@@ -183,7 +180,7 @@
                       <span class="stage-badge px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="color: #f97316; border-color: rgba(249, 115, 22, 0.3); background: rgba(249, 115, 22, 0.1);">Stage: Implementation</span>
                   </div>
                   
-                  <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand transition-colors">Foundrz</h3>
+                  <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand transition-colors">Fondrz</h3>
                   <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
                   I'll also finish this later.
                   </p>
@@ -199,17 +196,17 @@
                       </div>
                       
                       <div class="flex gap-3">
-                          <button class="flex-1 bg-brand/10 text-brand hover:bg-brand hover:text-black font-bold py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
-                              Details
-                          </button>
-                          <button class="flex-1 border border-brand/20 text-gray-400 hover:text-brand hover:border-brand/40 py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
-                              Join Team
-                          </button>
+                        <button onclick="openProjectPopup('fondrz')" class="flex-1 bg-brand/10 text-brand hover:bg-brand hover:text-black font-bold py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
+    Details
+</button>  
+                     <button onclick="handleJoinTeam('fondrz')" class="flex-1 border border-brand/20 text-gray-400 hover:text-brand hover:border-brand/40 py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
+    Join Team
+</button>
                       </div>
                   </div>
               </div>
 
-              <!-- Project Card 3 - NeuralPath -->
+              <!-- Project Card 3 - QuantX Protocol -->
               <div class="venture-card rounded-xl p-6 flex flex-col group hover:shadow-[0_0_30px_rgba(37,244,89,0.2)]">
                   <div class="flex justify-between items-start mb-4">
                       <div class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-black transition-all">
@@ -233,12 +230,12 @@
                       </div>
                       
                       <div class="flex gap-3">
-                          <button class="flex-1 bg-brand/10 text-brand hover:bg-brand hover:text-black font-bold py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
-                              Details
-                          </button>
-                          <button class="flex-1 border border-brand/20 text-gray-400 hover:text-brand hover:border-brand/40 py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
-                              Join Team
-                          </button>
+                        <button onclick="openProjectPopup('quantx')" class="flex-1 bg-brand/10 text-brand hover:bg-brand hover:text-black font-bold py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
+    Details
+</button>  
+                      <button onclick="handleJoinTeam('quantx')" class="flex-1 border border-brand/20 text-gray-400 hover:text-brand hover:border-brand/40 py-2 px-4 rounded-custom transition-all text-xs uppercase tracking-wider">
+    Join Team
+</button>
                       </div>
                   </div>
               </div>
@@ -263,58 +260,46 @@
       <script src="./components/footer.js"></script>
 
       <!-- Telegram Popup Modal (same as rest of site) -->
-      <div id="telegramPopup" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-          <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeTelegramPopup()"></div>
-          <div class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20">
-              <button onclick="closeTelegramPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                  </svg>
-              </button>
-              
-              <div class="flex justify-center mb-6">
-                  <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
-                      <svg class="w-10 h-10 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
-                      </svg>
-                  </div>
-              </div>
-              
-              <h3 class="text-2xl font-bold text-center text-white mb-2">Join Our Telegram</h3>
-              <p class="text-gray-400 text-center mb-6">Connect with fellow members, get updates, and be part of our community!</p>
-              
-              <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
-                  <div class="flex items-center gap-3 mb-3">
-                      <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.27-.49.74-.75 2.87-1.25 4.78-2.08 5.74-2.48 2.73-1.13 3.3-1.33 3.67-1.33.08 0 .26.02.38.12.1.08.13.19.14.27-.01.1 0 .26 0 .26z"/>
-                      </svg>
-                      <span class="text-white font-semibold">@ethiobusinessclub</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                      <span class="material-symbols-outlined text-brand">link</span>
-                    <a href="https://t.me/ethiobusinessclub" class="text-brand truncate">t.me/ethiobusinessclub</a>
-                </div>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-3">
-                <a href="https://t.me/ethiobusinessclub" target="_blank" class="flex-1 bg-brand text-black text-center font-bold py-3 rounded-custom hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]">
-                    Open Telegram
-                </a>
-                <button onclick="closeTelegramPopup()" class="flex-1 border border-white/20 text-white font-bold py-3 rounded-custom hover:border-brand/50 transition-colors">
-                    Maybe Later
-                </button>
-            </div>
-            
-            <div class="mt-6 pt-6 border-t border-white/10 text-center">
-                <p class="text-sm text-gray-500 mb-2">Or scan to join:</p>
-                <div class="w-24 h-24 mx-auto bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
-                    <img src="./icons/qr_code.png" alt="QR Code" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-gray-500\'>qr_code</span>'">
-                </div>
-            </div>
-        </div>
-    </div>
+      <script src="./components/telegram-popup.js"></script> 
+      <!-- Details Pop-up -->
+      <!-- Project Details Popup - Integrated with your site's branding -->
+<div
+  id="projectPopup"
+  class="fixed inset-0 flex items-center justify-center z-50 hidden"
+>
+  <div
+    class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+    onclick="closeProjectPopup()"
+  ></div>
+  <div
+    class="relative bg-brand-dark border border-brand/30 rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl shadow-brand/20"
+  >
+    <button
+      onclick="closeProjectPopup()"
+      class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
 
-    <!-- Toast Notification -->
+    <!-- Dynamic Content Area -->
+    <div id="projectPopupContent">
+      <!-- Content will be populated by JavaScript -->
+    </div>
+  </div>
+</div>
+  <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-6 right-6 z-[100] transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
         <div class="bg-[#111] border border-brand/30 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3">
             <span id="toastIcon" class="material-symbols-outlined text-brand">check_circle</span>
@@ -323,74 +308,464 @@
     </div>
 
     <!-- Toast and Telegram Functions -->
-    <script>
-        function showToast(msg, icon = "check_circle") {
-            const t = document.getElementById("toast");
-            document.getElementById("toastMsg").textContent = msg;
-            document.getElementById("toastIcon").textContent = icon;
-            t.classList.add("show");
-            t.style.transform = "translateY(0)";
-            t.style.opacity = "1";
-            t.style.pointerEvents = "auto";
-            
-            clearTimeout(t._timer);
-            t._timer = setTimeout(() => {
-                t.style.transform = "translateY(80px)";
-                t.style.opacity = "0";
-                t.style.pointerEvents = "none";
-            }, 3000);
+<script>
+    function showToast(msg, icon = "check_circle") {
+        const t = document.getElementById("toast");
+        document.getElementById("toastMsg").textContent = msg;
+        document.getElementById("toastIcon").textContent = icon;
+        t.classList.add("show");
+        t.style.transform = "translateY(0)";
+        t.style.opacity = "1";
+        t.style.pointerEvents = "auto";
+
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => {
+            t.style.transform = "translateY(80px)";
+            t.style.opacity = "0";
+            t.style.pointerEvents = "none";
+        }, 3000);
+    }
+
+    function openTelegramPopup() {
+        document.getElementById("telegramPopup").classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeTelegramPopup() {
+        document.getElementById("telegramPopup").classList.add("hidden");
+        document.body.style.overflow = "";
+    }
+
+    // Close popup when clicking outside
+    document.getElementById("telegramPopup")?.addEventListener("click", function(e) {
+        if (e.target === this) {
+            closeTelegramPopup();
         }
+    });
 
-        function openTelegramPopup() {
-            document.getElementById("telegramPopup").classList.remove("hidden");
-            document.body.style.overflow = "hidden";
+    // Escape key to close
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            closeTelegramPopup();
         }
+    });
+</script>
 
-        function closeTelegramPopup() {
-            document.getElementById("telegramPopup").classList.add("hidden");
-            document.body.style.overflow = "";
+<!-- Project Popup Management -->
+<script>
+    // Project data - matches your three projects
+ const projectsData = {
+        logspex: {
+            title: "Logspex",
+            icon: "box_add",
+            stage: "Building",
+            stageColor: "#25f459",
+            description: "A cutting-edge logistics optimization platform that helps businesses streamline their supply chain operations using AI-powered predictive analytics.",
+            longDescription: "Logspex is revolutionizing how businesses manage their logistics by providing real-time tracking, predictive maintenance, and route optimization. Our platform reduces operational costs by up to 30% while improving delivery times.",
+            goals: [
+                "Launch beta version with 10 pilot companies",
+                "Secure $500K in seed funding by Q3 2024",
+                "Build team of 5 core engineers",
+                "Achieve 95% accuracy in delivery predictions"
+            ],
+            team: [
+                { name: "Sarah Johnson", role: "CEO", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&auto=format&fit=crop" },
+                { name: "Michael Chen", role: "CTO", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" }
+            ],
+            website: "https://logspex.com",
+            telegram: "https://t.me/logspex",
+            status: "recruiting", // 'recruiting', 'full', or 'coming-soon'
+            seats: "2/4"
+        },
+        fondrz: {
+            title: "Fondrz",
+            icon: "energy_savings_leaf",
+            stage: "Implementation",
+            stageColor: "#f97316",
+            description: "Sustainable investment platform connecting impact investors with vetted green technology startups across Africa.",
+            longDescription: "Fondrz bridges the gap between impact capital and sustainable innovation. We provide due diligence, impact measurement, and portfolio management tools for investors focused on environmental and social returns.",
+            goals: [
+                "Onboard 50 vetted green startups",
+                "Facilitate $2M in impact investments",
+                "Launch impact measurement dashboard",
+                "Partner with 5 major impact funds"
+            ],
+            team: [
+                { name: "David Okafor", role: "Founder", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" },
+                { name: "Amara Nwachukwu", role: "Impact Lead", image: "https://images.unsplash.com/photo-1494790108777-223d9f03507e?w=100&auto=format&fit=crop" },
+                { name: "James Kimani", role: "Tech Lead", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
+            ],
+            website: "https://fondrz.com",
+            telegram: "https://t.me/fondrz",
+            status: "recruiting",
+            seats: "3/4"
+        },
+        quantx: {
+            title: "Quantx Protocol",
+            icon: "finance_chip",
+            stage: "Ideation",
+            stageColor: "#3b82f6",
+            description: "Decentralized quantitative trading protocol that democratizes access to algorithmic trading strategies.",
+            longDescription: "Quantx Protocol is building the infrastructure for community-owned trading algorithms. We're creating a platform where quant developers can deploy strategies and users can stake in them, with everything governed by DAO voting.",
+            goals: [
+                "Complete whitepaper and tokenomics",
+                "Build MVP with 3 core strategies",
+                "Gather 100 alpha testers",
+                "Launch testnet by Q4 2024"
+            ],
+            team: [
+                { name: "Alex Rivera", role: "Lead Quant", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
+            ],
+            website: "https://quantx.io",
+            telegram: "https://t.me/quantx",
+            status: "coming-soon",
+            seats: "1/3"
         }
+    };
+ function openProjectPopup(projectId) {
+        const project = projectsData[projectId];
+        if (!project) return;
 
-        // Close popup when clicking outside
-        document.getElementById("telegramPopup")?.addEventListener("click", function(e) {
-            if (e.target === this) {
-                closeTelegramPopup();
-            }
-        });
+        const contentDiv = document.getElementById('projectPopupContent');
 
-        // Escape key to close
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") {
-                closeTelegramPopup();
-            }
-        });
+        // Build team avatars HTML
+        const teamAvatars = project.team.map((member, index) =>
+            `<div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-cover bg-center ${index > 0 ? '-ml-2' : ''}" style="background-image: url('${member.image}')" title="${member.name} - ${member.role}"></div>`
+        ).join('');
 
-        // Initialize any interactive elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click handlers for all action buttons
-            document.querySelectorAll('.venture-card button').forEach(btn => {
-                if (!btn.classList.contains('cursor-not-allowed')) {
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const action = this.textContent.trim();
-                        if (action.includes('Join') || action.includes('Details')) {
-                            openTelegramPopup();
-                        } else {
-                            showToast(`Feature coming soon: ${action}`, 'info');
-                        }
-                    });
-                }
-            });
+        // Determine button states
+        const joinButton = project.status === 'recruiting'
+            ? `<button onclick="handleJoinTeam('${projectId}')" class="flex-1 bg-brand text-black hover:bg-white font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(37,244,89,0.3)]">Join Team</button>`
+            : project.status === 'full'
+            ? `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Team Full</button>`
+            : `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Coming Soon</button>`;
 
-            // Placeholder project button
-            const proposalBtn = document.querySelector('[onclick="openTelegramPopup(); return false;"]');
-            if (proposalBtn) {
-                proposalBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openTelegramPopup();
+        contentDiv.innerHTML = `
+            <div class="flex justify-center mb-6">
+                <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-brand">${project.icon}</span>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-center text-white mb-2">${project.title}</h3>
+
+            <div class="flex justify-center mb-4">
+                <span class="stage-badge px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                      style="color: ${project.stageColor}; border-color: ${project.stageColor}40; background: ${project.stageColor}10;">
+                    Stage: ${project.stage}
+                </span>
+            </div>
+
+            <p class="text-gray-400 text-center mb-4">${project.description}</p>
+
+            <div class="bg-brand-accent/20 rounded-xl p-4 mb-4 border border-white/5">
+                <h4 class="text-sm font-bold text-brand mb-2 uppercase tracking-wider">Project Goals</h4>
+                <ul class="text-gray-300 text-sm space-y-2">
+                    ${project.goals.map(goal => `<li class="flex items-start gap-2"><span class="text-brand mt-1">•</span>${goal}</li>`).join('')}
+                </ul>
+            </div>
+
+            <div class="bg-brand-accent/20 rounded-xl p-4 mb-4 border border-white/5">
+                <h4 class="text-sm font-bold text-brand mb-2 uppercase tracking-wider">Team</h4>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        ${teamAvatars}
+                    </div>
+                    <span class="text-gray-400 text-xs">${project.team.length} members</span>
+                </div>
+            </div>
+
+            <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-bold text-brand uppercase tracking-wider">Connect</span>
+                    <span class="text-gray-500 font-mono text-xs">${project.seats || 'N/A'}</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-brand text-sm">telegram</span>
+                    <a href="${project.telegram}" target="_blank" class="text-brand text-sm truncate hover:underline">${project.telegram.replace('https://t.me/', '@')}</a>
+                </div>
+                ${project.website ? `
+                <div class="flex items-center gap-3 mt-2">
+                    <span class="material-symbols-outlined text-brand text-sm">language</span>
+                    <a href="${project.website}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">${project.website}</a>
+                </div>
+                ` : ''}
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="viewProjectDetails('${projectId}')" class="flex-1 border border-brand/20 text-brand hover:bg-brand/10 font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider">
+                    More Details
+                </button>
+                ${joinButton}
+            </div>
+        `;
+
+        // Show the popup
+        document.getElementById('projectPopup').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectPopup() {
+        document.getElementById('projectPopup').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function handleJoinTeam(projectId) {
+        closeProjectPopup();
+        showToast(`Join ${projectsData[projectId].title} on Telegram`, 'send');
+        setTimeout(() => {
+            window.open(projectsData[projectId].telegram, '_blank');
+        }, 500);
+    }
+
+    function viewProjectDetails(projectId) {
+        showToast(`More details coming soon for ${projectsData[projectId].title}`, 'info');
+    }
+
+    // Close popup when clicking outside
+    document.getElementById("projectPopup")?.addEventListener("click", function(e) {
+        if (e.target === this) {
+            closeProjectPopup();
+        }
+    });
+
+    // Escape key to close both popups
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            closeProjectPopup();
+            closeTelegramPopup();
+        }
+    });
+
+    // NEW HANDLER - This is the only one you need
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle buttons without onclick attributes
+        document.querySelectorAll('.venture-card button:not([onclick])').forEach(btn => {
+            if (!btn.classList.contains('cursor-not-allowed')) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const action = this.textContent.trim();
+                    showToast(`Feature coming soon: ${action}`, 'info');
                 });
             }
         });
-    </script>
+
+        // Placeholder project button
+        const proposalBtn = document.querySelector('[onclick="openTelegramPopup(); return false;"]');
+        if (proposalBtn) {
+            proposalBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openTelegramPopup();
+            });
+        }
+    });
+</script>
+    <!-- Project Popup Management -->
+<script>
+    // Project data - matches your three projects
+    const projectsData = {
+        logspex: {
+            title: "Logspex",
+            icon: "box_add",
+            stage: "Building",
+            stageColor: "#25f459",
+            description: "A cutting-edge logistics optimization platform that helps businesses streamline their supply chain operations using AI-powered predictive analytics.",
+            longDescription: "Logspex is revolutionizing how businesses manage their logistics by providing real-time tracking, predictive maintenance, and route optimization. Our platform reduces operational costs by up to 30% while improving delivery times.",
+            goals: [
+                "Launch beta version with 10 pilot companies",
+                "Secure $500K in seed funding by Q3 2024",
+                "Build team of 5 core engineers",
+                "Achieve 95% accuracy in delivery predictions"
+            ],
+            team: [
+                { name: "Sarah Johnson", role: "CEO", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&auto=format&fit=crop" },
+                { name: "Michael Chen", role: "CTO", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" }
+            ],
+            website: "https://logspex.com",
+            telegram: "https://t.me/logspex",
+            status: "recruiting", // 'recruiting', 'full', or 'coming-soon'
+            seats: "2/4"
+        },
+        fondrz: {
+            title: "Fondrz",
+            icon: "energy_savings_leaf",
+            stage: "Implementation",
+            stageColor: "#f97316",
+            description: "Sustainable investment platform connecting impact investors with vetted green technology startups across Africa.",
+            longDescription: "Fondrz bridges the gap between impact capital and sustainable innovation. We provide due diligence, impact measurement, and portfolio management tools for investors focused on environmental and social returns.",
+            goals: [
+                "Onboard 50 vetted green startups",
+                "Facilitate $2M in impact investments",
+                "Launch impact measurement dashboard",
+                "Partner with 5 major impact funds"
+            ],
+            team: [
+                { name: "David Okafor", role: "Founder", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" },
+                { name: "Amara Nwachukwu", role: "Impact Lead", image: "https://images.unsplash.com/photo-1494790108777-223d9f03507e?w=100&auto=format&fit=crop" },
+                { name: "James Kimani", role: "Tech Lead", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
+            ],
+            website: "https://fondrz.com",
+            telegram: "https://t.me/fondrz",
+            status: "recruiting",
+            seats: "3/4"
+        },
+        quantx: {
+            title: "Quantx Protocol",
+            icon: "finance_chip",
+            stage: "Ideation",
+            stageColor: "#3b82f6",
+            description: "Decentralized quantitative trading protocol that democratizes access to algorithmic trading strategies.",
+            longDescription: "Quantx Protocol is building the infrastructure for community-owned trading algorithms. We're creating a platform where quant developers can deploy strategies and users can stake in them, with everything governed by DAO voting.",
+            goals: [
+                "Complete whitepaper and tokenomics",
+                "Build MVP with 3 core strategies",
+                "Gather 100 alpha testers",
+                "Launch testnet by Q4 2024"
+            ],
+            team: [
+                { name: "Alex Rivera", role: "Lead Quant", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
+            ],
+            website: "https://quantx.io",
+            telegram: "https://t.me/quantx",
+            status: "coming-soon",
+            seats: "1/3"
+        }
+    };
+
+    function openProjectPopup(projectId) {
+        const project = projectsData[projectId];
+        if (!project) return;
+
+        const contentDiv = document.getElementById('projectPopupContent');
+
+        // Build team avatars HTML
+        const teamAvatars = project.team.map((member, index) =>
+            `<div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-cover bg-center ${index > 0 ? '-ml-2' : ''}" style="background-image: url('${member.image}')" title="${member.name} - ${member.role}"></div>`
+        ).join('');
+
+        // Determine button states
+        const joinButton = project.status === 'recruiting'
+            ? `<button onclick="handleJoinTeam('${projectId}')" class="flex-1 bg-brand text-black hover:bg-white font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(37,244,89,0.3)]">Join Team</button>`
+            : project.status === 'full'
+            ? `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Team Full</button>`
+            : `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Coming Soon</button>`;
+
+        contentDiv.innerHTML = `
+            <div class="flex justify-center mb-6">
+                <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-brand">${project.icon}</span>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-center text-white mb-2">${project.title}</h3>
+
+            <div class="flex justify-center mb-4">
+                <span class="stage-badge px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                      style="color: ${project.stageColor}; border-color: ${project.stageColor}40; background: ${project.stageColor}10;">
+                    Stage: ${project.stage}
+                </span>
+            </div>
+
+            <p class="text-gray-400 text-center mb-4">${project.description}</p>
+
+            <div class="bg-brand-accent/20 rounded-xl p-4 mb-4 border border-white/5">
+                <h4 class="text-sm font-bold text-brand mb-2 uppercase tracking-wider">Project Goals</h4>
+                <ul class="text-gray-300 text-sm space-y-2">
+                    ${project.goals.map(goal => `<li class="flex items-start gap-2"><span class="text-brand mt-1">•</span>${goal}</li>`).join('')}
+                </ul>
+            </div>
+
+            <div class="bg-brand-accent/20 rounded-xl p-4 mb-4 border border-white/5">
+                <h4 class="text-sm font-bold text-brand mb-2 uppercase tracking-wider">Team</h4>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        ${teamAvatars}
+                    </div>
+                    <span class="text-gray-400 text-xs">${project.team.length} members</span>
+                </div>
+            </div>
+
+            <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-bold text-brand uppercase tracking-wider">Connect</span>
+                    <span class="text-gray-500 font-mono text-xs">${project.seats || 'N/A'}</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-brand text-sm">telegram</span>
+                    <a href="${project.telegram}" target="_blank" class="text-brand text-sm truncate hover:underline">${project.telegram.replace('https://t.me/', '@')}</a>
+                </div>
+                ${project.website ? `
+                <div class="flex items-center gap-3 mt-2">
+                    <span class="material-symbols-outlined text-brand text-sm">language</span>
+                    <a href="${project.website}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">${project.website}</a>
+                </div>
+                ` : ''}
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="viewProjectDetails('${projectId}')" class="flex-1 border border-brand/20 text-brand hover:bg-brand/10 font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider">
+                    More Details
+                </button>
+                ${joinButton}
+            </div>
+        `;
+
+        // Show the popup
+        document.getElementById('projectPopup').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectPopup() {
+        document.getElementById('projectPopup').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function handleJoinTeam(projectId) {
+        closeProjectPopup();
+        // Show a toast and then open Telegram
+        showToast(`Join ${projectsData[projectId].title} on Telegram`, 'send');
+        setTimeout(() => {
+            window.open(projectsData[projectId].telegram, '_blank');
+        }, 500);
+    }
+
+    function viewProjectDetails(projectId) {
+        showToast(`More details coming soon for ${projectsData[projectId].title}`, 'info');
+    }
+
+    // Close popup when clicking outside
+    document.getElementById("projectPopup")?.addEventListener("click", function(e) {
+        if (e.target === this) {
+            closeProjectPopup();
+        }
+    });
+
+    // Escape key to close
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            closeProjectPopup();
+            closeTelegramPopup();
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+ document.querySelectorAll('.venture-card button:not([onclick])').forEach(btn => {
+        if (!btn.classList.contains('cursor-not-allowed')) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const action = this.textContent.trim();
+                showToast(`Feature coming soon: ${action}`, 'info');
+            });
+        }
+    });
+
+    // Placeholder project button
+    const proposalBtn = document.querySelector('[onclick="openTelegramPopup(); return false;"]');
+    if (proposalBtn) {
+        proposalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openTelegramPopup();
+        });
+    }
+</script>
 </body>
 </html>
