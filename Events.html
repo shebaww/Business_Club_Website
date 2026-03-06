@@ -442,16 +442,16 @@
                 class="flex bg-brand-accent/20 p-1 rounded-xl border border-white/5"
               >
                 <button
-                  id="listViewBtn"
-                  class="px-4 py-2 bg-brand text-black rounded-custom text-sm font-bold shadow-sm transition-all"
-                >
-                  List View
-                </button>
-                <button
                   id="gridViewBtn"
-                  class="px-4 py-2 text-sm font-bold text-gray-400 transition-all"
+                  class="px-4 py-2 bg-brand shadow-sm text-black rounded-custom text-sm font-bold transition-all"
                 >
                   Grid View
+                </button>
+                <button
+                  id="listViewBtn"
+                  class="px-4 py-2 text-sm font-bold shadow-sm transition-all"
+                >
+                  List View
                 </button>
               </div>
             </div>
@@ -1415,17 +1415,6 @@
         document.getElementById("telegramPopup").classList.add("hidden");
         document.body.style.overflow = "";
       }
-
-      // ─── Mobile Menu ─────────────────────────────────────────────────────────
-      const menuBtn = document.getElementById("mobileMenuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
-      const menuIconOpen = document.getElementById("menuIconOpen");
-      const menuIconClose = document.getElementById("menuIconClose");
-      menuBtn.addEventListener("click", () => {
-        const open = mobileMenu.classList.toggle("open");
-        menuIconOpen.classList.toggle("hidden", open);
-        menuIconClose.classList.toggle("hidden", !open);
-      });
 
       // ─── View Toggle ─────────────────────────────────────────────────────────
       const listViewBtn = document.getElementById("listViewBtn");

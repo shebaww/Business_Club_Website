@@ -148,14 +148,12 @@
                   
                   <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand transition-colors">Logspex</h3>
                   <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
-                  I'll finish this later
+                  Logspex: AI research tool that turns your uploaded documents into personalized study guides, briefing docs, and conversational audio overviews.
                   </p>
                   
                   <div class="border-t border-white/10 pt-6 mt-auto">
                       <div class="flex items-center justify-between mb-4">
                           <div class="flex -space-x-2">
-                              <div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-brand/20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&auto=format&fit=crop')"></div>
-                              <div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-brand/20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop')"></div>
                           </div>
                           <span class="text-gray-500 font-mono text-[10px]">2/2 SEATS</span>
                       </div>
@@ -182,15 +180,12 @@
                   
                   <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand transition-colors">Fondrz</h3>
                   <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
-                  I'll also finish this later.
+                  I'll finish this later.
                   </p>
                   
                   <div class="border-t border-white/10 pt-6 mt-auto">
                       <div class="flex items-center justify-between mb-4">
                           <div class="flex -space-x-2">
-                              <div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-brand/20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop')"></div>
-                              <div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-brand/20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1494790108777-223d9f03507e?w=100&auto=format&fit=crop')"></div>
-                              <div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-brand/20 flex items-center justify-center text-[10px] font-bold text-brand">+2</div>
                           </div>
                           <span class="text-gray-500 font-mono text-[10px]">2/4 SEATS</span>
                       </div>
@@ -225,8 +220,8 @@
                           <div class="flex -space-x-2">
                         Fix when not coming soon   <div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-brand/20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop')"></div>
                               <div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-brand/20 flex items-center justify-center text-[10px] font-bold text-brand">+2</div>
-                        </div>
-                        <span class="text-gray-500 font-mono text-[10px]">1/3 SEATS</span>-->
+                          </div>-->
+                        <span class="text-gray-500 font-mono text-[10px]">1/3 SEATS</span>
                       </div>
                       
                       <div class="flex gap-3">
@@ -308,12 +303,14 @@
     </div>
 
     <!-- Toast and Telegram Functions -->
+    <!-- Project Popup Management -->
 <script>
+    // Toast function (if not defined elsewhere)
     function showToast(msg, icon = "check_circle") {
         const t = document.getElementById("toast");
+        if (!t) return;
         document.getElementById("toastMsg").textContent = msg;
         document.getElementById("toastIcon").textContent = icon;
-        t.classList.add("show");
         t.style.transform = "translateY(0)";
         t.style.opacity = "1";
         t.style.pointerEvents = "auto";
@@ -326,264 +323,23 @@
         }, 3000);
     }
 
-    function openTelegramPopup() {
-        document.getElementById("telegramPopup").classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeTelegramPopup() {
-        document.getElementById("telegramPopup").classList.add("hidden");
-        document.body.style.overflow = "";
-    }
-
-    // Close popup when clicking outside
-    document.getElementById("telegramPopup")?.addEventListener("click", function(e) {
-        if (e.target === this) {
-            closeTelegramPopup();
-        }
-    });
-
-    // Escape key to close
-    document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape") {
-            closeTelegramPopup();
-        }
-    });
-</script>
-
-<!-- Project Popup Management -->
-<script>
-    // Project data - matches your three projects
- const projectsData = {
-        logspex: {
-            title: "Logspex",
-            icon: "box_add",
-            stage: "Building",
-            stageColor: "#25f459",
-            description: "A cutting-edge logistics optimization platform that helps businesses streamline their supply chain operations using AI-powered predictive analytics.",
-            longDescription: "Logspex is revolutionizing how businesses manage their logistics by providing real-time tracking, predictive maintenance, and route optimization. Our platform reduces operational costs by up to 30% while improving delivery times.",
-            goals: [
-                "Launch beta version with 10 pilot companies",
-                "Secure $500K in seed funding by Q3 2024",
-                "Build team of 5 core engineers",
-                "Achieve 95% accuracy in delivery predictions"
-            ],
-            team: [
-                { name: "Sarah Johnson", role: "CEO", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&auto=format&fit=crop" },
-                { name: "Michael Chen", role: "CTO", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" }
-            ],
-            website: "https://logspex.com",
-            telegram: "https://t.me/logspex",
-            status: "recruiting", // 'recruiting', 'full', or 'coming-soon'
-            seats: "2/4"
-        },
-        fondrz: {
-            title: "Fondrz",
-            icon: "energy_savings_leaf",
-            stage: "Implementation",
-            stageColor: "#f97316",
-            description: "Sustainable investment platform connecting impact investors with vetted green technology startups across Africa.",
-            longDescription: "Fondrz bridges the gap between impact capital and sustainable innovation. We provide due diligence, impact measurement, and portfolio management tools for investors focused on environmental and social returns.",
-            goals: [
-                "Onboard 50 vetted green startups",
-                "Facilitate $2M in impact investments",
-                "Launch impact measurement dashboard",
-                "Partner with 5 major impact funds"
-            ],
-            team: [
-                { name: "David Okafor", role: "Founder", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" },
-                { name: "Amara Nwachukwu", role: "Impact Lead", image: "https://images.unsplash.com/photo-1494790108777-223d9f03507e?w=100&auto=format&fit=crop" },
-                { name: "James Kimani", role: "Tech Lead", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
-            ],
-            website: "https://fondrz.com",
-            telegram: "https://t.me/fondrz",
-            status: "recruiting",
-            seats: "3/4"
-        },
-        quantx: {
-            title: "Quantx Protocol",
-            icon: "finance_chip",
-            stage: "Ideation",
-            stageColor: "#3b82f6",
-            description: "Decentralized quantitative trading protocol that democratizes access to algorithmic trading strategies.",
-            longDescription: "Quantx Protocol is building the infrastructure for community-owned trading algorithms. We're creating a platform where quant developers can deploy strategies and users can stake in them, with everything governed by DAO voting.",
-            goals: [
-                "Complete whitepaper and tokenomics",
-                "Build MVP with 3 core strategies",
-                "Gather 100 alpha testers",
-                "Launch testnet by Q4 2024"
-            ],
-            team: [
-                { name: "Alex Rivera", role: "Lead Quant", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
-            ],
-            website: "https://quantx.io",
-            telegram: "https://t.me/quantx",
-            status: "coming-soon",
-            seats: "1/3"
-        }
-    };
- function openProjectPopup(projectId) {
-        const project = projectsData[projectId];
-        if (!project) return;
-
-        const contentDiv = document.getElementById('projectPopupContent');
-
-        // Build team avatars HTML
-        const teamAvatars = project.team.map((member, index) =>
-            `<div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-cover bg-center ${index > 0 ? '-ml-2' : ''}" style="background-image: url('${member.image}')" title="${member.name} - ${member.role}"></div>`
-        ).join('');
-
-        // Determine button states
-        const joinButton = project.status === 'recruiting'
-            ? `<button onclick="handleJoinTeam('${projectId}')" class="flex-1 bg-brand text-black hover:bg-white font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(37,244,89,0.3)]">Join Team</button>`
-            : project.status === 'full'
-            ? `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Team Full</button>`
-            : `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Coming Soon</button>`;
-
-        contentDiv.innerHTML = `
-            <div class="flex justify-center mb-6">
-                <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
-                    <span class="material-symbols-outlined text-4xl text-brand">${project.icon}</span>
-                </div>
-            </div>
-
-            <h3 class="text-2xl font-bold text-center text-white mb-2">${project.title}</h3>
-
-            <div class="flex justify-center mb-4">
-                <span class="stage-badge px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
-                      style="color: ${project.stageColor}; border-color: ${project.stageColor}40; background: ${project.stageColor}10;">
-                    Stage: ${project.stage}
-                </span>
-            </div>
-
-            <p class="text-gray-400 text-center mb-4">${project.description}</p>
-
-            <div class="bg-brand-accent/20 rounded-xl p-4 mb-4 border border-white/5">
-                <h4 class="text-sm font-bold text-brand mb-2 uppercase tracking-wider">Project Goals</h4>
-                <ul class="text-gray-300 text-sm space-y-2">
-                    ${project.goals.map(goal => `<li class="flex items-start gap-2"><span class="text-brand mt-1">•</span>${goal}</li>`).join('')}
-                </ul>
-            </div>
-
-            <div class="bg-brand-accent/20 rounded-xl p-4 mb-4 border border-white/5">
-                <h4 class="text-sm font-bold text-brand mb-2 uppercase tracking-wider">Team</h4>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        ${teamAvatars}
-                    </div>
-                    <span class="text-gray-400 text-xs">${project.team.length} members</span>
-                </div>
-            </div>
-
-            <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-bold text-brand uppercase tracking-wider">Connect</span>
-                    <span class="text-gray-500 font-mono text-xs">${project.seats || 'N/A'}</span>
-                </div>
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-brand text-sm">telegram</span>
-                    <a href="${project.telegram}" target="_blank" class="text-brand text-sm truncate hover:underline">${project.telegram.replace('https://t.me/', '@')}</a>
-                </div>
-                ${project.website ? `
-                <div class="flex items-center gap-3 mt-2">
-                    <span class="material-symbols-outlined text-brand text-sm">language</span>
-                    <a href="${project.website}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">${project.website}</a>
-                </div>
-                ` : ''}
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="viewProjectDetails('${projectId}')" class="flex-1 border border-brand/20 text-brand hover:bg-brand/10 font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider">
-                    More Details
-                </button>
-                ${joinButton}
-            </div>
-        `;
-
-        // Show the popup
-        document.getElementById('projectPopup').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeProjectPopup() {
-        document.getElementById('projectPopup').classList.add('hidden');
-        document.body.style.overflow = '';
-    }
-
-    function handleJoinTeam(projectId) {
-        closeProjectPopup();
-        showToast(`Join ${projectsData[projectId].title} on Telegram`, 'send');
-        setTimeout(() => {
-            window.open(projectsData[projectId].telegram, '_blank');
-        }, 500);
-    }
-
-    function viewProjectDetails(projectId) {
-        showToast(`More details coming soon for ${projectsData[projectId].title}`, 'info');
-    }
-
-    // Close popup when clicking outside
-    document.getElementById("projectPopup")?.addEventListener("click", function(e) {
-        if (e.target === this) {
-            closeProjectPopup();
-        }
-    });
-
-    // Escape key to close both popups
-    document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape") {
-            closeProjectPopup();
-            closeTelegramPopup();
-        }
-    });
-
-    // NEW HANDLER - This is the only one you need
-    document.addEventListener('DOMContentLoaded', function() {
-        // Handle buttons without onclick attributes
-        document.querySelectorAll('.venture-card button:not([onclick])').forEach(btn => {
-            if (!btn.classList.contains('cursor-not-allowed')) {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const action = this.textContent.trim();
-                    showToast(`Feature coming soon: ${action}`, 'info');
-                });
-            }
-        });
-
-        // Placeholder project button
-        const proposalBtn = document.querySelector('[onclick="openTelegramPopup(); return false;"]');
-        if (proposalBtn) {
-            proposalBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openTelegramPopup();
-            });
-        }
-    });
-</script>
-    <!-- Project Popup Management -->
-<script>
-    // Project data - matches your three projects
+    // Project data - SINGLE SOURCE OF TRUTH
     const projectsData = {
         logspex: {
             title: "Logspex",
             icon: "box_add",
             stage: "Building",
             stageColor: "#25f459",
-            description: "A cutting-edge logistics optimization platform that helps businesses streamline their supply chain operations using AI-powered predictive analytics.",
-            longDescription: "Logspex is revolutionizing how businesses manage their logistics by providing real-time tracking, predictive maintenance, and route optimization. Our platform reduces operational costs by up to 30% while improving delivery times.",
+            description: "Enterprise-grade AI research assistant synthesizing multimodal sources into customizable, cited briefings with conversational discovery.",
+            longDescription: "Logspex is revolutionizing how businesses manage their logistics by providing real-time tracking, predictive maintenance, and route optimization.",
             goals: [
-                "Launch beta version with 10 pilot companies",
-                "Secure $500K in seed funding by Q3 2024",
+                "Launch beta version with over 1000 waitlisted users",
+                "Secure funding by Q3",
                 "Build team of 5 core engineers",
-                "Achieve 95% accuracy in delivery predictions"
+                "Achieve 95% user satisfaction"
             ],
-            team: [
-                { name: "Sarah Johnson", role: "CEO", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&auto=format&fit=crop" },
-                { name: "Michael Chen", role: "CTO", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" }
-            ],
-            website: "https://logspex.com",
-            telegram: "https://t.me/logspex",
-            status: "recruiting", // 'recruiting', 'full', or 'coming-soon'
+            website: "Coming soon",
+          status: "recruiting",
             seats: "2/4"
         },
         fondrz: {
@@ -592,21 +348,18 @@
             stage: "Implementation",
             stageColor: "#f97316",
             description: "Sustainable investment platform connecting impact investors with vetted green technology startups across Africa.",
-            longDescription: "Fondrz bridges the gap between impact capital and sustainable innovation. We provide due diligence, impact measurement, and portfolio management tools for investors focused on environmental and social returns.",
+            longDescription: "Fondrz bridges the gap between impact capital and sustainable innovation.",
             goals: [
                 "Onboard 50 vetted green startups",
                 "Facilitate $2M in impact investments",
                 "Launch impact measurement dashboard",
                 "Partner with 5 major impact funds"
             ],
-            team: [
-                { name: "David Okafor", role: "Founder", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" },
-                { name: "Amara Nwachukwu", role: "Impact Lead", image: "https://images.unsplash.com/photo-1494790108777-223d9f03507e?w=100&auto=format&fit=crop" },
-                { name: "James Kimani", role: "Tech Lead", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
-            ],
-            website: "https://fondrz.com",
-            telegram: "https://t.me/fondrz",
-            status: "recruiting",
+              youtube: "https://youtube.com/@fondrz?si=6P_30fyAMTbMCH7J",
+    instagram: "https://www.instagram.com/fondrz?igsh=M3g0MXpzeHB5d2Jz",
+    tiktok: "https://www.tiktok.com/@fondrz_?_r=1&_t=ZS-94RUZQer3uX",
+    website: "Coming soon",  
+          status: "recruiting",
             seats: "3/4"
         },
         quantx: {
@@ -615,18 +368,14 @@
             stage: "Ideation",
             stageColor: "#3b82f6",
             description: "Decentralized quantitative trading protocol that democratizes access to algorithmic trading strategies.",
-            longDescription: "Quantx Protocol is building the infrastructure for community-owned trading algorithms. We're creating a platform where quant developers can deploy strategies and users can stake in them, with everything governed by DAO voting.",
+            longDescription: "Quantx Protocol is building the infrastructure for community-owned trading algorithms.",
             goals: [
                 "Complete whitepaper and tokenomics",
                 "Build MVP with 3 core strategies",
                 "Gather 100 alpha testers",
-                "Launch testnet by Q4 2024"
+                "Launch testnet by Q4 2026"
             ],
-            team: [
-                { name: "Alex Rivera", role: "Lead Quant", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" }
-            ],
-            website: "https://quantx.io",
-            telegram: "https://t.me/quantx",
+            website: "coming soon",
             status: "coming-soon",
             seats: "1/3"
         }
@@ -638,17 +387,15 @@
 
         const contentDiv = document.getElementById('projectPopupContent');
 
-        // Build team avatars HTML
-        const teamAvatars = project.team.map((member, index) =>
-            `<div class="w-8 h-8 rounded-full border-2 border-brand-dark bg-cover bg-center ${index > 0 ? '-ml-2' : ''}" style="background-image: url('${member.image}')" title="${member.name} - ${member.role}"></div>`
-        ).join('');
-
         // Determine button states
-        const joinButton = project.status === 'recruiting'
-            ? `<button onclick="handleJoinTeam('${projectId}')" class="flex-1 bg-brand text-black hover:bg-white font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(37,244,89,0.3)]">Join Team</button>`
-            : project.status === 'full'
-            ? `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Team Full</button>`
-            : `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Coming Soon</button>`;
+        let joinButton = '';
+        if (project.status === 'recruiting') {
+            joinButton = `<button onclick="handleJoinTeam('${projectId}')" class="flex-1 bg-brand text-black hover:bg-white font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(37,244,89,0.3)]">Join Team</button>`;
+        } else if (project.status === 'full') {
+            joinButton = `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Team Full</button>`;
+        } else {
+            joinButton = `<button class="flex-1 border border-brand/20 text-gray-400 opacity-50 cursor-not-allowed py-3 rounded-custom text-sm uppercase tracking-wider">Coming Soon</button>`;
+        }
 
         contentDiv.innerHTML = `
             <div class="flex justify-center mb-6">
@@ -675,33 +422,42 @@
                 </ul>
             </div>
 
-            <div class="bg-brand-accent/20 rounded-xl p-4 mb-4 border border-white/5">
-                <h4 class="text-sm font-bold text-brand mb-2 uppercase tracking-wider">Team</h4>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        ${teamAvatars}
-                    </div>
-                    <span class="text-gray-400 text-xs">${project.team.length} members</span>
-                </div>
-            </div>
-
-            <div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-bold text-brand uppercase tracking-wider">Connect</span>
-                    <span class="text-gray-500 font-mono text-xs">${project.seats || 'N/A'}</span>
-                </div>
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-brand text-sm">telegram</span>
-                    <a href="${project.telegram}" target="_blank" class="text-brand text-sm truncate hover:underline">${project.telegram.replace('https://t.me/', '@')}</a>
-                </div>
-                ${project.website ? `
-                <div class="flex items-center gap-3 mt-2">
-                    <span class="material-symbols-outlined text-brand text-sm">language</span>
-                    <a href="${project.website}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">${project.website}</a>
-                </div>
-                ` : ''}
-            </div>
-
+<div class="bg-brand-accent/20 rounded-xl p-4 mb-6 border border-white/5">
+    <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-bold text-brand uppercase tracking-wider">Connect</span>
+        <span class="text-gray-500 font-mono text-xs">${project.seats || 'N/A'}</span>
+    </div>
+    
+    <div class="flex flex-col gap-2">
+        ${project.youtube ? `
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-brand text-sm">play_circle</span>
+            <a href="${project.youtube}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">YouTube</a>
+        </div>
+        ` : ''}
+        
+        ${project.instagram ? `
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-brand text-sm">photo_camera</span>
+            <a href="${project.instagram}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">Instagram</a>
+        </div>
+        ` : ''}
+        
+        ${project.tiktok ? `
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-brand text-sm">music_note</span>
+            <a href="${project.tiktok}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">TikTok</a>
+        </div>
+        ` : ''}
+        
+        ${project.website && project.website !== 'Coming soon' ? `
+        <div class="flex items-center gap-3 mt-2 pt-2 border-t border-white/10">
+            <span class="material-symbols-outlined text-brand text-sm">language</span>
+            <a href="${project.website}" target="_blank" class="text-gray-400 text-sm truncate hover:text-brand">${project.website}</a>
+        </div>
+        ` : ''}
+    </div>
+</div>
             <div class="flex flex-col sm:flex-row gap-3">
                 <button onclick="viewProjectDetails('${projectId}')" class="flex-1 border border-brand/20 text-brand hover:bg-brand/10 font-bold py-3 rounded-custom transition-all text-sm uppercase tracking-wider">
                     More Details
@@ -710,7 +466,6 @@
             </div>
         `;
 
-        // Show the popup
         document.getElementById('projectPopup').classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
@@ -722,10 +477,11 @@
 
     function handleJoinTeam(projectId) {
         closeProjectPopup();
-        // Show a toast and then open Telegram
         showToast(`Join ${projectsData[projectId].title} on Telegram`, 'send');
         setTimeout(() => {
-            window.open(projectsData[projectId].telegram, '_blank');
+            if (projectsData[projectId].telegram) {
+                window.open(projectsData[projectId].telegram, '_blank');
+            }
         }, 500);
     }
 
@@ -733,39 +489,33 @@
         showToast(`More details coming soon for ${projectsData[projectId].title}`, 'info');
     }
 
+  // ── Telegram Popup ────────────────────────────────────────────────────────
+  function openTelegramPopup() {
+    document.getElementById("telegramPopup").classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+  function closeTelegramPopup() {
+    document.getElementById("telegramPopup").classList.add("hidden");
+    document.body.style.overflow = "";
+  }
     // Close popup when clicking outside
-    document.getElementById("projectPopup")?.addEventListener("click", function(e) {
-        if (e.target === this) {
-            closeProjectPopup();
-        }
-    });
-
-    // Escape key to close
-    document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape") {
-            closeProjectPopup();
-            closeTelegramPopup();
-        }
-    });
     document.addEventListener('DOMContentLoaded', function() {
- document.querySelectorAll('.venture-card button:not([onclick])').forEach(btn => {
-        if (!btn.classList.contains('cursor-not-allowed')) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const action = this.textContent.trim();
-                showToast(`Feature coming soon: ${action}`, 'info');
+        const projectPopup = document.getElementById("projectPopup");
+        if (projectPopup) {
+            projectPopup.addEventListener("click", function(e) {
+                if (e.target === this) {
+                    closeProjectPopup();
+                }
             });
         }
-    });
 
-    // Placeholder project button
-    const proposalBtn = document.querySelector('[onclick="openTelegramPopup(); return false;"]');
-    if (proposalBtn) {
-        proposalBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openTelegramPopup();
+        // Escape key to close
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                closeProjectPopup();
+            }
         });
-    }
+    });
 </script>
 </body>
 </html>

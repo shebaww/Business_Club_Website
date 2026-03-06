@@ -1341,15 +1341,6 @@
         }, 3000);
       }
 
-      // ── Mobile Menu ───────────────────────────────────────────────────────────
-      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
-      mobileMenuBtn.addEventListener("click", () => {
-        const open = mobileMenu.classList.toggle("open");
-        document.getElementById("menuOpen").classList.toggle("hidden", open);
-        document.getElementById("menuClose").classList.toggle("hidden", !open);
-      });
-
       // ── Saves ─────────────────────────────────────────────────────────────────
       let savedIds = new Set();
 
