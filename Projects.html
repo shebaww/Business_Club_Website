@@ -141,7 +141,7 @@
               <div class="venture-card rounded-xl p-6 flex flex-col group hover:shadow-[0_0_30px_rgba(37,244,89,0.2)]">
                   <div class="flex justify-between items-start mb-4">
                       <div class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-black transition-all">
-                        <img src="./icons/foundrz.jpg" class="w-full h-full object-cover rounded-lg"/>    
+                        <img src="./icons/logspex.jpg" class="w-full h-full object-cover rounded-lg"/>    
                       </div>
                       <span class="stage-badge px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Stage: Building</span>
                   </div>
@@ -173,7 +173,7 @@
               <div class="venture-card rounded-xl p-6 flex flex-col group hover:shadow-[0_0_30px_rgba(37,244,89,0.2)]">
                   <div class="flex justify-between items-start mb-4">
                       <div class="w-14 h-14 bg-brand/10 rounded-lg flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-black transition-all">
-                          <img class="w-full h-full object-cover rounded-lg" src="./icons/logspex.jpg"/>
+                          <img class="w-full h-full object-cover rounded-lg" src="./icons/foundrz.jpg"/>
                       </div>
                       <span class="stage-badge px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" style="color: #f97316; border-color: rgba(249, 115, 22, 0.3); background: rgba(249, 115, 22, 0.1);">Stage: Implementation</span>
                   </div>
@@ -327,7 +327,7 @@
     const projectsData = {
         logspex: {
             title: "Logspex",
-            icon: "box_add",
+            image: "logspex",
             stage: "Building",
             stageColor: "#25f459",
             description: "Enterprise-grade AI research assistant synthesizing multimodal sources into customizable, cited briefings with conversational discovery.",
@@ -344,7 +344,7 @@
         },
         fondrz: {
             title: "Fondrz",
-            icon: "energy_savings_leaf",
+            image: "foundrz",
             stage: "Implementation",
             stageColor: "#f97316",
             description: "I'll Finish this later",
@@ -400,7 +400,7 @@
         contentDiv.innerHTML = `
             <div class="flex justify-center mb-6">
                 <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center">
-                  <img src="./icons/foundrz.jpg" class="w-full h-full object-cover rounded-full"/>    
+                  <img src="./icons/${project.image}.jpg" class="w-full h-full object-cover rounded-full"/>    
                 </div>
             </div>
 
