@@ -459,7 +459,7 @@
             <!-- Featured Event -->
             <div
               class="event-card group relative bg-brand-accent/20 rounded-2xl overflow-hidden border border-white/5 hover:border-brand/30 flex flex-col md:flex-row min-h-[320px] transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.3)]"
-              data-category="Hackathon"
+              data-category="Competition"
               data-date="2026-03-21"
               data-title="Campfire Addis Ababa Game Jam"
               data-desc="This is your introduction into Campfire Addis Ababa. Campfire Addis Ababa will be a 24 hour overnight game jam.
@@ -520,7 +520,7 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
                 </div>
                 <div class="mt-8 flex items-center gap-4 flex-wrap">
                   <button
-                    onclick="handleRSVP(this, 'Leadership in the Age of AI')"
+                    onclick="handleRSVP(this, 'Addis Ababa Game Jam')"
                     class="rsvp-btn bg-brand text-black px-8 py-3 rounded-custom font-bold hover:bg-white transition-all shadow-[0_0_20px_rgba(37,244,89,0.3)]"
                   >
                     RSVP Now
@@ -1154,16 +1154,10 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
       // ─── Data ────────────────────────────────────────────────────────────────
       // Event dates with events (for calendar dots)
       const eventDates = [
-        "2026-10-12",
-        "2026-10-15",
-        "2026-10-22",
-        "2026-10-28",
-        "2026-11-02",
-        "2026-11-10",
-        "2026-11-18",
+        "2026-03-21",
       ];
       let rsvpdEvents = new Set();
-      let currentModalCard = null;
+      let curren21odalCard = null;
 
       // ─── Toast ───────────────────────────────────────────────────────────────
       function showToast(msg) {
@@ -1442,7 +1436,7 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
         "December",
       ];
       let calYear = 2026,
-        calMonth = 9; // October 2026 (0-indexed)
+        calMonth = 2; // March 2026 (0-indexed)
       let calSelectedDate = null;
 
       function renderCalendar() {
