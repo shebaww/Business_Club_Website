@@ -177,7 +177,6 @@ No build process required! The project uses CDN-based Tailwind CSS. Simply edit 
 
 - **Telegram:** [@ethiobusinessclub](https://t.me/ethiobusinessclub)
 - **Email:** nahomnatnael87@gmail.com
-- **Phone:** +251979087331
 - **School Portal:** [andinet.edu.et](https://www.andinet.edu.et/)
 
 ## 📄 License
@@ -187,5 +186,5 @@ No build process required! The project uses CDN-based Tailwind CSS. Simply edit 
 ---
 
 <p align="center">
-  Built with ❤️ by the Andinet Business Club Team
+  Built with by the Andinet Business Club Team
 </p>
