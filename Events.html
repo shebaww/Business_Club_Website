@@ -471,18 +471,17 @@
             <div
               class="event-card group relative bg-brand-accent/20 rounded-2xl overflow-hidden border border-white/5 hover:border-brand/30 flex flex-col md:flex-row min-h-[320px] transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,244,89,0.3)]"
               data-category="Competition"
-              data-date="2026-03-21"
-              data-title="Campfire Addis Ababa Game Jam"
-              data-desc="This is your introduction into Campfire Addis Ababa. Campfire Addis Ababa will be a 24 hour overnight game jam.
-A game jam is an event where programmers meet to program a video game based on a specific theme! 
-This game jam will be hosted at the Science Museum and it is for high-schoolers and early college students! You can participate in Campfire without any prior experience! "
-              data-time="10:00 AM"
-              data-location="Science Museum"
+              data-date="2026-04-04"
+              data-title="Hospitality Hackathon"
+              data-desc="This challenge focuses on leveraging artificial intelligence and machine learning to create innovative solutions that address critical aspects of resort management and guest experience in Ethiopia's hospitality sector."
+              data-time="9:00 AM"
+              data-location="Capstone ALX Tech Hub"
+              data-prize="150k ETB"
             >
             <div class="w-full md:w-2/5 relative aspect-[2/1]">
   <div
     class="absolute inset-0 bg-center bg-cover"
-    style="background-image: url('./icons/hacky.png');"
+    style="background-image: url('./icons/hacky2.png');"
   ></div>
 
   <div
@@ -502,12 +501,10 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
                     Hackathon
                   </div>
                   <h2 class="text-2xl font-bold mb-3 text-white">
-                  Campfire Addis Ababa Game Jam
+                  Hospitality Hackathon
                   </h2>
                   <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                    This is your introduction into Campfire Addis Ababa. Campfire Addis Ababa will be a 24 hour overnight game jam. 
-A game jam is an event where programmers meet to program a video game based on a specific theme! 
-This game jam will be hosted at the Science Museum and it is for high-schoolers and early college students! You can participate in Campfire without any prior experience! 
+                    This year's challenge focuses on leveraging artificial intelligence and machine learning to create innovative solutions that address critical aspects of resort management and guest experience in Ethiopia's hospitality sector.
                   </p>
                   <div
                     class="flex flex-wrap gap-4 text-sm font-medium text-gray-400"
@@ -515,17 +512,22 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
                     <div class="flex items-center gap-1">
                       <span class="material-symbols-outlined text-brand text-lg"
                         >calendar_today</span
-                      >Mar 21, 2026
+                      >Apr 04, 2026
                     </div>
                     <div class="flex items-center gap-1">
                       <span class="material-symbols-outlined text-brand text-lg"
                         >schedule</span
-                      >10:00 A.M.
+                      >9:00 A.M.
                     </div>
                     <div class="flex items-center gap-1">
                       <span class="material-symbols-outlined text-brand text-lg"
                         >location_on</span
-                      >Science Museum
+                      >Capstone ALX Tech Hub
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-brand text-lg"
+                        >money</span
+                      >Prize: 150k ETB
                     </div>
                   </div>
                 </div>
@@ -1129,6 +1131,24 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
                 ></p>
               </div>
             </div>
+            <div
+              class="bg-white/5 rounded-xl p-4 flex items-center gap-3 col-span-2"
+            >
+              <span class="material-symbols-outlined text-brand"
+                >money</span
+              >
+              <div>
+                <p
+                  class="text-xs text-gray-500 font-semibold uppercase tracking-wider"
+                >
+                  Prize
+                </p>
+                <p
+                  id="modalPrize"
+                  class="text-sm font-bold text-white mt-0.5"
+                ></p>
+              </div>
+            </div>
           </div>
           <div class="flex gap-3">
             <button
@@ -1165,7 +1185,7 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
       // ─── Data ────────────────────────────────────────────────────────────────
       // Event dates with events (for calendar dots)
       const eventDates = [
-        "2026-03-21",
+        "2026-04-04",
       ];
       let rsvpdEvents = new Set();
       let curren21odalCard = null;
@@ -1195,7 +1215,7 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
           btn.classList.add("rsvpd");
           btn.textContent = "RSVPd";
           showToast(`RSVP confirmed for "${eventName}"! 🎉`);
-          window.open('https://forms.hackclub.com/campfire-signup?event=recQ4GNv7Z334NICk', '_blank');
+          window.open('https://www.hospitalityhackathon.et/registration', '_blank');
         }
         updateRsvpCount();
       }
@@ -1245,6 +1265,7 @@ This game jam will be hosted at the Science Museum and it is for high-schoolers 
         document.getElementById("modalDesc").textContent =
           d.desc || "No description available";
         document.getElementById("modalTime").textContent = d.time || "TBA";
+        document.getElementById("modalPrize").textContent = d.prize || "TBA";
         document.getElementById("modalLocation").textContent =
           d.location || "TBA";
 
