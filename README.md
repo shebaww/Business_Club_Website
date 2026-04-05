@@ -188,3 +188,4 @@ No build process required! The project uses CDN-based Tailwind CSS. Simply edit 
 <p align="center">
   Built with by the Andinet Business Club Team
 </p>
+
