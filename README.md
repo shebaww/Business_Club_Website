@@ -3,7 +3,7 @@
 ![Business Club](./icons/conference.jpg)
 
 ## 🌐 Live Demo
-![Business Club](https://shebaww.github.io/Business_Club_Website)
+![Business Club](https://www.shebaww.github.io/Business_Club_Website)
 
 ## 📋 Overview
 The official website for the Andinet Business Club - a platform designed to empower the next generation of business leaders through education, networking, and real-world experience. The site serves as a central hub for club information, events, resources, and community engagement.
